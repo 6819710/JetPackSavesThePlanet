@@ -3,9 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Oxygen : MonoBehaviour {
+	
     // Oxygen Resource Values
     public int oxygen;
+	public int minOxygen;
     public int maxOxygen;
+
+	/// <summary>
+	/// Checks if oxygen is at max.
+	/// </summary>
+	/// <returns>True if oxygen is at max.</returns>
+	public bool isFull
+	{
+		get { return oxygen >= maxOxygen; } 
+	}
+
+	/// <summary>
+	/// Checks if oxygen is running low.
+	/// </summary>
+	/// <returns>True if oxygen is running low.</returns>
+	public bool isLow
+	{
+		get { return oxygen <= minOxygen; } 
+	}
+
+	/// <summary>
+	/// Checks if there is no oxygen remaining.
+	/// </summary>
+	/// <returns>True if there is no oxygen remaining.</returns>
+	public bool isOut
+	{
+		get { return oxygen <= 0; } 
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -30,21 +59,6 @@ public class Oxygen : MonoBehaviour {
             oxygen = 0;
     }
 
-    /// <summary>
-    /// Checks if there is no oxygen remaining.
-    /// </summary>
-    /// <returns>True if there is no oxygen remaining.</returns>
-    public bool Empty()
-    {
-        return oxygen == 0;
-    }
+    
 
-    /// <summary>
-    /// Checks if oxygen is at max.
-    /// </summary>
-    /// <returns>True if oxygen is at max.</returns>
-    public bool Full()
-    {
-        return oxygen == maxOxygen;
-    }
 }
