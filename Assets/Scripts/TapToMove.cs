@@ -9,7 +9,15 @@ public class TapToMove : MonoBehaviour {
 	public bool flipToDirection = true;
 
 	private Vector3 target;
+
 	private Vector3 initialScale;
+
+	public bool isMoving
+	{
+		get { 
+			return !target.Equals (transform.position);
+		}
+	}
 
 	void Start () {
 		initialScale = this.transform.localScale;
