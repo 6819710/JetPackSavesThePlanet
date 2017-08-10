@@ -10,6 +10,12 @@ public class SwipeToMove : MonoBehaviour {
 
 	private Vector2 originalScale;
 
+	public bool isMoving
+	{
+		get { 
+			return (this.gameObject.GetComponent<Rigidbody2D> ().velocity != Vector2.zero); 
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
