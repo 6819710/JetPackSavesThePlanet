@@ -21,16 +21,20 @@ public class LootTable{
 		get { 
 			return new KeyValuePair<GameObject, float>(keys[index], values [index]);
 		}
+		set{
+			keys.Add (null);
+			values.Add (0f);
+		}
 	}
 
-	public object this[GameObject key]
+	public float this[GameObject key]
 	{
 		get { 
 			if (keys.Contains(key)) {
 				int i = keys.IndexOf (key);
 				return values [i];
 			}
-			return null;
+			return 0f;
 		}
 		set { Add (key, (float) value); }
 	}
@@ -51,6 +55,31 @@ public class LootTable{
 			int index = keys.IndexOf (key);
 			values.RemoveAt (index);
 			keys.RemoveAt (index);
+		}
+	}
+
+	public void Clear(){
+		keys = new List<GameObject>();
+		values = new List<float>();
+	}
+
+	public void SetChance(GameObject of, float to){
+		int index = keys.IndexOf (of);
+		if(index>0){
+			values [index] = to;
+		}
+	}
+
+	public void SetLootAt(int index, GameObject to){
+		if(index>= 0 && keys.Count > index){
+			keys [index] = to;
+		}
+	}
+
+	public void SetLootAt(int index, GameObject to, float chance){
+		if(index>= 0 && keys.Count > index){
+			keys [index] = to;
+			values [index] = chance;
 		}
 	}
 

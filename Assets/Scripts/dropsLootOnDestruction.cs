@@ -6,14 +6,19 @@ using UnityEngine;
 [RequireComponent(typeof(DestructableEntity))]
 public class dropsLootOnDestruction : MonoBehaviour {
 
-	public LootTable lootTable;
-
+	private LootTable lootTable;
 	private DestructableEntity entity;
-	// Use this for initialization
+
+	public LootTable loots {
+		get { return lootTable; }
+	}
+
+	void OnEnable() {
+		lootTable = new LootTable();
+	}
 
 	void Start () {
 		entity = this.GetComponent<DestructableEntity> ();
-		lootTable = new LootTable();
 	}
 	
 	// Update is called once per frame
