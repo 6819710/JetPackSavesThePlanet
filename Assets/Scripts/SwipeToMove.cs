@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwipeToMove : MonoBehaviour {
 	
-	public float speed = 100;
+	public float speed = 10;
 	public bool flipToDirection = false;
 	public GameObject directionalIndicator;
 	public float indicatorThreshold = 1.0f;
@@ -20,7 +20,6 @@ public class SwipeToMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.gameObject.GetComponent<Rigidbody2D> ().freezeRotation = true;
 		originalScale = this.gameObject.transform.localScale;
 	}
 
@@ -37,9 +36,10 @@ public class SwipeToMove : MonoBehaviour {
 				this.transform.localScale = scale;
 			}
 			// multiply the touch vector with a speed vector 
-			touchDirection.Scale (new Vector2 (speed, speed));
+			touchDirection *= (speed * 100);
+
 			// Force based movement
-			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (touchDirection);
+			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (touchDirection * Time.deltaTime);
 			// If the indicator is available
 			if (directionalIndicator != null) {
 				
