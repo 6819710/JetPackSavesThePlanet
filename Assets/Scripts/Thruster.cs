@@ -13,12 +13,14 @@ public class Thruster : MonoBehaviour {
 
     // Misc
     private float timer;
+	private Transform jetpack;
 
     // Use this for initialization
     void Start()
     {
         oxygenSupply = this.gameObject.GetComponent<Oxygen>();
 		playerMovement = this.gameObject.GetComponent<SwipeToMove>();
+		jetpack = transform.Find ("jetpack");
         timer = 0;
     }
 
@@ -29,16 +31,16 @@ public class Thruster : MonoBehaviour {
         {
             if(playerMovement != null)
             {
-                if(playerMovement.isMoving)
-                {
-                    if (timer >= depletionRate)
-                    {
-                        oxygenSupply.ApplyDelta(-depletionAmount);
-                        timer = 0;
-                    }
-                    else
-                        timer += Time.deltaTime;
-                }
+				if (playerMovement.isMoving) {
+					jetpack.gameObject.GetComponent<ParticleSystem> ().Play ();
+					if (timer >= depletionRate) {
+						oxygenSupply.ApplyDelta (-depletionAmount);
+						timer = 0;
+					} else
+						timer += Time.deltaTime;
+				} else {
+					jetpack.gameObject.GetComponent<ParticleSystem> ().Stop ();
+				}
             }
         }
     }
