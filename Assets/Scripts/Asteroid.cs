@@ -2,7 +2,7 @@
 using System.Collections; using System.Collections.Generic; using UnityEngine;  public class Asteroid : DestructableEntity {
 
     public GameObject objectToSplitInto;     public int minPiecesCount;     public int maxPiecesCount;     public float minExplosionForce;     public float maxExplosionForce;     public float splitDistance;
-    public float maxSpawnAngleDeviationFactor;      // Use this for initialization     new void Start () {         base.Start(); 	} 	 	// Update is called once per frame 	new void Update () {
+    public float maxSpawnAngleDeviationFactor;      public int oxygenValue; // Oxygen Value of asteroid      // Use this for initialization     new void Start () {         base.Start(); 	} 	 	// Update is called once per frame 	new void Update () {
         base.Update();
     }      public void Split(Vector2 normal) {         if(objectToSplitInto) SplitIntoObjects(normal, objectToSplitInto, minPiecesCount, maxPiecesCount);     }      void SplitIntoObjects(Vector2 normal, GameObject obj, int minPiecesCount, int maxPiecesCount) {         var piecesCount = UnityEngine.Random.Range(minPiecesCount, maxPiecesCount+1);         var initialDirection = Quaternion.Euler(0, 0, 90) * normal;         for (int i=0; i < piecesCount; i++) {
             var angleDeviation = UnityEngine.Random.Range(-1f, 1f)* maxSpawnAngleDeviationFactor;
@@ -20,6 +20,11 @@ using System.Collections; using System.Collections.Generic; using UnityEngin
             } else if(collision.gameObject.tag == "Player") { // TODO Gavin: remove hardcoded tag
                 // destroy on player contact, 
                 currentHealth = 0;
+                // Trigger Oxygen Replenishment
+                Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
+
+                if (oxygen != null)
+                    oxygen.ApplyDelta(oxygenValue);
             }
            
             if (currentHealth <= 0) {
