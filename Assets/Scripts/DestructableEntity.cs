@@ -25,6 +25,9 @@ public abstract class DestructableEntity : MonoBehaviour {
     }
 
     public virtual void Destruct() {
+		if(gameObject.GetComponent<DropLoot>()!=null){
+			gameObject.GetComponent<DropLoot> ().Drop ();
+		}
         Destroy(gameObject);
     }
 

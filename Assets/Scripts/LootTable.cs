@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LootTable{
+[CreateAssetMenu]
+public class LootTable : ScriptableObject {
 	
 	[SerializeField] private List<GameObject> keys = new List<GameObject>();
 	[SerializeField] private List<float> values = new List<float>();
@@ -50,9 +51,26 @@ public class LootTable{
 		}
 	}
 
+	public void Add(int index, GameObject key, float value) {
+		if (index < keys.Count) {
+			keys [index] = (key);
+			values [index] = (value);
+		} else {
+			keys.Add (key);
+			values.Add (value);
+		}
+	}
+
 	public void Remove(GameObject key) {
 		if (keys.Contains(key)) {
 			int index = keys.IndexOf (key);
+			values.RemoveAt (index);
+			keys.RemoveAt (index);
+		}
+	}
+
+	public void Remove(int index) {
+		if (keys.Count > (index) && index > 0) {
 			values.RemoveAt (index);
 			keys.RemoveAt (index);
 		}
