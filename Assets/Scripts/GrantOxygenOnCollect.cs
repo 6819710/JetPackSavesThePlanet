@@ -6,7 +6,9 @@ using UnityEngine;
 public class GrantOxygenOnCollect : MonoBehaviour {
 
 	public List<string> canBeCollectedByEntitesTagged;
-	public Oxygen self;
+	public bool destroyOnCollect = false;
+
+	private Oxygen self;
 
 	void Awake(){
 		if (canBeCollectedByEntitesTagged!=null)
@@ -20,5 +22,7 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
 			if (oxygen != null && self != null) oxygen.ApplyDelta(self.oxygen);
 		}
+		if (destroyOnCollect)
+			Destroy (this.gameObject);
 	}
 }
