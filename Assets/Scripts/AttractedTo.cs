@@ -7,6 +7,7 @@ public class AttractedTo : MonoBehaviour {
 
 	public string to;
 	public float force = 1f; 
+	public float range = 100f;
 
 	public GameObject target;
 
@@ -20,7 +21,8 @@ public class AttractedTo : MonoBehaviour {
 	void Update () {
 		if (to != null) {
 			Vector3 forceDirection = transform.position - target.transform.position;
-			this.gameObject.GetComponent<Rigidbody2D>().AddForce(-forceDirection.normalized * force * Time.fixedDeltaTime);
+			if(forceDirection.magnitude > range)
+				this.gameObject.GetComponent<Rigidbody2D>().AddForce(-forceDirection.normalized * force * Time.fixedDeltaTime);
 		}
 	}
 }
