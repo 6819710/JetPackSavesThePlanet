@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class AttractedTo : MonoBehaviour {
 
 	public string to;
@@ -18,7 +19,8 @@ public class AttractedTo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (to != null) {
-			this.gameObject.transform.position = Vector3.MoveTowards (this.gameObject.transform.position,  target.transform.position, force);
+			Vector3 forceDirection = transform.position - target.transform.position;
+			this.gameObject.GetComponent<Rigidbody2D>().AddForce(-forceDirection.normalized * force * Time.fixedDeltaTime);
 		}
 	}
 }
