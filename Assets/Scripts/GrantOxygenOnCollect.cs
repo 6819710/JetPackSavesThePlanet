@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Oxygen))]
 public class GrantOxygenOnCollect : MonoBehaviour {
 
-	public List<string> canBeCollectedByEntitesTagged;
-	public bool destroyOnCollect = false;
+	public int grantingRate = 1;
+
+	public List<string> canBeCollectedByEntitesTagged = new List<string> ();
 
 	private Oxygen self;
 
 	void Awake(){
-		if (canBeCollectedByEntitesTagged!=null)
-			canBeCollectedByEntitesTagged = new List<string> ();
 		self = gameObject.GetComponent<Oxygen>();
 	}
 
@@ -20,9 +20,12 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 		if(canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
 			// Trigger Oxygen Replenishment
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
-			if (oxygen != null && self != null) oxygen.ApplyDelta(self.oxygen);
+			if (!self.isOut) {
+				if (oxygen != null && self != null) {
+					self.oxygen -= grantingRate;
+					oxygen.ApplyDelta (grantingRate);
+				}
+			}
 		}
-		if (destroyOnCollect)
-			Destroy (this.gameObject);
 	}
 }
