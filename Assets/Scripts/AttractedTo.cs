@@ -21,7 +21,7 @@ public class AttractedTo : MonoBehaviour {
 	void Update () {
 		if (to != null) {
 			Vector3 forceDirection = transform.position - target.transform.position;
-			if(forceDirection.magnitude > range)
+			if(forceDirection.magnitude < range)
 				this.gameObject.GetComponent<Rigidbody2D>().AddForce(-forceDirection.normalized * force * Time.fixedDeltaTime);
 		}
 	}
