@@ -20,11 +20,6 @@ using System.Collections; using System.Collections.Generic; using UnityEngin
             } else if(collision.gameObject.tag == "Player") { // TODO Gavin: remove hardcoded tag
                 // destroy on player contact, 
                 currentHealth = 0;
-                // Trigger Oxygen Replenishment
-                Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
-
-                if (oxygen != null)
-                    oxygen.ApplyDelta(oxygenValue);
             }
            
             if (currentHealth <= 0) {
