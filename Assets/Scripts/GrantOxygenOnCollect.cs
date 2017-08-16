@@ -2,27 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Oxygen))]
 public class GrantOxygenOnCollect : MonoBehaviour {
 
-	public List<string> canBeCollectedByEntitesTagged;
-	public bool destroyOnCollect = false;
+	public float grantDelay = 10; // time to wait before granting oxygen;
+	public int grantingRate = 1; // rate at which oxygen is granted;
+
+	public List<string> canBeCollectedByEntitesTagged = new List<string> ();
 
 	private Oxygen self;
+	private float time;
 
 	void Awake(){
-		if (canBeCollectedByEntitesTagged!=null)
-			canBeCollectedByEntitesTagged = new List<string> ();
 		self = gameObject.GetComponent<Oxygen>();
 	}
 
+	void Start(){
+		time = grantDelay;
+	}
+
+	void Update(){
+		if(time>0) time -= Time.deltaTime;
+	}
+
 	void OnCollisionEnter2D(Collision2D collision) {
-		if(canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
+		if(time<=0 && canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
 			// Trigger Oxygen Replenishment
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
-			if (oxygen != null && self != null) oxygen.ApplyDelta(self.oxygen);
+			if (!self.isOut) {
+				if (oxygen != null && self != null) {
+					self.oxygen -= grantingRate;
+					oxygen.ApplyDelta (grantingRate);
+				}
+			}
 		}
-		if (destroyOnCollect)
-			Destroy (this.gameObject);
 	}
 }
