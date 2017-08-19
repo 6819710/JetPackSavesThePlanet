@@ -15,6 +15,7 @@ public class FollowTarget : MonoBehaviour {
     void Update() {
         Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GetComponent<Rigidbody2D>().MovePosition(transform.position + speed*Time.deltaTime * (targetPos - transform.position).normalized);
+        
         //    if (target != null) {
         //        Vector3 velocity = Vector3.zero;
         //        Vector3 forward = target.transform.forward * 10.0f;

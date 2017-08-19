@@ -20,4 +20,8 @@ public class CheckIfLoss : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void TriggerLoss() {
+        Lose();
+    }
 }
