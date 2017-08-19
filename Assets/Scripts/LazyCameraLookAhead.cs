@@ -6,16 +6,22 @@ public class LazyCameraLookAhead : MonoBehaviour {
 
 	public float howFarToLookAhead = 5f;
 	public float lazinessFactor = 0.5f;
+	public float minimumCutoff = 1f;
 	public GameObject target;
 
+	void Start(){
+	}
+
 	void Update () {
+		target.GetComponent<Rigidbody2D> ().AddForce (Vector2.left * 100);
 		// Camera follows only if the target is assigned
 		if (target!=null) {
 			Vector3 velocity = Vector3.zero;
-			Vector3 forward = target.transform.forward * 10.0f;
-			Vector3 direction = target.GetComponent<Rigidbody2D> ().velocity;
-			Vector3 needPos = target.transform.position - forward + (direction * howFarToLookAhead);
-			transform.position = Vector3.SmoothDamp(transform.position, needPos, ref velocity, lazinessFactor);
+			Vector3 targetVelocity = (target.GetComponent<Rigidbody2D> ().velocity.normalized);
+			Vector3 direction = Vector3.ClampMagnitude (((targetVelocity.magnitude > minimumCutoff)  ? targetVelocity * howFarToLookAhead : Vector3.zero) , howFarToLookAhead);
+			Vector3 needPos = target.transform.position + direction;
+			needPos.z = transform.position.z;
+			transform.position = Vector3.LerpUnclamped(transform.position, needPos, lazinessFactor);
 			transform.LookAt (target.transform);
 			transform.rotation = target.transform.rotation;
 		}
