@@ -13,7 +13,6 @@ public class LazyCameraLookAhead : MonoBehaviour {
 	}
 
 	void Update () {
-		target.GetComponent<Rigidbody2D> ().AddForce (Vector2.left * 100);
 		// Camera follows only if the target is assigned
 		if (target!=null) {
 			Vector3 velocity = Vector3.zero;
