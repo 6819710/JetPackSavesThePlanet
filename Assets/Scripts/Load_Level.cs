@@ -12,7 +12,7 @@ public class Load_Level : MonoBehaviour {
     //      this can be done by going into file/Build Settings
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (SceneName != null && coll.gameObject.CompareTag("player"))
+        if (SceneName != null && coll.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneName);
         }  
