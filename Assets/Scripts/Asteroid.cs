@@ -17,7 +17,7 @@ using System.Collections; using System.Collections.Generic; using UnityEngin
             if (collision.gameObject.GetComponent<Asteroid>()) {
                 float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass/2;
                 TakeDamage(energy);
-            } else if(collision.gameObject.tag == "Player") { // TODO Gavin: remove hardcoded tag
+            } else if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Worm") { // TODO Gavin: remove hardcoded tags
                 // destroy on player contact, 
                 currentHealth = 0;
             }
