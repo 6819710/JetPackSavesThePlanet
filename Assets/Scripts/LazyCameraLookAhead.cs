@@ -16,7 +16,7 @@ public class LazyCameraLookAhead : MonoBehaviour {
 		// Camera follows only if the target is assigned
 		if (target!=null) {
 			Vector3 velocity = Vector3.zero;
-			Vector3 targetVelocity = (target.GetComponent<Rigidbody2D> ().velocity.normalized);
+			Vector3 targetVelocity = (target.GetComponent<Rigidbody2D> ().velocity);
 			Vector3 direction = Vector3.ClampMagnitude (((targetVelocity.magnitude > minimumCutoff)  ? targetVelocity * howFarToLookAhead : Vector3.zero) , howFarToLookAhead);
 			Vector3 needPos = target.transform.position + direction;
 			needPos.z = transform.position.z;
