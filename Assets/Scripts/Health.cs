@@ -26,6 +26,12 @@ public class Health : MonoBehaviour {
 			value = max;
 	}
 
+	void Update(){
+		if (isDead) {
+			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
+		}
+	}
+
 	public void dealDamage(float amount){
 		value -= amount;
 	}
