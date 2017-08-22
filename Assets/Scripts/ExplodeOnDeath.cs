@@ -6,6 +6,7 @@ using UnityEngine;
 public class ExplodeOnDeath : MonoBehaviour {
 
 	public float explotionForce = 10f;
+	public GameObject blood;
 
 	private bool exploded = false;
 
@@ -23,15 +24,29 @@ public class ExplodeOnDeath : MonoBehaviour {
 	}
 
 	public void Explode(){
-		for(int i=0; i < this.transform.childCount; i++){
-			Transform t = this.transform.GetChild (i);
-			Joint2D j = t.gameObject.GetComponent<Joint2D> ();
-			if (j != null) Destroy (j);
-			Rigidbody2D rb = t.GetComponent<Rigidbody2D> ();
-			if (rb != null) {
-				rb.AddForce (Random.insideUnitCircle * explotionForce);
-				rb.AddTorque (Random.Range(-1,1));
-			}
+		RemoveJoints (this.transform);
+		if (blood != null) {
+			GameObject bp = Instantiate (blood);
+			bp.transform.position = this.gameObject.transform.position;
+			bp.transform.parent = this.gameObject.transform;
+		}
+	}
+
+	public void RemoveJoints(Transform of){
+		Joint2D j = of.gameObject.GetComponent<Joint2D> ();
+		if (j != null) Destroy (j);
+		for(int i=0; i < of.childCount; i++){
+			Transform t = of.GetChild (i);
+			RemoveJoints (t);
+		}
+		AddExplosionForce (of.gameObject);
+	}
+
+	public void AddExplosionForce(GameObject to){
+		Rigidbody2D rb = to.GetComponent<Rigidbody2D> ();
+		if (rb != null) {
+			rb.AddForce (Random.insideUnitCircle * explotionForce);
+			rb.AddTorque (Random.Range(-1,1));
 		}
 	}
 }
