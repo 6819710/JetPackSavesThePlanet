@@ -29,6 +29,7 @@ public class Health : MonoBehaviour {
 	void Update(){
 		if (isDead) {
 			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
+			this.gameObject.GetComponent<Oxygen> ().enabled = false;
 		}
 	}
 
