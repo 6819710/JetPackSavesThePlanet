@@ -9,6 +9,8 @@ public class WormHead : WormSegment {
     public bool isDebug;
     public float speed;
 
+	public float attackAmount = 1;
+
     void Start() {
         if (startSize < 1) startSize = 1;
         ExtendWorm(1, startSize);
@@ -33,7 +35,10 @@ public class WormHead : WormSegment {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<CheckIfLoss>().TriggerLoss();
+			Health health = collision.gameObject.GetComponent<Health>();
+			if(health !=null){
+				health.dealDamage (attackAmount);
+			}
         }
     }
 }
