@@ -6,7 +6,10 @@ using UnityEngine;
 public class GrowOverTime : MonoBehaviour {
 
 	public float rateOfGrowth= 10;
-	public int amountOfGrowth = 1;
+	public int lengthGrowth = 1;
+	public float widthGrowth = 1.05f;
+
+	public float maxSize = 1.5f;
 	// Use this for initialization
 
 	private float time; 
@@ -20,11 +23,23 @@ public class GrowOverTime : MonoBehaviour {
 		time -= Time.deltaTime;
 		if (time <= 0) {
 			time = rateOfGrowth;
-			Grow ();
+			GrowLength ();
+			GrowWidth ();
 		}
 	}
 
-	private void Grow(){
+	private void GrowWidth(){
+		if (this.gameObject.transform.localScale.magnitude < new Vector3(rateOfGrowth,rateOfGrowth,rateOfGrowth).magnitude) {
+			this.gameObject.transform.localScale *= widthGrowth;
+			WormSegment current = this.GetComponent<WormHead> ().Behind;
+			while (current.Behind != null) {
+				current.Behind.gameObject.transform.localScale *= widthGrowth;
+				current = current.Behind;
+			}
+		}
+	}
+
+	private void GrowLength(){
 		WormSegment current = this.GetComponent<WormHead> ().Behind;
 		while(current.Behind!=null) current = current.Behind;
 		current.ExtendWorm(1, 2);
