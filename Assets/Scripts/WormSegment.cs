@@ -10,6 +10,16 @@ public class WormSegment : MonoBehaviour {
     private WormSegment segmentAhead;
     private WormSegment segmentBehind;
 
+	public WormSegment Ahead {
+		get { return segmentAhead; }
+		set { segmentAhead = value; } 
+	}
+
+	public WormSegment Behind {
+		get { return segmentBehind; }
+		set { segmentBehind = value; } 
+	}
+
     // Use this for initialization
     void Start () {
     }
