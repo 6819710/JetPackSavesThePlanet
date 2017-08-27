@@ -40,5 +40,11 @@ public class WormHead : WormSegment {
 				health.dealDamage (attackAmount);
 			}
         }
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Astroid")) { //TODO Isuru: remove hardcoded tag
+			StuntingBehavior sb = this.gameObject.GetComponent<StuntingBehavior>();
+			if(sb !=null){
+				sb.Stunt();
+			}
+		}
     }
 }
