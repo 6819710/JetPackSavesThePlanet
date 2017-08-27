@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour {
 
-	public GameState state;
+	public GameState currentState;
 
-	public GameState State {
+	public GameState CurrentState {
 		get {
-			return state;
+			return currentState;
 		}
 		set {
-			state = value;
+			currentState = value;
 		}
 	}
 
 	void Start () {
-		state = GameState.Loading;
+		currentState = GameState.Loading;
+	}
+
+	public void Play(){
+		Change (GameState.Playing);
 	}
 
 	public void Change(GameState toChange){
-		State = toChange;
+		currentState = toChange;
 	}
+
+
 
 }
