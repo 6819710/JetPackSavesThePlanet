@@ -16,11 +16,15 @@ public class StateManager : MonoBehaviour {
 	}
 
 	void Start () {
-		currentState = GameState.Loading;
+		currentState = GameState.Menu;
 	}
 
 	public void Play(){
 		Change (GameState.Playing);
+	}
+
+	public void Lost(){
+		Change (GameState.Lost);
 	}
 
 	public void Change(GameState toChange){
