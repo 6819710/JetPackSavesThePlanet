@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour {
 		sm = gameObject.GetComponent<StateManager> ();
 		shown = sm.CurrentState;
 		mainCameraAnimator = Camera.main.GetComponent<Animator> ();
-		if (mainCameraAnimator) throw new UnityException ("Main Camera Require an Animator component for the Camera manager to work");
+		if (mainCameraAnimator==null) throw new UnityException ("Main Camera Require an Animator component for the Camera manager to work");
 	}
 	
 	// Update is called once per frame
