@@ -29,6 +29,10 @@ public class StateManager : MonoBehaviour {
 		Change (GameState.Playing);
 	}
 
+	public void Pause(){
+		Change (GameState.Paused);
+	}
+
 	public void Lost(){
 		Change (GameState.Lost);
 	}
