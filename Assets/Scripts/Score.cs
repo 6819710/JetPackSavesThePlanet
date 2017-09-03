@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
     public GameObject ThePlayer;
     public float UnitsPerPoint = 1;
+    public Text UIText;
 
     private float UnitsTraveled = 0;
 
@@ -16,6 +18,7 @@ public class Score : MonoBehaviour {
         {
             ThePlayer = GameObject.Find("Player");
         }
+        UIText = this.GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -25,15 +28,17 @@ public class Score : MonoBehaviour {
 		if (UnitsTraveled <= CurrentUnits)
         {
             UnitsTraveled = CurrentUnits;
+            UIText.text = CurrentScore + " KM";
+            Debug.Log(UnitsTraveled);
         }
 	}
 
     //Returns the scrore
-    public float CurrentScore
+    public double CurrentScore
     {
         get
         {
-            return UnitsTraveled / UnitsPerPoint;
+            return System.Math.Round(UnitsTraveled / UnitsPerPoint, 2);
         }
     }
 }
