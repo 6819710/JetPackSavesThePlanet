@@ -22,7 +22,7 @@ public class MusicController : MonoBehaviour {
 	void Start ()
     {
         quaterNote = 60.0f / bpm;
-        transition = quaterNote * 4.0f;
+        transition = quaterNote;
         toMenu();
 	}
 
