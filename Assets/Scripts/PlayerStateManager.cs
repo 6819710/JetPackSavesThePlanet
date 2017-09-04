@@ -2,16 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Oxygen))]
-[RequireComponent(typeof(Health))]
-[RequireComponent(typeof(Suffocate))]
 public class PlayerStateManager : MonoBehaviour {
 
-	public PlayerState state;
-
-	private Health health;
-	private Oxygen oxygen;
-	private Suffocate suffocate;
+	public PlayerState state = PlayerState.Idle;
 
 	public PlayerState State {
 		get {
@@ -21,22 +14,24 @@ public class PlayerStateManager : MonoBehaviour {
 			state = value;
 		}
 	}
-
-	void Start () {
-		oxygen = this.gameObject.GetComponent<Oxygen> (); 
-		health = this.gameObject.GetComponent<Health> ();
-		suffocate = this.gameObject.GetComponent<Suffocate> ();
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (health.isDead)
-			state = PlayerState.Dead;
-		else if (suffocate.isSuffocating)
-			state = PlayerState.Suffocating;
-		else if (oxygen.isLow)
-			state = PlayerState.Panic;
-		else
-			state = PlayerState.Idle;
+	public void Idle(){
+		state = PlayerState.Idle;
+	}
+
+	public void Happy(){
+		state = PlayerState.Happy;
+	}
+
+	public void Panic(){
+		state = PlayerState.Panic;
+	}
+
+	public void Suffocating(){
+		state = PlayerState.Suffocating;
+	}
+
+	public void Dead(){
+		state = PlayerState.Dead;
 	}
 }

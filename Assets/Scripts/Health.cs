@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerStateManager))]
+
 public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
+
+	private PlayerStateManager playerStateManager;
 
 	public float Value { 
 		get { return value; }
@@ -22,16 +26,22 @@ public class Health : MonoBehaviour {
 	}
 
 	void Start () {
+		playerStateManager = gameObject.GetComponent<PlayerStateManager> ();
 		if (value > max)
 			value = max;
 	}
 
 	void Update(){
 		if (isDead) {
-			GameManager.instance.StateManager.Lost ();
-			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
-			this.gameObject.GetComponent<Breathing> ().enabled = false;
+			Die ();
 		}
+	}
+
+	public void Die(){
+		GameManager.instance.StateManager.Lost ();
+		playerStateManager.Dead ();
+		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
+		this.gameObject.GetComponent<Breathing> ().enabled = false;
 	}
 
 	public void dealDamage(float amount){
