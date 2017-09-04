@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public GameObject Director = null;
+	public GameObject Player = null;
 
 	private StateManager stateManager; 
 	private GameState shown;
