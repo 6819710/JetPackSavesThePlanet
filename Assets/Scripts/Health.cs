@@ -28,10 +28,12 @@ public class Health : MonoBehaviour {
 
 	void Update(){
 		if (isDead) {
-			GameManager.instance.StateManager.Lost ();
-			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
-			this.gameObject.GetComponent<Breathing> ().enabled = false;
-		}
+            GameManager.instance.StateManager.Lost();
+            this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
+            this.gameObject.GetComponent<Breathing>().enabled = false;
+            //TODO: Seperation of Concerns
+            GameObject.Find("Music").SendMessage("toSilence");
+        }
 	}
 
 	public void dealDamage(float amount){
