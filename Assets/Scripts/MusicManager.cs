@@ -29,7 +29,7 @@ public class MusicManager : MonoBehaviour {
 					musicController.toMenu ();
 					break;
 				case GameState.Playing:
-					musicController.toMenu ();
+					musicController.toCalm ();
 					break;
 				case GameState.Paused:
 					musicController.toCalmBeat ();
