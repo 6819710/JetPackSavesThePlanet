@@ -21,6 +21,7 @@ public class StateManager : MonoBehaviour {
 	}
 
 	public void Restart(){
+		currentState = GameState.Menu;
 		int scene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 	}
