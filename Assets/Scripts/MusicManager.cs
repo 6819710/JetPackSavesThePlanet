@@ -34,6 +34,9 @@ public class MusicManager : MonoBehaviour {
 				case GameState.Paused:
 					musicController.toCalmBeat ();
 					break;
+				case GameState.Lost:
+					musicController.toPanicBeat ();
+					break;
 			}
 		}
 		
