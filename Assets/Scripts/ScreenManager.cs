@@ -8,6 +8,7 @@ public class ScreenManager : MonoBehaviour {
 	public GameObject mainMenu;
 	public GameObject inGame;
 	public GameObject gameOver;
+	public GameObject pause;
 
 	private List<GameObject> screens;
 	private StateManager sm;
@@ -15,7 +16,7 @@ public class ScreenManager : MonoBehaviour {
 
 	void Start () {
 		sm = gameObject.GetComponent<StateManager> ();
-		screens = new List<GameObject> (){mainMenu, inGame,gameOver};
+		screens = new List<GameObject> (){mainMenu, inGame,gameOver,pause};
 		shown = sm.CurrentState;
 	}
 	
@@ -30,13 +31,22 @@ public class ScreenManager : MonoBehaviour {
 				case GameState.Playing:
 					state = inGame;
 					break;
+			case GameState.Paused:
+					state = pause;
+					break;
 				case GameState.Lost:
 					state = gameOver;
 					break;
 			}
 			state.SetActive (true);
+			Enter (state);
 			TransitExcept (state);
 		}
+	}
+
+	void Enter(GameObject what){
+		Animator anim = what.GetComponent<Animator> ();
+		anim.SetTrigger ("Enter");
 	}
 
 	void TransitExcept(GameObject what){

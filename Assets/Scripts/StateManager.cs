@@ -21,12 +21,17 @@ public class StateManager : MonoBehaviour {
 	}
 
 	public void Restart(){
+		currentState = GameState.Menu;
 		int scene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 	}
 
 	public void Play(){
 		Change (GameState.Playing);
+	}
+
+	public void Pause(){
+		Change (GameState.Paused);
 	}
 
 	public void Lost(){
