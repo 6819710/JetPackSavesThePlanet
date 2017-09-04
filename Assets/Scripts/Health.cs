@@ -28,6 +28,7 @@ public class Health : MonoBehaviour {
 
 	void Update(){
 		if (isDead) {
+			GameManager.instance.StateManager.Lost ();
 			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
 			this.gameObject.GetComponent<Breathing> ().enabled = false;
 		}

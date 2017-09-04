@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour {
@@ -16,11 +17,20 @@ public class StateManager : MonoBehaviour {
 	}
 
 	void Start () {
-		currentState = GameState.Loading;
+		currentState = GameState.Menu;
+	}
+
+	public void Restart(){
+		int scene = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 	}
 
 	public void Play(){
 		Change (GameState.Playing);
+	}
+
+	public void Lost(){
+		Change (GameState.Lost);
 	}
 
 	public void Change(GameState toChange){
