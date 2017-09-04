@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
+	public GameObject Director = null;
 
 	private StateManager stateManager; 
+	private GameState shown;
 
 	public StateManager StateManager {
 		get {
@@ -26,9 +28,25 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		stateManager = this.GetComponent<StateManager> ();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (shown != stateManager.CurrentState){
+			shown = stateManager.CurrentState;
+			switch (stateManager.CurrentState) {
+			case GameState.Menu:
+				break;
+			case GameState.Playing:
+				Time.timeScale = 1;
+				Director.GetComponent<WormGenerator> ().enabled = true;
+				break;
+			case GameState.Paused:
+				Time.timeScale = 0;
+				break;
+			case GameState.Lost:
+				break;
+			}
+		}
 	}
 }
