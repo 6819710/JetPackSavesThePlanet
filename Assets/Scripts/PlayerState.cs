@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace AssemblyCSharp
+public enum PlayerState
 {
-	public enum PlayerState
-	{
-		Idle,
-		Happy,
-		Suffocating,
-		Panic,
-		Dead
-	}
+	Idle,
+	Happy,
+	Suffocating,
+	Panic,
+	Dead
 }
 

@@ -14,6 +14,10 @@ public class Suffocate : MonoBehaviour {
 	private Health health;
 	private float time;
 
+	public bool isSuffocating{
+		get { return (oxygen != null && oxygen.isOut); };
+	}
+
 	// Use this for initialization
 	void Start () {
 		oxygen = gameObject.GetComponent<Oxygen> ();
@@ -24,7 +28,7 @@ public class Suffocate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		time -= Time.deltaTime;
-		if (oxygen != null && oxygen.isOut) {
+		if (isSuffocating) {
 			if (time < 0) {
 				health.dealDamage (damage);
 				time = frequency;
