@@ -15,6 +15,10 @@ public class SwipeToMove : MonoBehaviour {
     private Vector2 lastMousePosition;
     private bool mouseMoveInProgress = false;
 
+    private Vector2 startSwipePoint;
+    private bool swipeInProgress = false;
+    public float minSwipeDistance;
+
     public bool isMoving
 	{
 		get { 
@@ -58,11 +62,21 @@ public class SwipeToMove : MonoBehaviour {
     }
 
     private void TouchMove() {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-            // Get a normalised touch input vector
-            Vector2 touchDirection = Input.GetTouch(0).deltaPosition.normalized;
-            Move(touchDirection);
+        if (Input.touchCount > 0) {
+            if (Input.GetTouch(0).phase == TouchPhase.Began) {
+                swipeInProgress = true;
+                startSwipePoint = Input.GetTouch(0).position;
+            }
+            Vector2 touchDirection = (Input.GetTouch(0).position - startSwipePoint);
+            if (touchDirection.magnitude > minSwipeDistance && swipeInProgress) {
+                Move(touchDirection.normalized);
+            };
+            
+            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled) {
+                swipeInProgress = false;
+            }
         }
+        
     }
 
     private void Move(Vector2 direction) {
