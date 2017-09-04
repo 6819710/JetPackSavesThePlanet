@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Oxygen))]
 [RequireComponent(typeof(Health))]
-[RequireComponent(typeof(PlayerStateManager))]
 public class Suffocate : MonoBehaviour {
 
 	public float damage = 10f;	 // amount of suffocation damage	
@@ -24,7 +23,6 @@ public class Suffocate : MonoBehaviour {
 	void Start () {
 		oxygen = gameObject.GetComponent<Oxygen> ();
 		health = gameObject.GetComponent<Health> ();
-		playerStateManager = gameObject.GetComponent<PlayerStateManager> ();
 		time = frequency + delay;
 	}
 	
@@ -43,6 +41,5 @@ public class Suffocate : MonoBehaviour {
 
 	public void SuffocatePlayer(){
 		health.dealDamage (damage);
-		playerStateManager.Suffocating ();
 	}
 }
