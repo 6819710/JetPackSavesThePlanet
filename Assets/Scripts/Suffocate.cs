@@ -15,7 +15,7 @@ public class Suffocate : MonoBehaviour {
 	private float time;
 
 	public bool isSuffocating{
-		get { return (oxygen != null && oxygen.isOut); };
+		get { return (oxygen != null && oxygen.isOut); }
 	}
 
 	// Use this for initialization
