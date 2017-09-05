@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Upgrade : ScriptableObject
 {
 	private GameObject _owner;
+	[SerializeField]
 	private String _name;
+	[SerializeField]
 	private Sprite _image;
 
 	public GameObject Owner {
