@@ -8,6 +8,7 @@ public class SpeedUpgrade : TimelyRechargedUpgrade
 	[SerializeField]
 	private float magnitude = 1;
 
+
 	public float Magnitude {
 		get {
 			return magnitude;
@@ -23,7 +24,22 @@ public class SpeedUpgrade : TimelyRechargedUpgrade
 
 	public override void Effect ()
 	{
-		SwipeToMove sw = Owner.GetComponent<SwipeToMove> ();
-		sw.speed *= magnitude;
+		Debug.Log ("Speed Upgrade Activated");
+		Rigidbody2D rb = Owner.GetComponent<Rigidbody2D> ();
+		ParticleSystem ps = Owner.transform.Find("jetpack").GetComponent<ParticleSystem> (); // TODO : remove hardcoded value
+		rb.AddForce(rb.velocity * magnitude);
+		ParticleSystem.EmitParams ep = new ParticleSystem.EmitParams ();
+		ep.startColor = Color.red;
+		ps.Emit(ep,(int) Magnitude);
+	}
+
+	public override void Restore ()
+	{
+		base.Restore ();
+		Debug.Log ("Speed Upgrade Deactivated");
+	}
+
+	private void CreateBursts(){
+		
 	}
 }

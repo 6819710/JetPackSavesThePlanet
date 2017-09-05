@@ -10,6 +10,8 @@ public abstract class Upgrade : ScriptableObject
 	[SerializeField]
 	private Sprite _image;
 
+	private bool active;
+
 	public GameObject Owner {
 		get {
 			return _owner;
@@ -37,6 +39,15 @@ public abstract class Upgrade : ScriptableObject
 		}
 	}
 
+	public bool Active {
+		get {
+			return active;
+		}
+		set {
+			active = value;
+		}
+	}
+
 	public Upgrade(String name){
 		_name = name;
 	}
@@ -48,8 +59,13 @@ public abstract class Upgrade : ScriptableObject
 
 	public abstract void Effect ();
 
+	public virtual void Restore () {
+		Active = false;
+	}
+
 	public virtual void Activate ()
 	{
+		Active = true;
 		Effect ();
 	}
 }

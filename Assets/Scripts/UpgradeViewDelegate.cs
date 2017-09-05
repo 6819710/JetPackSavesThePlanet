@@ -24,9 +24,11 @@ public class UpgradeViewDelegate : MonoBehaviour {
 			GameObject holder = Instantiate (holderPrefab);
 			UpgradeHolder uh = holder.GetComponent<UpgradeHolder> ();
 			uh.Upgrade = u;
-			Vector3 newPosition = holder.transform.position;
+			Vector3 newPosition = this.transform.position;
 			newPosition.y = offsetY++ * holder.GetComponent<RectTransform> ().rect.height;
 			holder.transform.position = newPosition;
+			holder.transform.SetParent (this.transform);
+			holder.name = u.Name;
 			holders.Add (holder);
 		}
 	}

@@ -27,7 +27,12 @@ public class UpgradeSystem : MonoBehaviour {
 	}
 
 	void Update () {
-		
+		foreach(Upgrade u in Upgrades){
+			if(u is TimelyRechargedUpgrade){
+				TimelyRechargedUpgrade timeUpgrade = u as TimelyRechargedUpgrade;
+				timeUpgrade.UpdateTime (Time.deltaTime);
+			}
+		}
 	}
 
 	public void Activate(Upgrade upgrade){

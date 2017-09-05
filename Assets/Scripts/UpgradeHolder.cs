@@ -44,12 +44,31 @@ public class UpgradeHolder : MonoBehaviour {
 	void initialiseUI(){
 		if(upgrade!=null){
 			image.sprite = upgrade.Image;
-			button.onClick.AddListener (() => upgrade.Activate ());
+			button.onClick.AddListener(() => { 
+				upgrade.Activate(); 
+				if(upgrade is TimelyRechargedUpgrade){
+					TimelyRechargedUpgrade tm = upgrade as TimelyRechargedUpgrade;
+					if(tm.spamProtection){
+						Enable(false);
+					}
+				}
+
+
+			});
 		}
+	}
+
+	void Enable(bool isTrue){
+		button.interactable = isTrue;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(upgrade is TimelyRechargedUpgrade){
+			TimelyRechargedUpgrade tm = upgrade as TimelyRechargedUpgrade;
+			if(tm.isRenewable){
+				Enable(true);
+			}
+		}
 	}
 }

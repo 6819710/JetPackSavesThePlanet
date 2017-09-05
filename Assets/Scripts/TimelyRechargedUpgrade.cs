@@ -1,17 +1,27 @@
 ﻿using System;
+using UnityEngine;
 
+[System.Serializable]
 public abstract class TimelyRechargedUpgrade : RenewableUpgrade 
 {
-	private float frequency = 1; 
+
+	[SerializeField]
+	public float rechargeFrequency = 1;
+
+	[SerializeField]
+	public float rechargeDelay = 0; 
+
+	[SerializeField]
+	public bool spamProtection = false;
+
 	private float time = 0; 
-	private float delay = 0; 
 
 	public float Frequency {
 		get {
-			return frequency;
+			return rechargeFrequency;
 		}
 		set {
-			frequency = value;
+			rechargeFrequency = value;
 		}
 	}
 
@@ -26,16 +36,16 @@ public abstract class TimelyRechargedUpgrade : RenewableUpgrade
 
 	public float Delay {
 		get {
-			return delay;
+			return rechargeDelay;
 		}
 		set {
-			delay = value;
+			rechargeDelay = value;
 		}
 	}
 
 	public override bool isRenewable {
 		get {
-			return Time > 0;
+			return Time <= 0;
 		}
 	}
 
@@ -48,7 +58,23 @@ public abstract class TimelyRechargedUpgrade : RenewableUpgrade
 	}
 
 	public void UpdateTime(float deltaTime){
-		Time -= deltaTime;
+		if (!isRenewable)
+			Time -= deltaTime;
+		else
+			if(Active) Restore ();
 	}
+
+	public override void Activate ()
+	{
+		base.Activate ();
+		if (spamProtection) {	
+			Time = Frequency;
+		} else {
+			if (isRenewable) {
+				Time = Frequency;
+			}
+		}
+	}
+
 }
 
