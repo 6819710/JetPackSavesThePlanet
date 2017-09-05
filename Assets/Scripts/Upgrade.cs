@@ -5,6 +5,7 @@ public abstract class Upgrade : ScriptableObject
 {
 	private GameObject _owner;
 	private String _name;
+	private Sprite _image;
 
 	public GameObject Owner {
 		get {
@@ -15,9 +16,18 @@ public abstract class Upgrade : ScriptableObject
 		}
 	}
 
+	public Sprite Image {
+		get {
+			return _image;
+		}
+		set {
+			_image = value;
+		}
+	}
+
 	public String Name {
 		get {
-			return name;
+			return _name;
 		}
 		set {
 			_name = value;
@@ -26,6 +36,11 @@ public abstract class Upgrade : ScriptableObject
 
 	public Upgrade(String name){
 		_name = name;
+	}
+
+	public Upgrade(String name, Sprite image){
+		_name = name;
+		_image = image;
 	}
 
 	public abstract void Effect ();
