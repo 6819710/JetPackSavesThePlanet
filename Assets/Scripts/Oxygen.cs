@@ -5,7 +5,7 @@ using UnityEngine;
 public class Oxygen : MonoBehaviour {
 	
     // Oxygen Resource Values
-    public int oxygen;
+    public float oxygen;
 	public int minOxygen;
     public int maxOxygen;
 
@@ -46,7 +46,7 @@ public class Oxygen : MonoBehaviour {
     /// Applys given delta to oxygen level
     /// </summary>
     /// <param name="delta">delta, amount of oxygen to add or remove, use negitive value to remove oxygen</param>
-    public void ApplyDelta(int delta)
+    public void ApplyDelta(float delta)
     {
         oxygen += delta;
 
