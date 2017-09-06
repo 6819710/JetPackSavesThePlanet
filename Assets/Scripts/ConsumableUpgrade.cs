@@ -26,6 +26,6 @@ public abstract class ConsumableUpgrade : Upgrade
 		if (!isUsedUp) {
 			Uses--;
 			base.Activate ();
-		}
+		} 
 	}
 }
