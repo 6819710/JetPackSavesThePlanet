@@ -10,6 +10,7 @@ public class UpgradeHolder : MonoBehaviour {
 
 	private Button button;
 	private Image image;
+	private Text uses;
 
 	public Upgrade Upgrade {
 		get {
@@ -38,12 +39,19 @@ public class UpgradeHolder : MonoBehaviour {
 				break;
 			}
 		}
+		uses = this.transform.Find ("Uses").Find ("Text").GetComponent<Text> ();
 		initialiseUI ();
 	}
 
 	void initialiseUI(){
 		if(upgrade!=null){
 			image.sprite = upgrade.Image;
+
+			if(Upgrade is ConsumableUpgrade){
+				this.transform.Find ("Uses").gameObject.SetActive(true);
+				uses.text = (Upgrade as ConsumableUpgrade).Uses.ToString();
+			}
+
 			button.onClick.AddListener(() => { 
 				upgrade.Activate(); 
 				if(upgrade is ITimable){
@@ -66,5 +74,7 @@ public class UpgradeHolder : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Enable(!Upgrade.Active);
+		if(Upgrade is ConsumableUpgrade)
+			uses.text = (Upgrade as ConsumableUpgrade).Uses.ToString();
 	}
 }

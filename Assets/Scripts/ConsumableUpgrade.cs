@@ -1,8 +1,10 @@
 ﻿using System;
+using UnityEngine;
 
+[System.Serializable]
 public abstract class ConsumableUpgrade : Upgrade
 {
-	private int uses = 1;
+	[SerializeField] private int uses = 1;
 
 	public int Uses {
 		get {

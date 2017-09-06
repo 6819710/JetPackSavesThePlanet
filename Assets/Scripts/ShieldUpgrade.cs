@@ -18,6 +18,7 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 	private GameObject shieldPrefab; // prefab for the shield 
 
 	private float time; 
+	private GameObject shield;
 
 	public float Size {
 		get { return sheildSize; }
@@ -25,8 +26,8 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 	}
 
 	public float Frequency {
-		get { return sheildSize; }
-		set { sheildSize = value; }
+		get { return sheildTime; }
+		set { sheildTime = value; }
 	}
 
 	public float Time {
@@ -67,8 +68,15 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 
 	public override void Effect ()
 	{
-		GameObject shield = Instantiate (shieldPrefab, this.Owner.transform);
+		shield = Instantiate (shieldPrefab, this.Owner.transform);
+		shield.transform.localScale *= sheildSize;
 		shield.transform.SetParent (this.Owner.transform);
+	}
+
+	public override void Restore ()
+	{
+		base.Restore ();
+		Destroy (shield);
 	}
 }
 
