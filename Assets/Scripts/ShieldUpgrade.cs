@@ -6,9 +6,6 @@ using UnityEngine;
 public class ShieldUpgrade : ConsumableUpgrade, ITimable
 {
 	[SerializeField]
-	private float sheildSize = 1; // Size of the shield
-
-	[SerializeField]
 	private float sheildTime = 5; // Time the shield is kept for
 
 	[SerializeField]
@@ -19,11 +16,6 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 
 	private float time; 
 	private GameObject shield;
-
-	public float Size {
-		get { return sheildSize; }
-		set { sheildSize = value; }
-	}
 
 	public float Frequency {
 		get { return sheildTime; }
@@ -69,14 +61,13 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 	public override void Effect ()
 	{
 		shield = Instantiate (shieldPrefab, this.Owner.transform);
-		shield.transform.localScale *= sheildSize;
 		shield.transform.SetParent (this.Owner.transform);
 	}
 
 	public override void Restore ()
 	{
 		base.Restore ();
-		Destroy (shield);
+		shield.GetComponent<Animator> ().SetTrigger ("Low");
 	}
 }
 
