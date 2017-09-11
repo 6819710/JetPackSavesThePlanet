@@ -8,6 +8,7 @@ public class WormHead : WormSegment {
     public Transform mainTarget;
     public bool isDebug;
     public float speed;
+    public float catchUpExponent =1f;
 
 	public float attackAmount = 1;
 
@@ -29,8 +30,9 @@ public class WormHead : WormSegment {
     }
 
     private void MoveWormHead(Vector2 targetPos) {
-        Vector2 direction = (targetPos - (Vector2)transform.position).normalized;
-        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + (speed * Time.deltaTime * direction));
+        Vector2 direction = targetPos - (Vector2)transform.position;
+        direction = direction.normalized * Mathf.Max(1, Mathf.Pow(direction.magnitude, catchUpExponent));
+        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + ( speed * Time.deltaTime * direction));
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
