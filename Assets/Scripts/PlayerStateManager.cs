@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Suffocate))]
 public class PlayerStateManager : MonoBehaviour {
 
 	public PlayerState state = PlayerState.Idle;
+
+	private Health health;
+	private Suffocate suffocate;
 
 	public PlayerState State {
 		get {
@@ -13,6 +18,20 @@ public class PlayerStateManager : MonoBehaviour {
 		set {
 			state = value;
 		}
+	}
+
+	void Start(){
+		health = this.gameObject.GetComponent<Health> ();
+		suffocate = this.gameObject.GetComponent<Suffocate> ();
+	}
+
+	void Update(){
+		if (health.isDead) 
+			Dead ();
+		else if (suffocate.isSuffocating)
+			Suffocating ();
+		else
+			Idle ();
 	}
 	
 	public void Idle(){
