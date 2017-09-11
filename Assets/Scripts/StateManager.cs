@@ -24,6 +24,7 @@ public class StateManager : MonoBehaviour {
 		currentState = GameState.Menu;
 		int scene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
+		GameManager.instance.Initialise ();
 	}
 
 	public void Play(){
