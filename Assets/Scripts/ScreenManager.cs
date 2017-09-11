@@ -15,8 +15,7 @@ public class ScreenManager : MonoBehaviour {
 	public GameState shown;
 
 	void Start () {
-		sm = gameObject.GetComponent<StateManager> ();
-		screens = new List<GameObject> (){mainMenu, inGame,gameOver,pause};
+		Initialise ();
 		shown = sm.CurrentState;
 	}
 	
@@ -42,6 +41,19 @@ public class ScreenManager : MonoBehaviour {
 			Enter (state);
 			TransitExcept (state);
 		}
+	}
+
+	public void Initialise(){
+		sm = gameObject.GetComponent<StateManager> ();
+		if (mainMenu == null)
+			mainMenu = GameObject.Find ("Main Menu Screen");
+		if (inGame == null)
+			mainMenu = GameObject.Find ("In Game Screen");
+		if (gameOver == null)
+			mainMenu = GameObject.Find ("Game Over Screen");
+		if (pause == null)
+			mainMenu = GameObject.Find ("Pause Screen");
+		screens = new List<GameObject> (){mainMenu, inGame,gameOver,pause};
 	}
 
 	void Enter(GameObject what){
