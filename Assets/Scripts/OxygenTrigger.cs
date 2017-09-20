@@ -5,33 +5,27 @@ using UnityEngine;
 public class OxygenTrigger : MonoBehaviour {
 
     private Oxygen oxygen;
-
-    public float low;
-    public float critical;
-
-    private int triggerLow;
-    private int triggerCritical;
+	private GameObject musicPlayer;
 
 	// Use this for initialization
 	void Start () {
 		oxygen = gameObject.GetComponent<Oxygen>();
-        triggerLow = (int)(oxygen.maxOxygen * low); //Sets low oxygen threshold
-        triggerCritical = (int)(oxygen.maxOxygen * critical);
+		musicPlayer = GameObject.Find ("Music");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (oxygen.oxygen < triggerCritical)
+		if (oxygen.isCritical)
         {
-            GameObject.Find("Music").SendMessage("toStressBeat");
+			musicPlayer.SendMessage("toStressBeat");
         }
-        else if(oxygen.oxygen < triggerLow && oxygen.oxygen >= critical)
+		else if(oxygen.isLow)
         {
-            GameObject.Find("Music").SendMessage("toStress");
+			musicPlayer.SendMessage("toStress");
         }
-        else if (oxygen.oxygen > triggerLow)
+        else
         {
-            GameObject.Find("Music").SendMessage("toCalm");
+			musicPlayer.SendMessage("toCalm");
         }
     }
 }
