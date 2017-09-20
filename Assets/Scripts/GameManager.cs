@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour {
 	public GameObject Director = null;
 	public GameObject Player = null;
 
+	//managers 
 	private StateManager stateManager; 
+	private ScoreManager scoreManager;
+	private ScreenManager screenManager;
+	private CameraManager cameraManager;
+
 	private GameState shown;
 
 	public StateManager StateManager {
@@ -20,14 +25,35 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		Initialise ();
+	}
+
+	public void Initialise(){
+		if(Player==null) Player = GameObject.Find ("Player");
+		if(Director==null) Director = GameObject.Find ("Director");
+		if (stateManager == null) {
+			stateManager = this.GetComponent<StateManager> ();
+		}
+		if (scoreManager == null) {
+			scoreManager = this.GetComponent<ScoreManager> ();
+			scoreManager.Initialise ();
+		}
+		if (screenManager == null) {
+			screenManager = this.GetComponent<ScreenManager> ();
+			screenManager.Initialise ();
+		}
+		if (cameraManager == null) {
+			cameraManager = this.GetComponent<CameraManager> ();
+		}
+	}
+
 	void Awake () {
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject); 
-
-		DontDestroyOnLoad(gameObject);
-		stateManager = this.GetComponent<StateManager> ();
+		//DontDestroyOnLoad(gameObject); singleton behavior result lost of references. 
 	}
 
 	
