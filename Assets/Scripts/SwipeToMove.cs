@@ -19,6 +19,8 @@ public class SwipeToMove : MonoBehaviour {
     private bool swipeInProgress = false;
     public float minSwipeDistance;
 
+    private bool sfxReset = false; //holds state of sfx flag
+
     public bool isMoving
 	{
 		get { 
@@ -90,6 +92,8 @@ public class SwipeToMove : MonoBehaviour {
         // multiply the touch vector with a speed vector 
         direction *= (speed * 100);
 
+        SFX();
+
         // Force based movement
         this.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * Time.deltaTime);
     }
@@ -107,5 +111,16 @@ public class SwipeToMove : MonoBehaviour {
             if (directionalIndicator != null)
                 directionalIndicator.GetComponent<SpriteRenderer>().enabled = false;
         }
+    }
+
+    private void SFX()
+    {
+        if (!sfxReset)
+        {
+            GameObject.Find("SFX").SendMessage("playJetpack");
+            sfxReset = true; // Set flag once sfx triggered
+        }
+        else if (!isMoving)
+            sfxReset = false;
     }
 }
