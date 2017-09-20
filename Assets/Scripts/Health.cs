@@ -34,12 +34,13 @@ public class Health : MonoBehaviour {
 	}
 
 	public void Die(DeathTypes cause){
-		GameManager.instance.StateManager.Lost (cause);
 		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
 		this.gameObject.GetComponent<Breathing> ().enabled = false;
         this.gameObject.GetComponent<Health>().enabled = false; // Disable health so SFX does not continue playing
         this.gameObject.GetComponent<OxygenTrigger>().enabled = false;
-	}
+
+        GameManager.instance.StateManager.Lost(cause);
+    }
 
 	public void dealDamage(float amount){
 		value -= amount;
