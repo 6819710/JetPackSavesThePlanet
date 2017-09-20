@@ -6,7 +6,8 @@ public class Oxygen : MonoBehaviour {
 	
     // Oxygen Resource Values
     public int oxygen;
-	public int minOxygen;
+	public int criticalOxygen;
+	public int lowOxygen;
     public int maxOxygen;
 
 	/// <summary>
@@ -24,7 +25,16 @@ public class Oxygen : MonoBehaviour {
 	/// <returns>True if oxygen is running low.</returns>
 	public bool isLow
 	{
-		get { return oxygen <= minOxygen; } 
+		get { return oxygen <= lowOxygen; } 
+	}
+
+	/// <summary>
+	/// Checks if oxygen is running critical;
+	/// </summary>
+	/// <value><c>true</c> if is critical; otherwise, <c>false</c>.</value>
+	public bool isCritical
+	{
+		get { return oxygen <= criticalOxygen; } 
 	}
 
 	/// <summary>
