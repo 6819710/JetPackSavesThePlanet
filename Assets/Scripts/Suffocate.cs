@@ -40,6 +40,6 @@ public class Suffocate : MonoBehaviour {
 	}
 
 	public void SuffocatePlayer(){
-		health.dealDamage (damage);
+		health.Die(DeathTypes.Suffocate); // Just kills the player rather than simply cause damage
 	}
 }
