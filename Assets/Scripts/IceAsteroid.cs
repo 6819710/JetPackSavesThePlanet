@@ -29,7 +29,7 @@ public class IceAsteroid : Asteroid {
             else if (collision.gameObject.tag == "Player")
             { // TODO Gavin: remove hardcoded tags
                 currentHealth = 0;
-                distructor = Distructor.Player
+                distructor = Distructor.Player;
             }
 
             if (currentHealth <= 0) {
