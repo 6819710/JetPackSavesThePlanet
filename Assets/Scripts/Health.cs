@@ -29,15 +29,16 @@ public class Health : MonoBehaviour {
 
 	void Update(){
 		if (isDead) {
-			Die ();
+			Die (DeathTypes.Worm); // Hard Coded to death by worm as details are not yet implemented for this.
 		}
 	}
 
-	public void Die(){
-		GameManager.instance.StateManager.Lost ();
+	public void Die(DeathTypes cause){
+		GameManager.instance.StateManager.Lost (cause);
 		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
 		this.gameObject.GetComponent<Breathing> ().enabled = false;
-		GameObject.Find("Music").SendMessage("toSilence");
+        this.gameObject.GetComponent<Health>().enabled = false; // Disable health so SFX does not continue playing
+        this.gameObject.GetComponent<OxygenTrigger>().enabled = false;
 	}
 
 	public void dealDamage(float amount){

@@ -35,9 +35,13 @@ public class StateManager : MonoBehaviour {
 		Change (GameState.Paused);
 	}
 
-	public void Lost(){
+	public void Lost(DeathTypes cause){
 		Change (GameState.Lost);
-	}
+        GameObject.Find("Music").SendMessage("toSilence"); // Fade to Silence
+
+        if (cause == DeathTypes.Worm)
+            GameObject.Find("SFX").SendMessage("playDeathByWorm");
+    }
 
 	public void Change(GameState toChange){
 		currentState = toChange;
