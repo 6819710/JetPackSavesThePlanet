@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
 	public float value = 1;
 	public float max = 1;
 
+
 	public float Value { 
 		get { return value; }
 		set { this.value = value; }
@@ -28,10 +29,14 @@ public class Health : MonoBehaviour {
 
 	void Update(){
 		if (isDead) {
-			GameManager.instance.StateManager.Lost ();
-			this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
-			this.gameObject.GetComponent<Breathing> ().enabled = false;
+			Die ();
 		}
+	}
+
+	public void Die(){
+		GameManager.instance.StateManager.Lost ();
+		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
+		this.gameObject.GetComponent<Breathing> ().enabled = false;
 	}
 
 	public void dealDamage(float amount){
