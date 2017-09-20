@@ -40,6 +40,8 @@ public class Asteroid : DestructableEntity {
                     GameObject.Find("SFX").SendMessage("playLargeAsteroid");
                 if (size == AsteroidSizes.Medium)
                     GameObject.Find("SFX").SendMessage("playMediumAsteroid");
+                if (size == AsteroidSizes.Small)
+                    GameObject.Find("SFX").SendMessage("playSmallAsteroid");
             }
         }
     }
