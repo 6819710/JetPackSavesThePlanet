@@ -9,6 +9,7 @@ public class MusicController : MonoBehaviour {
     public AudioMixerSnapshot calmBeat;
     public AudioMixerSnapshot stress;
     public AudioMixerSnapshot stressBeat;
+    public AudioMixerSnapshot silence;
     public AudioMixerSnapshot panic;
     public AudioMixerSnapshot panicBeat;
     public AudioMixerSnapshot menu;
@@ -44,6 +45,11 @@ public class MusicController : MonoBehaviour {
     public void toStressBeat()
     {
         stressBeat.TransitionTo(transition);
+    }
+
+    public void toSilence()
+    {
+        silence.TransitionTo(transition);
     }
 
     public void toPanic()

@@ -13,9 +13,12 @@ public class ScoreManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Get the player reference from the game manager
+		Initialise ();
+	}
+
+	public void Initialise(){
+		//Get the player reference from the game manager
 		if (ThePlayer == null) ThePlayer = GameManager.instance.Player;
-        
 	}
 	
 	// Update is called once per frame
