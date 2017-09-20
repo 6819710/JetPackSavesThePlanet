@@ -20,9 +20,16 @@ public class IceAsteroid : Asteroid {
             if (collision.gameObject.GetComponent<Asteroid>()) {
                 float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass / 2;
                 TakeDamage(energy);
+                distructor = Distructor.Self;
             }
-            else if (collision.gameObject.tag == "Worm" || collision.gameObject.tag == "Player") { // TODO Gavin: remove hardcoded tags
+            else if (collision.gameObject.tag == "Worm") { // TODO Gavin: remove hardcoded tags
                 currentHealth = 0;
+                distructor = Distructor.Worm;
+            }
+            else if (collision.gameObject.tag == "Player")
+            { // TODO Gavin: remove hardcoded tags
+                currentHealth = 0;
+                distructor = Distructor.Player
             }
 
             if (currentHealth <= 0) {
