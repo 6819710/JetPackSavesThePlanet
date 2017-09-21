@@ -5,14 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ShieldUpgrade : ConsumableUpgrade, ITimable
 {
-	[SerializeField]
-	private float sheildTime = 5; // Time the shield is kept for
-
-	[SerializeField]
-	private float sheildDelay = 5; // Time taken to activate sheild
-
-	[SerializeField]
-	private GameObject shieldPrefab; // prefab for the shield 
+	[SerializeField] private float sheildTime = 5; // Time the shield is kept for
+	[SerializeField] private float sheildDelay = 5; // Time taken to activate sheild
+	[SerializeField] private GameObject shieldPrefab; // prefab for the shield 
 
 	private float time; 
 	private GameObject shield;

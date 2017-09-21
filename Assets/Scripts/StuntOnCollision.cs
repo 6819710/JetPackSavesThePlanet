@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StuntOnCollision : MonoBehaviour {
 
-	void OnTriggerEnter2D (Collider2D other) {
-		StuntingBehavior sb = other.GetComponent<StuntingBehavior> ();
+	void OnCollisionEnter2D (Collision2D other) {
+		StuntingBehavior sb = other.collider.gameObject.GetComponent<StuntingBehavior> ();
 		if (sb != null)
 			sb.Stunt ();
 	}
