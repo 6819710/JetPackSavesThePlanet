@@ -5,9 +5,10 @@ using UnityEngine;
 public class Oxygen : MonoBehaviour {
 	
     // Oxygen Resource Values
-    public int oxygen;
-	public int minOxygen;
-    public int maxOxygen;
+    public float oxygen;
+	public float criticalOxygen;
+	public float lowOxygen;
+    public float maxOxygen;
 
 	/// <summary>
 	/// Checks if oxygen is at max.
@@ -24,7 +25,16 @@ public class Oxygen : MonoBehaviour {
 	/// <returns>True if oxygen is running low.</returns>
 	public bool isLow
 	{
-		get { return oxygen <= minOxygen; } 
+		get { return oxygen <= lowOxygen; } 
+	}
+
+	/// <summary>
+	/// Checks if oxygen is running critical;
+	/// </summary>
+	/// <value><c>true</c> if is critical; otherwise, <c>false</c>.</value>
+	public bool isCritical
+	{
+		get { return oxygen <= criticalOxygen; } 
 	}
 
 	/// <summary>
@@ -46,7 +56,7 @@ public class Oxygen : MonoBehaviour {
     /// Applys given delta to oxygen level
     /// </summary>
     /// <param name="delta">delta, amount of oxygen to add or remove, use negitive value to remove oxygen</param>
-    public void ApplyDelta(int delta)
+    public void ApplyDelta(float delta)
     {
         oxygen += delta;
 

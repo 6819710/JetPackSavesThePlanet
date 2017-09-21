@@ -9,7 +9,7 @@ public class CheckIfLoss : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (OxygenBar.isOut)
+		if (OxygenBar && OxygenBar.isOut)
         {
             Lose();
         }
@@ -19,5 +19,9 @@ public class CheckIfLoss : MonoBehaviour {
     void Lose()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TriggerLoss() {
+        Lose();
     }
 }

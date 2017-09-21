@@ -5,27 +5,32 @@ using UnityEngine.UI;
 
 public class OxygenLevel : MonoBehaviour {
 
-    public Oxygen oxygen;
+    public Oxygen theOxygen;
     public Image context;
 
     private float fillAmount;
 
-    private int maxOxygen;
-    private int currentOxygen;
+    private float maxOxygen;
+    private float currentOxygen;
 
 	// Use this for initialization
 	void Start () {
-        maxOxygen = oxygen.maxOxygen;
-        currentOxygen = oxygen.oxygen;
+        if (theOxygen == null)
+        {
+            theOxygen = GameObject.Find("Player").GetComponent<Oxygen>();
+        }
+        maxOxygen = theOxygen.maxOxygen;
+        currentOxygen = theOxygen.oxygen;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(oxygen.oxygen != currentOxygen) // only process if current oxygen has changed
+		if(theOxygen.oxygen != currentOxygen) // only process if current oxygen has changed
         {
-            currentOxygen = oxygen.oxygen;
+            currentOxygen = theOxygen.oxygen;
             fillAmount = 1.0f * ((float)currentOxygen / (float)maxOxygen);
             context.fillAmount = fillAmount;
+            context.color = new Color(1.0f - fillAmount, fillAmount, 0.0f);
         }
 	}
 }
