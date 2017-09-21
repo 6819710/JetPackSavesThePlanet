@@ -21,16 +21,21 @@ public class UpgradeSystem : MonoBehaviour {
 	}  
 
 	void Start(){
+		List<Upgrade> dupedList = new List<Upgrade>();
 		foreach(Upgrade u in upgrades){
-			u.Owner = this.gameObject;
+			Upgrade duped = Object.Instantiate (u) as Upgrade;
+			duped.Owner = this.gameObject;
+			dupedList.Add (duped);
 		}
+		upgrades.Clear ();
+		upgrades = dupedList;
 	}
 
 	void Update () {
 		foreach(Upgrade u in Upgrades){
-			if(u is TimelyRechargedUpgrade){
-				TimelyRechargedUpgrade timeUpgrade = u as TimelyRechargedUpgrade;
-				timeUpgrade.UpdateTime (Time.deltaTime);
+			if(u is ITimable){
+				ITimable timeUpgrade = u as ITimable;
+				timeUpgrade.Process (Time.deltaTime);
 			}
 		}
 	}
