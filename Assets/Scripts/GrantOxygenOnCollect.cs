@@ -25,7 +25,7 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 		if(time>0) time -= Time.deltaTime;
 	}
 
-	void OnCollisionEnter2D(Collision2D collision) {
+	void OnCollisionStay2D(Collision2D collision) {
 		if(time<=0 && canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
 			// Trigger Oxygen Replenishment
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
