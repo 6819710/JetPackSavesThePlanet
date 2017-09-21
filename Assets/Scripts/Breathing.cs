@@ -7,28 +7,19 @@ public class Breathing : MonoBehaviour {
     private Oxygen oxygenSupply;
 
     // Settings
-    public float breathingRate; // How many frames need to pass between each use of oxygen
-
-    // Misc
-    private float timer;
+    public float oxygenDrainPerSecond; // How much oxygen gets drained per second
 
 	// Use this for initialization
 	void Start () {
         oxygenSupply = this.gameObject.GetComponent<Oxygen>();
-        timer = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (oxygenSupply != null)
         {
-            if (timer >= breathingRate)
-            {
-                oxygenSupply.ApplyDelta(-1);
-                timer = 0;
-            }
-            else
-                timer += Time.deltaTime;
+            float oxygenToDrain = oxygenDrainPerSecond * Time.deltaTime;
+            oxygenSupply.ApplyDelta(-oxygenToDrain);
         }
 	}
 }
