@@ -10,7 +10,7 @@ public class OxygenLevel : MonoBehaviour {
 
     private float fillAmount;
 
-    private int maxOxygen;
+    private float maxOxygen;
     private float currentOxygen;
 
 	// Use this for initialization

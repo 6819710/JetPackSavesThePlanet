@@ -5,10 +5,10 @@ using UnityEngine;
 public class Oxygen : MonoBehaviour {
 	
     // Oxygen Resource Values
-    public int oxygen;
-	public int criticalOxygen;
-	public int lowOxygen;
-    public int maxOxygen;
+    public float oxygen;
+	public float criticalOxygen;
+	public float lowOxygen;
+    public float maxOxygen;
 
 	/// <summary>
 	/// Checks if oxygen is at max.
