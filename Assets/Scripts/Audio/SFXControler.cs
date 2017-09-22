@@ -15,8 +15,6 @@ public class SFXControler : MonoBehaviour {
     public AudioSource thruster;
     public AudioSource enemyFound;
 
-	public AudioSource[] oxygenSuck;
-
 	public void playSmallAsteroid()
     {
         smallAsteroid.Play();
@@ -56,10 +54,4 @@ public class SFXControler : MonoBehaviour {
             enemyFound.Play();
     }
 
-	public void playOxygenSuck()
-	{
-		int toPlay = Random.Range (0, oxygenSuck.Length);
-		if(!oxygenSuck[toPlay].isPlaying)
-			oxygenSuck[toPlay].Play();
-	}
 }
