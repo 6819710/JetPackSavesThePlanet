@@ -12,12 +12,12 @@ public class UpgradeViewDelegate : MonoBehaviour {
 
 	void Start () {
 		if(data==null){
-			data = GameManager.instance.Player.GetComponent<UpgradeSystem> ();
+			data = GameManager.instance.Player.GetComponent<UpgradeSystem> ().Bind (this);
 		}
 		initialiseUI ();
 	}
 
-	void initialiseUI (){
+	public void initialiseUI (){
 		Clear ();
 		int offsetY = 0;
 		foreach(Upgrade u in data.Upgrades){
@@ -31,10 +31,6 @@ public class UpgradeViewDelegate : MonoBehaviour {
 			holder.name = u.Name;
 			holders.Add (holder);
 		}
-	}
-
-	void Update () {
-		
 	}
 
 	void Clear (){

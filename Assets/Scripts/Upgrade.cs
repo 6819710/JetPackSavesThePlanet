@@ -68,5 +68,16 @@ public abstract class Upgrade : ScriptableObject
 		Active = true;
 		Effect ();
 	}
+
+	public static bool operator ==(Upgrade lhs, Upgrade rhs) 
+	{
+		if (object.ReferenceEquals(rhs, null)) return object.ReferenceEquals(lhs, null);
+		return (lhs.GetType () == rhs.GetType ()) && (lhs.Name == rhs.Name); 
+	}
+
+	public static bool operator !=(Upgrade lhs, Upgrade rhs) 
+	{
+		return !(lhs==rhs); 
+	}
 }
 

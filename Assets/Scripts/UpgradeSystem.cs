@@ -6,6 +6,8 @@ public class UpgradeSystem : MonoBehaviour {
 
 	public List<Upgrade> upgrades;
 
+	private UpgradeViewDelegate _delegate;
+
 	public List<Upgrade> Upgrades {
 		get {
 			return upgrades;
@@ -19,6 +21,17 @@ public class UpgradeSystem : MonoBehaviour {
 	{  
 		get { return upgrades[index]; }
 	}  
+
+	public Upgrade this[Upgrade type]{
+		get{
+			foreach (Upgrade u in upgrades) {
+				if (u==type) {
+					return u;
+				}
+			}
+			return null;
+		}
+	}
 
 	void Start(){
 		List<Upgrade> dupedList = new List<Upgrade>();
@@ -44,9 +57,36 @@ public class UpgradeSystem : MonoBehaviour {
 		upgrade.Activate ();
 	}
 
+	public bool Contains(Upgrade upgrade){
+		foreach(Upgrade u in upgrades){
+			if (u==upgrade) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void Add(Upgrade upgrade){
 		upgrade.Owner = this.gameObject;
-		upgrades.Add (upgrade);
+
+		//If the upgrade system doesnt have one of those upgrades 
+		if (!this.Contains (upgrade)) {
+			// It adds it
+			upgrades.Add (upgrade);
+		} else {
+			// If it already has one 
+			Upgrade toIncrease = this [upgrade];
+			// Check if it is consumable,
+			if(toIncrease is ConsumableUpgrade){
+				// if so, add more users to it
+				(toIncrease as ConsumableUpgrade).Uses++;
+			}
+			// Check if it is timable,
+			if(toIncrease is ITimable){
+				// if so, reset it's timer
+				(toIncrease as ITimable).Stop();
+			}
+		}
 	}
 
 	public void Remove(Upgrade upgrade){
@@ -59,5 +99,10 @@ public class UpgradeSystem : MonoBehaviour {
 
 	public void Clear(){
 		upgrades.Clear ();
+	}
+
+	public UpgradeSystem Bind(UpgradeViewDelegate holder){
+		_delegate = holder;
+		return this;
 	}
 }

@@ -30,7 +30,6 @@ public class UpgradeHolder : MonoBehaviour {
 		}
 	}
 
-
 	void Start () {
 		button = this.gameObject.GetComponent<Button> ();
 		foreach(Image i in this.gameObject.GetComponentsInChildren<Image> ()){
@@ -44,7 +43,7 @@ public class UpgradeHolder : MonoBehaviour {
 	}
 
 	void initialiseUI(){
-		if(upgrade!=null){
+		if(upgrade != null){
 			image.sprite = upgrade.Image;
 
 			if(Upgrade is ConsumableUpgrade){
