@@ -16,6 +16,8 @@ public class SwipeToMove : MonoBehaviour {
     private bool mouseMoveInProgress = false;
 
     private Vector2 startSwipePoint;
+	private Vector2 intendedDirection;
+
     private bool swipeInProgress = false;
     public float minSwipeDistance;
 
@@ -48,16 +50,16 @@ public class SwipeToMove : MonoBehaviour {
         if (Input.GetMouseButton(0)) {
             lastMousePosition = Input.mousePosition;
             // Get a normalised touch input vector
-            Vector2 mouseDirection = ((Vector2)Input.mousePosition - lastMousePosition).normalized;
-            Move(mouseDirection);
+			intendedDirection = ((Vector2)Input.mousePosition - lastMousePosition).normalized;
+			Move(intendedDirection);
             lastMousePosition = Input.mousePosition;
         }
     }
 
     private void MouseMove() {
         if (Input.GetMouseButton(0)) {
-            Vector2 mouseDirection = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)) - transform.position).normalized;
-            Move(mouseDirection);
+			intendedDirection = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)) - transform.position).normalized;
+			Move(intendedDirection);
         }
     }
 
@@ -67,9 +69,9 @@ public class SwipeToMove : MonoBehaviour {
                 swipeInProgress = true;
                 startSwipePoint = Input.GetTouch(0).position;
             }
-            Vector2 touchDirection = (Input.GetTouch(0).position - startSwipePoint);
-            if (touchDirection.magnitude > minSwipeDistance && swipeInProgress) {
-                Move(touchDirection.normalized);
+			intendedDirection = (Input.GetTouch(0).position - startSwipePoint);
+			if (intendedDirection.magnitude > minSwipeDistance && swipeInProgress) {
+				Move(intendedDirection.normalized);
             };
             
             if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled) {
@@ -97,10 +99,10 @@ public class SwipeToMove : MonoBehaviour {
     private void UpdateDirectionIndicator() {
         // If the indicator is available enable it's rendering
         // some math magic to get the indicator to point at the direction where the player is moving 
-        if (this.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > indicatorThreshold) {
+		if (intendedDirection.magnitude > indicatorThreshold) {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
-            float angle = Mathf.Atan2(this.gameObject.GetComponent<Rigidbody2D>().velocity.x, -this.gameObject.GetComponent<Rigidbody2D>().velocity.y) * Mathf.Rad2Deg;
-            directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+			float angle = Mathf.Atan2(intendedDirection.x, -intendedDirection.y) * Mathf.Rad2Deg;
+            directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
         }
         else {
             // disable it's rendering
