@@ -13,20 +13,24 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 	private Oxygen self;
 	private float time;
 
+	private GameObject sfxPlayer;
+
 	void Awake(){
 		self = gameObject.GetComponent<Oxygen>();
 	}
 
 	void Start(){
 		time = grantDelay;
+		sfxPlayer = GameObject.Find ("SFX");
 	}
 
 	void Update(){
 		if(time>0) time -= Time.deltaTime;
 	}
 
-	void OnCollisionEnter2D(Collision2D collision) {
+	void OnCollisionStay2D(Collision2D collision) {
 		if(time<=0 && canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
+			sfxPlayer.GetComponent<SFXControler> ().playOxygenSuck ();
 			// Trigger Oxygen Replenishment
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
 			if (!self.isOut) {

@@ -9,6 +9,7 @@ public class ShrinkWithOxygen : MonoBehaviour {
 
 	public bool destoryWhenOut = true;
 
+
 	// Use this for initialization
 	void Start () {
 		initialScale = this.gameObject.transform.localScale;
@@ -20,8 +21,9 @@ public class ShrinkWithOxygen : MonoBehaviour {
 		if (self != null)
 			this.gameObject.transform.localScale = initialScale * ((float)self.oxygen / (float)self.maxOxygen) ;
 		if (destoryWhenOut) {
-			if (self.isOut)
+			if (self.isOut) {
 				Destroy (this.gameObject);
+			}
 		}
 	}
 }
