@@ -65,5 +65,7 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 		base.Restore ();
 		shield.GetComponent<Animator> ().SetTrigger ("Low");
 	}
+
+
 }
 

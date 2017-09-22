@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(CoinSoundEffectController))]
+[RequireComponent(typeof(SoundEffectsController))]
 public class CoinPickupBehavior : PickupBehaviour {
 
 	public int pointsGranted;
@@ -12,7 +12,7 @@ public class CoinPickupBehavior : PickupBehaviour {
 	{
 		GameManager.instance.GetComponent<ScoreManager> ().Score += pointsGranted;
 		GetComponent<Animator> ().SetTrigger ("Disappear");
-		GetComponent<CoinSoundEffectController> ().Play (CoinSoundEffectController.SoundEffect.Collect);
+		GetComponent<SoundEffectsController> ().Play ();
 
 	}
 

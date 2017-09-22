@@ -76,15 +76,10 @@ public class UpgradeSystem : MonoBehaviour {
 		} else {
 			// If it already has one 
 			Upgrade toIncrease = this [upgrade];
-			// Check if it is consumable,
-			if(toIncrease is ConsumableUpgrade){
-				// if so, add more users to it
-				(toIncrease as ConsumableUpgrade).Uses++;
-			}
-			// Check if it is timable,
-			if(toIncrease is ITimable){
-				// if so, reset it's timer
-				(toIncrease as ITimable).Stop();
+			// Check if it is collectable,
+			if(toIncrease is ICollectable){
+				//If is, then perform collection logic
+				(toIncrease as ICollectable).onCollect ();
 			}
 		}
 	}

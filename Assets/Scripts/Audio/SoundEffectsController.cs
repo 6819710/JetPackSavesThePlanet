@@ -4,7 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundEffectsController : MonoBehaviour {
-	
+
+	public AudioClip singleClip;
+
 	private AudioSource source;
 
 	public AudioSource Source {
@@ -18,6 +20,10 @@ public class SoundEffectsController : MonoBehaviour {
 
 	void Start () {
 		source = GetComponent<AudioSource> ();
+	}
+
+	public void Play(){
+		Source.PlayOneShot (singleClip);
 	}
 
 	public void Play(AudioClip toPlay){
