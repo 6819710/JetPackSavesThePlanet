@@ -21,7 +21,7 @@ public class IceAsteroid : Asteroid {
                 float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass / 2;
                 TakeDamage(energy);
             }
-            else if (collision.gameObject.tag == "Worm" || collision.gameObject.tag == "Player") { // TODO Gavin: remove hardcoded tags
+			else if (CanBeDestroyedBy.Contains( collision.gameObject.tag)) { // TODO Gavin: remove hardcoded tags, Isuru: Done
                 currentHealth = 0;
             }
 

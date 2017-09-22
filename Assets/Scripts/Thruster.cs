@@ -8,11 +8,9 @@ public class Thruster : MonoBehaviour {
 	private SwipeToMove playerMovement;
 
     // Settings
-    public float depletionRate; // How many seconds need to pass between each use of oxygen
-    public int depletionAmount; // How many oxygen gets used with each timer
+    public int depletionAmountPerSecond; // How much Oxygen gets consumed per second
 
     // Misc
-    private float timer;
 	private Transform jetpack;
 
     // Use this for initialization
@@ -21,27 +19,20 @@ public class Thruster : MonoBehaviour {
         oxygenSupply = this.gameObject.GetComponent<Oxygen>();
 		playerMovement = this.gameObject.GetComponent<SwipeToMove>();
 		jetpack = transform.Find ("jetpack");
-        timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (oxygenSupply != null)
+        if (oxygenSupply != null && playerMovement != null)
         {
-            if(playerMovement != null)
-            {
-				if (playerMovement.isMoving) {
-					jetpack.gameObject.GetComponent<ParticleSystem> ().Play ();
-					if (timer >= depletionRate) {
-						oxygenSupply.ApplyDelta (-depletionAmount);
-						timer = 0;
-					} else
-						timer += Time.deltaTime;
-				} else {
-					jetpack.gameObject.GetComponent<ParticleSystem> ().Stop ();
-				}
-            }
+			if (playerMovement.isMoving) {
+				jetpack.gameObject.GetComponent<ParticleSystem> ().Play ();
+                float depletionAmount = depletionAmountPerSecond * Time.deltaTime;
+                oxygenSupply.ApplyDelta(-depletionAmount);
+			} else {
+				jetpack.gameObject.GetComponent<ParticleSystem> ().Stop ();
+			}
         }
     }
 }
