@@ -15,7 +15,9 @@ public class ObjectGenerator : MonoBehaviour {
 	void Start () {
         instantiatedObjects = new List<GameObject>();
         DestroyObjectsOutsideDespawnRange();
-        SpawnAsteroids(0, despawnRange);
+        SpawnAsteroids(spawnRange, despawnRange);
+		if (generateAround == null)
+			generateAround = GameObject.Find ("Player").transform;
     }
 	
 	// Update is called once per frame

@@ -8,6 +8,9 @@ public class WormHead : WormSegment {
     public Transform mainTarget;
     public bool isDebug;
     public float speed;
+    public float catchUpExponent =1f;
+
+	public float attackAmount = 1;
 
     void Start() {
         if (startSize < 1) startSize = 1;
@@ -27,13 +30,23 @@ public class WormHead : WormSegment {
     }
 
     private void MoveWormHead(Vector2 targetPos) {
-        Vector2 direction = (targetPos - (Vector2)transform.position).normalized;
-        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + (speed * Time.deltaTime * direction));
+        Vector2 direction = targetPos - (Vector2)transform.position;
+        direction = direction.normalized * Mathf.Max(1, Mathf.Pow(direction.magnitude, catchUpExponent));
+        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + ( speed * Time.deltaTime * direction));
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<CheckIfLoss>().TriggerLoss();
+			Health health = collision.gameObject.GetComponent<Health>();
+			if(health !=null){
+				health.dealDamage (attackAmount);
+			}
         }
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Astroid")) { //TODO Isuru: remove hardcoded tag
+			StuntingBehavior sb = this.gameObject.GetComponent<StuntingBehavior>();
+			if(sb !=null){
+				sb.Stunt();
+			}
+		}
     }
 }
