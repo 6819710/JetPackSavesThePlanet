@@ -34,4 +34,5 @@ public abstract class ConsumableUpgrade : Upgrade, ICollectable
 	public void onCollect(){
 		this.Uses++;
 	}
+
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpgradeSystem : MonoBehaviour {
 
 	public List<Upgrade> upgrades;
+	public bool removeUsedUpUpgrades = true;
 
 	private UpgradeViewDelegate _delegate;
 
@@ -45,11 +46,25 @@ public class UpgradeSystem : MonoBehaviour {
 	}
 
 	void Update () {
+		List<Upgrade> toClear = null;
 		foreach(Upgrade u in Upgrades){
 			if(u is ITimable){
 				ITimable timeUpgrade = u as ITimable;
 				timeUpgrade.Process (Time.deltaTime);
 			}
+			if(removeUsedUpUpgrades && u is ConsumableUpgrade ){
+				if((u as ConsumableUpgrade).isUsedUp && !u.Active){
+					if (toClear == null)
+						toClear = new List<Upgrade> ();
+					toClear.Add (u);
+				}
+			}
+		}
+		if(toClear!=null && toClear.Count>0){
+			foreach (Upgrade toRemove in toClear) {
+				Upgrades.Remove (toRemove);
+			}
+			if(_delegate) _delegate.RefreshUI ();
 		}
 	}
 
@@ -73,6 +88,7 @@ public class UpgradeSystem : MonoBehaviour {
 		if (!this.Contains (upgrade)) {
 			// It adds it
 			upgrades.Add (upgrade);
+			if(_delegate) _delegate.RefreshUI ();
 		} else {
 			// If it already has one 
 			Upgrade toIncrease = this [upgrade];
