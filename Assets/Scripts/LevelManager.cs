@@ -34,15 +34,20 @@ public class LevelManager : MonoBehaviour {
 
 	void Start(){
 		stateManager = gameObject.GetComponent<StateManager> ();
-		StartLevel (currentLevel);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		time += Time.deltaTime;
-		if(time > Random.value * randomTickSpeed){
-			RandomEvent ();
+		if (currentLP != null) {
+			time += Time.deltaTime;
+			if (time > Random.value * randomTickSpeed) {
+				RandomEvent ();
+			}
 		}
+	}
+
+	public void Begin(){
+		StartLevel (currentLevel);
 	}
 
 	void StartLevel(int level){

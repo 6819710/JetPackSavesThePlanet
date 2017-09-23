@@ -66,6 +66,6 @@ public class GameManager : MonoBehaviour {
 
 	public void Begin(){
 		stateManager.Play ();
-		levelManager.enabled = true;
+		levelManager.Begin();
 	}
 }
