@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(StateManager))]
 public class LevelManager : MonoBehaviour {
 
 	public List<LevelProfile> levels;
 
-	public int currentLevel;
+	public int currentLevel = 0;
 
-	[SerializeField] public UnityEvent onEnter; 
+	public float randomTickSpeed = 3;
+
+	private float time;
+	private LevelProfile currentLP;
+
+	private StateManager stateManager;
+	private GameState shown;
 
 	public int Level{
 		get {  return currentLevel; }
@@ -21,15 +28,45 @@ public class LevelManager : MonoBehaviour {
 		set { levels [i] = value; } 
 	}
 
-	void Awake(){
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void Add(LevelProfile toAdd){
 		levels.Add (toAdd);
 	}
+
+	void Start(){
+		stateManager = gameObject.GetComponent<StateManager> ();
+		StartLevel (currentLevel);
+	}
+
+	// Update is called once per frame
+	void Update () {
+		time += Time.deltaTime;
+		if(time > Random.value * randomTickSpeed){
+			RandomEvent ();
+		}
+	}
+
+	void StartLevel(int level){
+		if(level < levels.Count){
+			currentLP = this [level];
+			BeginEvent ();
+		}
+	}
+
+	public void NextLevel(){
+		StartLevel (++currentLevel);
+	}
+
+	public void BeginEvent(){
+		currentLP.onEnter.Invoke ();
+	}
+
+	public void RandomEvent(){
+		currentLP.onRandom.Invoke ();
+	}
+
+	public void ExitEvent(){
+		currentLP.onRandom.Invoke ();
+	}
+
+
 }

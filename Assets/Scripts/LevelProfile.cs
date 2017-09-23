@@ -6,17 +6,11 @@ using UnityEditor;
 
 [System.Serializable]
 [CreateAssetMenu]
-public class LevelProfile: ScriptableObject {
+public class LevelProfile: System.Object {
 
-	[Header("Level Spawns")]
-	[SerializeField] public List<GameObject> spawns; 
-	[SerializeField] float spawnFrequency;
-
-	[Space(10)]
-
-	[Header("Level Options")]
-	[SerializeField] public float distance; 
-	[SerializeField] public Sprite background; 
+	[Header("Level Details")]
+	[SerializeField] public string name; 
+	[SerializeField] public LevelDifficulty difficulty; 
 
 	[Space(5)]
 
@@ -27,6 +21,10 @@ public class LevelProfile: ScriptableObject {
 
 	public LevelProfile ()
 	{
+	}
+
+	public enum LevelDifficulty{
+		Easy, Medium, Hard
 	}
 
 

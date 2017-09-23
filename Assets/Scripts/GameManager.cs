@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(StateManager))]
+[RequireComponent(typeof(ScoreManager))]
+[RequireComponent(typeof(ScreenManager))]
+[RequireComponent(typeof(CameraManager))]
+[RequireComponent(typeof(LevelManager))]
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
@@ -13,8 +18,8 @@ public class GameManager : MonoBehaviour {
 	private ScoreManager scoreManager;
 	private ScreenManager screenManager;
 	private CameraManager cameraManager;
+	private LevelManager levelManager;
 
-	private GameState shown;
 
 	public StateManager StateManager {
 		get {
@@ -46,6 +51,9 @@ public class GameManager : MonoBehaviour {
 		if (cameraManager == null) {
 			cameraManager = this.GetComponent<CameraManager> ();
 		}
+		if (levelManager == null) {
+			levelManager = this.GetComponent<LevelManager> ();
+		}
 	}
 
 	void Awake () {
@@ -56,24 +64,8 @@ public class GameManager : MonoBehaviour {
 		//DontDestroyOnLoad(gameObject); singleton behavior result lost of references. 
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
-		if (shown != stateManager.CurrentState){
-			shown = stateManager.CurrentState;
-			switch (stateManager.CurrentState) {
-			case GameState.Menu:
-				break;
-			case GameState.Playing:
-				Time.timeScale = 1;
-				Director.GetComponent<WormGenerator> ().enabled = true;
-				break;
-			case GameState.Paused:
-				Time.timeScale = 0;
-				break;
-			case GameState.Lost:
-				break;
-			}
-		}
+	public void Begin(){
+		stateManager.Play ();
+		levelManager.enabled = true;
 	}
 }
