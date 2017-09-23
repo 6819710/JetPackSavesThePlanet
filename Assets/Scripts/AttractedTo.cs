@@ -14,15 +14,13 @@ public class AttractedTo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		target = GameObject.FindGameObjectsWithTag (to)[0];
+		target = GameObject.Find (to);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (to != null) {
-			Vector3 forceDirection = transform.position - target.transform.position;
-			if(forceDirection.magnitude < range)
-				this.gameObject.GetComponent<Rigidbody2D>().AddForce(-forceDirection.normalized * force * Time.fixedDeltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, target.transform.position , force*Time.deltaTime);
 		}
 	}
 }
