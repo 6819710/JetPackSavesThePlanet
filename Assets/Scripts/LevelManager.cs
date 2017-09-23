@@ -43,6 +43,8 @@ public class LevelManager : MonoBehaviour {
 			if (time > Random.value * randomTickSpeed) {
 				RandomEvent ();
 			}
+			//if(currentLP.shouldExit.Invoke){ // invoking test conditions goes here
+			//}
 		}
 	}
 

@@ -19,6 +19,9 @@ public class LevelProfile: System.Object {
 	[SerializeField] public UnityEvent onRandom; 
 	[SerializeField] public UnityEvent onExit; 
 
+	[Header("Level Terminating Condition")]
+	[SerializeField] public UnityEvent shouldExit;
+
 	public LevelProfile ()
 	{
 	}
