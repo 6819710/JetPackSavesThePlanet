@@ -13,7 +13,6 @@ public class CoinPickupBehavior : PickupBehaviour {
 		GameManager.instance.GetComponent<ScoreManager> ().Score += pointsGranted;
 		GetComponent<Animator> ().SetTrigger ("Disappear");
 		GetComponent<SoundEffectsController> ().Play ();
-
 	}
 
 }

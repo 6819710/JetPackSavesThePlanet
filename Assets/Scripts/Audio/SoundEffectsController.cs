@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SoundEffectsController : MonoBehaviour {
 
-	public AudioClip singleClip;
+	public List<AudioClip> defaultClips;
 
 	private AudioSource source;
 
@@ -22,8 +22,8 @@ public class SoundEffectsController : MonoBehaviour {
 		source = GetComponent<AudioSource> ();
 	}
 
-	public void Play(){
-		Source.PlayOneShot (singleClip);
+	public virtual void Play(){
+		Play (RandomFrom(defaultClips));
 	}
 
 	public void Play(AudioClip toPlay){
