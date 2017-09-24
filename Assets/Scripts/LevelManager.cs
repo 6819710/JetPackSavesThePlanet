@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Start(){
+		time = 0;
 		stateManager = gameObject.GetComponent<StateManager> ();
 	}
 
@@ -41,10 +42,12 @@ public class LevelManager : MonoBehaviour {
 		if (currentLP != null) {
 			time += Time.deltaTime;
 			if (time > Random.value * randomTickSpeed) {
+				time = 0;
 				RandomEvent ();
 			}
-			//if(currentLP.shouldExit.Invoke){ // invoking test conditions goes here
-			//}
+			if((currentLP.condition as TerminatingCondition).shouldTerminate()){
+				ExitEvent ();
+			}
 		}
 	}
 
@@ -72,7 +75,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ExitEvent(){
-		currentLP.onRandom.Invoke ();
+		currentLP.onExit.Invoke ();
 	}
 
 

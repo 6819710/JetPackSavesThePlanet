@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupGenerator : MonoBehaviour {
+	
+	public Transform around;
+	public float distance = 10;
 
 	public void SpawnPickup(GameObject what){
-		GameObject spawned = Instantiate (what);
-		spawned.transform.position = Random.insideUnitCircle * 100;
+		SpawnPickup (what, distance);
 	}
 
-	public void SpawnPickup(GameObject what, Vector2 position){
+	public void SpawnPickup(GameObject what, float distace){
 		GameObject spawned = Instantiate (what);
-		spawned.transform.position = position;
+		spawned.transform.position = around.position - (Random.insideUnitSphere * distance);
 	}
 
 }
