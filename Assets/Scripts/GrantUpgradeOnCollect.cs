@@ -9,6 +9,17 @@ public class GrantUpgradeOnCollect : MonoBehaviour {
 
 	public List<string> canBeCollectedByEntitesTagged = new List<string> ();
 
+	void Start(){
+		List<Upgrade> dupedList = new List<Upgrade>();
+		foreach(Upgrade u in upgradesToGrant){
+			Upgrade duped = Object.Instantiate (u) as Upgrade;
+			duped.Owner = this.gameObject;
+			dupedList.Add (duped);
+		}
+		upgradesToGrant.Clear ();
+		upgradesToGrant = dupedList;
+	}
+
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (canBeCollectedByEntitesTagged.Contains (collision.gameObject.tag)) {
 			//Grant Upgrade , If the reciever has an UpgradeSystem
