@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public float UnitsPerPoint = 1;
-  
 	private GameObject ThePlayer;
 
-    private float UnitsTraveled = 0;
+	public int score = 0;
+
+	public int Score {
+		get {
+			return score;
+		}
+		set {
+			score = value;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -20,21 +27,13 @@ public class ScoreManager : MonoBehaviour {
 		//Get the player reference from the game manager
 		if (ThePlayer == null) ThePlayer = GameManager.instance.Player;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        //Updates the units traveled if the player has moved further than the saved distance
-        float CurrentUnits = ThePlayer.transform.position.y;
-		if (UnitsTraveled <= CurrentUnits)
-            UnitsTraveled = CurrentUnits;
-	}
 
     //Returns the scrore
     public double CurrentScore
     {
         get
         {
-            return Mathf.Round(UnitsTraveled / UnitsPerPoint);
+			return Score;
         }
     }
 }
