@@ -16,6 +16,6 @@ public class ScoreUpdater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		UIText.text = scoreManager.CurrentScore + " KM";
+		UIText.text = scoreManager.Score + " $";
 	}
 }
