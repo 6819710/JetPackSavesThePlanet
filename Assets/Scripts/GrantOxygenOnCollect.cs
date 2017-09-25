@@ -27,13 +27,19 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D collision) {
 		if(time<=0 && canBeCollectedByEntitesTagged.Contains(collision.gameObject.tag)){
-			// Trigger Oxygen Replenishment
+			// Trigger Oxygen Replenishment, if the reciever has one
 			Oxygen oxygen = collision.gameObject.GetComponent<Oxygen>();
-			if (!self.isOut) {
+			if (oxygen!=null && !self.isOut) {
 				if (oxygen != null && self != null) {
 					self.oxygen -= grantingRate;
 					oxygen.ApplyDelta (grantingRate);
 				}
+			}
+			//Trigger Soundeffects , If the reciever has an audio source
+			SoundEffectsController sfx = collision.gameObject.GetComponent<SoundEffectsController> ();
+			if (sfx != null && sfx is PlayerSFXController) { // if it's players
+				PlayerSFXController psfx = sfx as PlayerSFXController;
+				psfx.Play (PlayerSFXController.SoundEffect.Oxygen);
 			}
 		}
 	}

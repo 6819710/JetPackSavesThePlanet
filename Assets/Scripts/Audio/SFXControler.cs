@@ -53,4 +53,5 @@ public class SFXControler : MonoBehaviour {
         if(!enemyFound.isPlaying)
             enemyFound.Play();
     }
+
 }
