@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CoinSoundEffectController))]
 public class CoinPickupBehavior : PickupBehaviour {
 
 	public int pointsGranted;
-
-	void Start(){
-	}
 
 	public override void onPickup ()
 	{
