@@ -36,12 +36,6 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 					oxygen.ApplyDelta (grantingRate);
 				}
 			}
-
-		}
-	}
-
-	void OnCollisionEnter2D(Collision2D collision) {
-		if (time <= 0 && canBeCollectedByEntitesTagged.Contains (collision.gameObject.tag)) {
 			//Trigger Soundeffects , If the reciever has an audio source
 			SoundEffectsController sfx = collision.gameObject.GetComponent<SoundEffectsController> ();
 			if (sfx != null && sfx is PlayerSFXController) { // if it's players
