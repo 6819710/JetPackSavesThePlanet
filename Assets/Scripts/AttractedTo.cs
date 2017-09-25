@@ -6,7 +6,9 @@ using UnityEngine;
 public class AttractedTo : MonoBehaviour {
 
 	public string to;
-	public float force = 1f; 
+	public float startingForce = 1f;
+    public float acceleration = 1f;
+    private float additionalForce = 0f;
 	public float range = 100f;
 
 	public GameObject target;
@@ -20,7 +22,8 @@ public class AttractedTo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (to != null) {
-			transform.position = Vector3.MoveTowards(transform.position, target.transform.position , force*Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, target.transform.position , (startingForce + additionalForce)*Time.deltaTime);
+            additionalForce += acceleration * Time.deltaTime;
 		}
 	}
 }
