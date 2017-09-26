@@ -7,6 +7,8 @@ public class SoundEffectsController : MonoBehaviour {
 	
 	private AudioSource source;
 
+	private List<AudioClip> defaultClips;
+
 	public AudioSource Source {
 		get {
 			return source;
@@ -18,6 +20,10 @@ public class SoundEffectsController : MonoBehaviour {
 
 	void Start () {
 		source = GetComponent<AudioSource> ();
+	}
+
+	public void Play(){
+		Source.PlayOneShot (RandomFrom(defaultClips));
 	}
 
 	public void Play(AudioClip toPlay){
