@@ -60,6 +60,10 @@ public class StateManager : MonoBehaviour {
 		currentState = toChange;
 	}
 
+	public void StopTime(bool should){
+		Time.timeScale = ((should)?0:1);
+	}
+
 
 
 }
