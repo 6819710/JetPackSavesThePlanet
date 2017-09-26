@@ -37,4 +37,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+<<<<<<< HEAD
 Distribution/Certificates/
+=======
+Distribution/Certificates/
+>>>>>>> master
