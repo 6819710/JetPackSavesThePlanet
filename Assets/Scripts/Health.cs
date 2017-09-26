@@ -34,7 +34,6 @@ public class Health : MonoBehaviour {
 	}
 
 	public void Die(){
-		GameManager.instance.StateManager.Lost ();
 		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
 		this.gameObject.GetComponent<Breathing> ().enabled = false;
 		GameObject.Find("Music").SendMessage("toSilence");
