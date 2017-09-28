@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StateManager : MonoBehaviour {
 
 	public GameState currentState;
+
+	public UnityEvent onMenu;
+	public UnityEvent onRestart;
+	public UnityEvent onPlay;
+	public UnityEvent onPause;
+	public UnityEvent onLost;
 
 	public GameState CurrentState {
 		get {
@@ -17,7 +24,7 @@ public class StateManager : MonoBehaviour {
 	}
 
 	void Start () {
-		currentState = GameState.Menu;
+		Menu();
 	}
 
 	public void Restart(){
@@ -25,18 +32,28 @@ public class StateManager : MonoBehaviour {
 		int scene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 		GameManager.instance.Initialise ();
+		onRestart.Invoke ();
 	}
+
+	public void Menu(){
+		Change (GameState.Menu);
+		onMenu.Invoke ();
+	}
+
 
 	public void Play(){
 		Change (GameState.Playing);
+		onPlay.Invoke ();
 	}
 
 	public void Pause(){
 		Change (GameState.Paused);
+		onPause.Invoke ();
 	}
 
 	public void Lost(){
 		Change (GameState.Lost);
+		onLost.Invoke ();
 	}
 
 	public void Change(GameState toChange){

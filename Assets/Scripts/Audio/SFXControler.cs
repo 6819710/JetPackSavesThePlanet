@@ -14,7 +14,7 @@ public class SFXControler : MonoBehaviour {
 
     public AudioSource thruster;
     public AudioSource enemyFound;
-
+    
 	public void playSmallAsteroid()
     {
         smallAsteroid.Play();
