@@ -7,17 +7,16 @@ public class UpgradeViewDelegate : MonoBehaviour {
 	public UpgradeSystem data;
 	public GameObject holderPrefab;
 
-	private List<GameObject> holders;
-
+	private List<GameObject> holders = new List<GameObject>();
 
 	void Start () {
 		if(data==null){
-			data = GameManager.instance.Player.GetComponent<UpgradeSystem> ();
+			data = GameManager.instance.Player.GetComponent<UpgradeSystem> ().Bind (this);
 		}
-		initialiseUI ();
+		RefreshUI ();
 	}
 
-	void initialiseUI (){
+	public void RefreshUI (){
 		Clear ();
 		int offsetY = 0;
 		foreach(Upgrade u in data.Upgrades){
@@ -33,11 +32,10 @@ public class UpgradeViewDelegate : MonoBehaviour {
 		}
 	}
 
-	void Update () {
-		
-	}
-
 	void Clear (){
-		holders = new List<GameObject>();
+		foreach(GameObject holder in holders){
+			Destroy (holder);
+		}
+		holders = new List<GameObject> ();
 	}
 }

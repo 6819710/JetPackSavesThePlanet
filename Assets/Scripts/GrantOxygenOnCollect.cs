@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Oxygen))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class GrantOxygenOnCollect : MonoBehaviour {
 
 	public float grantDelay = 10; // time to wait before granting oxygen;

@@ -4,10 +4,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundEffectsController : MonoBehaviour {
-	
-	private AudioSource source;
 
-	private List<AudioClip> defaultClips;
+	public List<AudioClip> defaultClips;
+
+	private AudioSource source;
 
 	public AudioSource Source {
 		get {
@@ -22,8 +22,8 @@ public class SoundEffectsController : MonoBehaviour {
 		source = GetComponent<AudioSource> ();
 	}
 
-	public void Play(){
-		Source.PlayOneShot (RandomFrom(defaultClips));
+	public virtual void Play(){
+		Play (RandomFrom(defaultClips));
 	}
 
 	public void Play(AudioClip toPlay){

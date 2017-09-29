@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
 
+	public UnityEvent onDeath;
 
 	public float Value { 
 		get { return value; }
@@ -34,9 +36,7 @@ public class Health : MonoBehaviour {
 	}
 
 	public void Die(){
-		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
-		this.gameObject.GetComponent<Breathing> ().enabled = false;
-		GameObject.Find("Music").SendMessage("toSilence");
+		onDeath.Invoke ();
 	}
 
 	public void dealDamage(float amount){
