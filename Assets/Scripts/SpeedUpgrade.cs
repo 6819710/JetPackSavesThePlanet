@@ -84,7 +84,7 @@ public class SpeedUpgrade : RenewableUpgrade, ITimable, ISpammable, ICollectable
 		ps.Emit(ep,(int) Magnitude);
 	}
 
-	public void onCollect(){
+	public void onCollect(int amount){
 		this.Stop ();
 	}
 

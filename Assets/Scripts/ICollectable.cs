@@ -2,5 +2,5 @@
 
 public interface ICollectable
 {
-	void onCollect();
+	void onCollect(int amount);
 }

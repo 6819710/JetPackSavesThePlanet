@@ -95,7 +95,7 @@ public class UpgradeSystem : MonoBehaviour {
 			// Check if it is collectable,
 			if(toIncrease is ICollectable){
 				//If is, then perform collection logic
-				(toIncrease as ICollectable).onCollect ();
+				(toIncrease as ICollectable).onCollect ((upgrade is ConsumableUpgrade)? ( (upgrade as ConsumableUpgrade).Uses ): 1);
 			}
 		}
 	}
