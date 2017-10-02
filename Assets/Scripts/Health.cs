@@ -33,21 +33,17 @@ public class Health : MonoBehaviour {
 
 	void Update(){
 		if (isDead && !executed)
-			Die (killingBlow);
+			Die ();
 	}
 
 	public void Die(){
-		Die (killingBlow);
-	}
+        executed = true;
+        onDeath.Invoke(killingBlow);
+    }
 
-	public void Die(DamageType cause){
-		executed = true;
-		onDeath.Invoke (cause);
-	}
-
-	public void dealDamage(float amount){
-		value -= amount;
-	}
+//	public void Die(DamageType cause){
+		
+	//}
 
 	public void dealDamage(DamageType dm, float amount){
 		value -= amount;
