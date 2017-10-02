@@ -28,6 +28,9 @@ public abstract class DestructableEntity : MonoBehaviour {
 		if(gameObject.GetComponent<DropLoot>()!=null){
 			gameObject.GetComponent<DropLoot> ().Drop ();
 		}
+
+		foreach (Transform child in transform)
+			child.parent = null;
         Destroy(gameObject);
     }
 
