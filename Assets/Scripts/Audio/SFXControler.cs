@@ -36,6 +36,18 @@ public class SFXControler : MonoBehaviour {
             deathByWorm.Play();
     }
 
+	public void playDeath(Health.DamageType cause)
+	{
+		switch (cause) {
+			case Health.DamageType.Suffocation:
+				playDeathByOxygen ();
+				break;
+			case Health.DamageType.Worm:
+				playDeathByWorm ();
+				break;
+		}
+	}
+
     public void playDeathByOxygen()
     {
         if (!deathByOxygen.isPlaying)

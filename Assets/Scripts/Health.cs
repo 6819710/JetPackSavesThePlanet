@@ -7,8 +7,10 @@ public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
-
-	public UnityEvent onDeath;
+	
+	private DamageType killingBlow;
+	public DeathEvent onDeath;
+	private bool executed = false;
 
 	public float Value { 
 		get { return value; }
@@ -30,18 +32,32 @@ public class Health : MonoBehaviour {
 	}
 
 	void Update(){
-		if (isDead) {
-			Die ();
-		}
+		if (isDead && !executed)
+			Die (killingBlow);
 	}
 
 	public void Die(){
-		onDeath.Invoke ();
+		Die (killingBlow);
+	}
+
+	public void Die(DamageType cause){
+		executed = true;
+		onDeath.Invoke (cause);
 	}
 
 	public void dealDamage(float amount){
 		value -= amount;
 	}
+
+	public void dealDamage(DamageType dm, float amount){
+		value -= amount;
+		killingBlow = dm;
+	}
+
+	[System.Serializable]
+	public class DeathEvent: UnityEvent<DamageType>{}
+
+	public enum DamageType: int { Worm=0, Suffocation=1 }
 
 
 }

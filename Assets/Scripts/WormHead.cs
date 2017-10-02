@@ -41,7 +41,7 @@ public class WormHead : WormSegment {
         if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
 			Health health = collision.gameObject.GetComponent<Health>();
 			if(health !=null){
-				health.dealDamage (attackAmount);
+				health.dealDamage (Health.DamageType.Worm, attackAmount);
 			}
         }
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Astroid")) { //TODO Isuru: remove hardcoded tag
