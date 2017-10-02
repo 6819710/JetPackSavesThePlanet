@@ -58,11 +58,11 @@ public class WormHead : WormSegment {
 
     private void MoveWormHead(Vector2 targetPos, float catchUpExponent = 0) {
         Vector2 direction = targetPos - (Vector2)transform.position;
-        var modifiedSpeed = Mathf.Min(Mathf.Max(1, speed * Mathf.Pow(direction.magnitude, catchUpExponent), maxSpeed));
+        float modifiedSpeed = Mathf.Min(Mathf.Max(1, speed * Mathf.Pow(direction.magnitude, catchUpExponent), maxSpeed));
         direction = direction.normalized * modifiedSpeed;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
-        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + ( direction * Time.deltaTime));
+        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + ( direction  * Time.deltaTime));
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
