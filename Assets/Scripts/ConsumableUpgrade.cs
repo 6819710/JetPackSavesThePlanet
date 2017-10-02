@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public abstract class ConsumableUpgrade : Upgrade
+public abstract class ConsumableUpgrade : Upgrade, ICollectable
 {
 	[SerializeField] private int uses = 1;
 
@@ -30,4 +30,9 @@ public abstract class ConsumableUpgrade : Upgrade
 			base.Activate ();
 		} 
 	}
+
+	public void onCollect(int amount){
+		this.Uses+=amount;
+	}
+
 }

@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
-
+	
 	private DamageType killingBlow;
 	public DeathEvent onDeath;
 	private bool executed = false;

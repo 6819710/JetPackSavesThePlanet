@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Oxygen))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class GrantOxygenOnCollect : MonoBehaviour {
 
 	public float grantDelay = 10; // time to wait before granting oxygen;
@@ -35,12 +36,16 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 					oxygen.ApplyDelta (grantingRate);
 				}
 			}
-			//Trigger Soundeffects , If the reciever has an audio source
-			SoundEffectsController sfx = collision.gameObject.GetComponent<SoundEffectsController> ();
-			if (sfx != null && sfx is PlayerSFXController) { // if it's players
-				PlayerSFXController psfx = sfx as PlayerSFXController;
-				psfx.Play (PlayerSFXController.SoundEffect.Oxygen);
-			}
+
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		//Trigger Soundeffects , If the reciever has an audio source
+		SoundEffectsController sfx = collision.gameObject.GetComponent<SoundEffectsController> ();
+		if (sfx != null && sfx is PlayerSFXController) { // if it's players
+			PlayerSFXController psfx = sfx as PlayerSFXController;
+			psfx.Play (PlayerSFXController.SoundEffect.Oxygen);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu]
-public class SpeedUpgrade : RenewableUpgrade, ITimable, ISpammable
+public class SpeedUpgrade : RenewableUpgrade, ITimable, ISpammable, ICollectable
 {
 	
 	[SerializeField] private float magnitude = 1;
@@ -82,6 +82,10 @@ public class SpeedUpgrade : RenewableUpgrade, ITimable, ISpammable
 		ParticleSystem.EmitParams ep = new ParticleSystem.EmitParams ();
 		ep.startColor = Color.red;
 		ps.Emit(ep,(int) Magnitude);
+	}
+
+	public void onCollect(int amount){
+		this.Stop ();
 	}
 
 
