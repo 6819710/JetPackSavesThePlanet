@@ -41,10 +41,6 @@ public class Health : MonoBehaviour {
         onDeath.Invoke(killingBlow);
     }
 
-//	public void Die(DamageType cause){
-		
-	//}
-
 	public void dealDamage(DamageType dm, float amount){
 		value -= amount;
 		killingBlow = dm;

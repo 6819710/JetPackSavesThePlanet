@@ -24,10 +24,6 @@ public class SwipeToMove : MonoBehaviour {
     protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
-
-
-    private bool sfxReset = false; //holds state of sfx flag
-
     private bool sfxReset = false; //holds state of sfx flag
     private GameObject sfxController;
 
@@ -42,9 +38,8 @@ public class SwipeToMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		originalScale = this.gameObject.transform.localScale;
+        if (!rbToMove) rbToMove = GetComponent<Rigidbody2D>();
         sfxController = GameObject.Find("SFX");
-
     }
 
     void FixedUpdate() {
@@ -89,7 +84,6 @@ public class SwipeToMove : MonoBehaviour {
         ResetSwipeState();
     }
 
-
     protected void ResetSwipeState() {
         swipeInProgress = false;
         currentSwipeValid = false;
@@ -109,6 +103,7 @@ public class SwipeToMove : MonoBehaviour {
     protected void Move(Rigidbody2D rb, Vector2 dir, float forceStrength) {
         rb.AddForce(dir * forceStrength, ForceMode2D.Impulse);
         stopped = false;
+        SFX();
     }
     
     public void StopMovement() {

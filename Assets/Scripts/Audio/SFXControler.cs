@@ -30,13 +30,6 @@ public class SFXControler : MonoBehaviour {
 		}
     }
 
-
-    public void playDeathByWorm()
-    {
-        if (!deathByWorm.isPlaying)
-            deathByWorm.Play();
-    }
-
 	public void playDeath(Health.DamageType cause)
 	{
 		switch (cause) {
@@ -48,6 +41,12 @@ public class SFXControler : MonoBehaviour {
 				break;
 		}
 	}
+
+    public void playDeathByWorm()
+    {
+        if (!deathByWorm.isPlaying)
+            deathByWorm.Play();
+    }
 
     public void playDeathByOxygen()
     {
