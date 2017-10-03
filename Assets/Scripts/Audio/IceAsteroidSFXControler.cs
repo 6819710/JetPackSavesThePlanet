@@ -29,4 +29,13 @@ public class IceAsteroidSFXControler : MonoBehaviour {
             }
         }
     }
+
+    public void playSource(int i)
+    {
+        if (!iceAsteroidSource[i].isPlaying)
+        {
+            iceAsteroidSource[i].Play();
+            gameObject.GetComponent<DestroyAfterPlayed>().mySource = iceAsteroidSource[i];
+        }
+    }
 }
