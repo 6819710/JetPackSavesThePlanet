@@ -20,7 +20,7 @@ public class StuntingBehavior : MonoBehaviour {
 		wh = this.gameObject.GetComponent<WormHead> ();
 		ps.Stop ();
 		time = stuntedTime;
-		initialSpeed = wh.speed;
+		initialSpeed = wh.minSpeed;
 	}
 	
 	void Update () {
@@ -35,12 +35,12 @@ public class StuntingBehavior : MonoBehaviour {
 	public void Stunt(){
 		isStunted = true;
 		ps.Play ();
-		wh.speed = 0;
+		wh.minSpeed = 0;
 	}
 
 	public void Restore(){
 		time = stuntedTime;
-		wh.speed = initialSpeed;
+		wh.minSpeed = initialSpeed;
 		isStunted = false;
 		ps.Stop ();
 	}
