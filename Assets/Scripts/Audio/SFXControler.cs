@@ -19,18 +19,33 @@ public class SFXControler : MonoBehaviour {
     {
 		switch (size) {
 			case AsteroidSizes.Small:
-				smallAsteroid.Play ();
+                playSmallAsteroid();
 				break;
 			case AsteroidSizes.Medium:
-				mediumAsteroid.Play ();
+                playMediumAsteroid();
 				break;
 			case AsteroidSizes.Large:
-				largeAsteroid.Play ();
+                playLargeAsteroid();
 				break;
 		}
     }
 
-	public void playDeath(Health.DamageType cause)
+    public void playSmallAsteroid()
+    {
+        smallAsteroid.Play();
+    }
+
+    public void playMediumAsteroid()
+    {
+        mediumAsteroid.Play();
+    }
+
+    public void playLargeAsteroid()
+    {
+        largeAsteroid.Play();
+    }
+
+    public void playDeath(Health.DamageType cause)
 	{
 		switch (cause) {
 			case Health.DamageType.Suffocation:
