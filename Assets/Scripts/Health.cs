@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
-
+	
+	private DamageType killingBlow;
+	public DeathEvent onDeath;
+	private bool executed = false;
 
 	public float Value { 
 		get { return value; }
@@ -28,21 +32,28 @@ public class Health : MonoBehaviour {
 	}
 
 	void Update(){
-		if (isDead) {
+		if (isDead && !executed)
 			Die ();
-		}
 	}
 
 	public void Die(){
-		GameManager.instance.StateManager.Lost ();
-		this.gameObject.GetComponent<SwipeToMove> ().enabled = false;
-		this.gameObject.GetComponent<Breathing> ().enabled = false;
-		GameObject.Find("Music").SendMessage("toSilence");
+        executed = true;
+        onDeath.Invoke(killingBlow);
+    }
+
+//	public void Die(DamageType cause){
+		
+	//}
+
+	public void dealDamage(DamageType dm, float amount){
+		value -= amount;
+		killingBlow = dm;
 	}
 
-	public void dealDamage(float amount){
-		value -= amount;
-	}
+	[System.Serializable]
+	public class DeathEvent: UnityEvent<DamageType>{}
+
+	public enum DamageType: int { Worm=0, Suffocation=1 }
 
 
 }

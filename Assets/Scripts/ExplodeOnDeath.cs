@@ -8,27 +8,14 @@ public class ExplodeOnDeath : MonoBehaviour {
 	public float explotionForce = 10f;
 	public GameObject blood;
 
-	private bool exploded = false;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (this.GetComponent<Health> ().isDead && !exploded) {
-			Explode ();
-			exploded = true;
-		}
-	}
-
-	public void Explode(){
-		RemoveJoints (this.transform);
-		if (blood != null) {
-			GameObject bp = Instantiate (blood);
-			bp.transform.position = this.gameObject.transform.position;
-			bp.transform.parent = this.gameObject.transform;
+	public void Explode(Health.DamageType damage){
+		if (damage == Health.DamageType.Worm) {
+			RemoveJoints (this.transform);
+			if (blood != null) {
+				GameObject bp = Instantiate (blood);
+				bp.transform.position = this.gameObject.transform.position;
+				bp.transform.parent = this.gameObject.transform;
+			}
 		}
 	}
 

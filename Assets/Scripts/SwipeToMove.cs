@@ -3,31 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class SwipeToMove : MonoBehaviour {
-	
-	public float speed = 10;
-	public bool flipToDirection = false;
-	public GameObject directionalIndicator;
-	public float indicatorThreshold = 1.0f;
 
-	private Vector2 originalScale;
-
-    private Vector2 lastMousePosition;
-    private bool mouseMoveInProgress = false;
-
-    private Vector2 startSwipePoint;
-    private bool swipeInProgress = false;
+    public float forceStrength = 100f;
     public float minSwipeDistance;
+    public float maxSwipeAngle = 180f;
+    public MovementType moveType = MovementType.SwipeJoystick;
+
+    public Vector2 swipeAngleReference = Vector2.up;
+    public Vector3 movementScaling = Vector3.one;
+    public Rigidbody2D rbToMove;
+    public GameObject directionalIndicator;
+
+    public bool isAllowedToMove = true;
+
+    protected bool stopped = true;
+    protected Vector2 startSwipePoint;
+    protected Vector2 currentSwipePoint;
+    protected bool swipeInProgress = false;
+    protected bool currentSwipeValid = false;
+
+
+
+    private bool sfxReset = false; //holds state of sfx flag
 
     private bool sfxReset = false; //holds state of sfx flag
     private GameObject sfxController;
 
     public bool isMoving
 	{
-		get { 
-			return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > indicatorThreshold); 
-		}
-	}
+        get
+        {
+            return !stopped;
+            //return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > indicatorThreshold); 
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -36,77 +47,100 @@ public class SwipeToMove : MonoBehaviour {
 
     }
 
-	// Update is called once per frame
-	void Update () {
-        if (!EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject == null) {
-            if (!Input.mousePresent) {
-                TouchMove();
-            }
-            else {
+    void FixedUpdate() {
+        if (isAllowedToMove) {
+            if (!EventSystem.current.IsPointerOverGameObject() &&
+                EventSystem.current.currentSelectedGameObject == null) {
                 MouseMove();
             }
         }
         UpdateDirectionIndicator();
     }
 
-    private void DeltaMouseMove() {
+    protected void MouseMove() {
+        if (Input.GetMouseButtonDown(0)) {
+            StartSwipe(Input.mousePosition);
+        }
         if (Input.GetMouseButton(0)) {
-            lastMousePosition = Input.mousePosition;
-            // Get a normalised touch input vector
-            Vector2 mouseDirection = ((Vector2)Input.mousePosition - lastMousePosition).normalized;
-            Move(mouseDirection);
-            lastMousePosition = Input.mousePosition;
+            UpdateSwipe(Input.mousePosition);
+        }
+        else {
+            FinishSwipe();
+        }
+    }
+    
+    protected void StartSwipe(Vector2 startInputScreenPos) {
+        swipeInProgress = true;
+        currentSwipeValid = false;
+        startSwipePoint = startInputScreenPos;
+        currentSwipePoint = startSwipePoint;
+    }
+
+    protected void UpdateSwipe(Vector2 newInputScreenPos) {
+        if (!swipeInProgress) return;
+        currentSwipePoint = newInputScreenPos;
+        if (SwipeValid()) {
+            Move(rbToMove, GetMoveDirection(), forceStrength);
         }
     }
 
-    private void MouseMove() {
-        if (Input.GetMouseButton(0)) {
-            Vector2 mouseDirection = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)) - transform.position).normalized;
-            Move(mouseDirection);
-        }
+    protected void FinishSwipe() {
+        if (!swipeInProgress) return;
+        ResetSwipeState();
     }
 
-    private void TouchMove() {
-        if (Input.touchCount > 0) {
-            if (Input.GetTouch(0).phase == TouchPhase.Began) {
-                swipeInProgress = true;
-                startSwipePoint = Input.GetTouch(0).position;
-            }
-            Vector2 touchDirection = (Input.GetTouch(0).position - startSwipePoint);
-            if (touchDirection.magnitude > minSwipeDistance && swipeInProgress) {
-                Move(touchDirection.normalized);
-            };
-            
-            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled) {
-                swipeInProgress = false;
-            }
-        }
-        
+
+    protected void ResetSwipeState() {
+        swipeInProgress = false;
+        currentSwipeValid = false;
+        startSwipePoint = Vector2.zero;
+        currentSwipePoint = Vector2.zero;
     }
 
-    private void Move(Vector2 direction) {
-        // If flipToDirection is enable, flip the localscale of the player to match direction 
-        if (flipToDirection) {
-            Vector2 scale = originalScale;
-            if (direction.x < 0)
-                scale.x *= -1;
-            this.transform.localScale = scale;
+    protected bool SwipeValid() {
+        var swipeDistance = Vector2.Distance(startSwipePoint, currentSwipePoint);
+        var angle = Vector2.Angle(GetMoveDirection(), swipeAngleReference);
+        if (swipeDistance > minSwipeDistance && angle < maxSwipeAngle) currentSwipeValid = true;
+        else currentSwipeValid = false;
+
+        return currentSwipeValid;
+    }
+
+    protected void Move(Rigidbody2D rb, Vector2 dir, float forceStrength) {
+        rb.AddForce(dir * forceStrength, ForceMode2D.Impulse);
+        stopped = false;
+    }
+    
+    public void StopMovement() {
+        rbToMove.velocity = Vector2.zero;
+        stopped = true;
+    }
+
+    public bool IsValidSwipeInProgress() {
+        return swipeInProgress && currentSwipeValid;
+    }
+
+    public Vector2 GetMoveDirection() {
+        Vector2 moveDirection = Vector2.zero;
+        switch (moveType) {
+            case MovementType.SwipeJoystick:
+                moveDirection = (Camera.main.ScreenToWorldPoint(currentSwipePoint) - Camera.main.ScreenToWorldPoint(startSwipePoint)).normalized;
+                break;
+            case MovementType.ToPoint:
+                moveDirection = (Camera.main.ScreenToWorldPoint(currentSwipePoint) - rbToMove.transform.position).normalized;
+                break;
+            default: break;
         }
-        // multiply the touch vector with a speed vector 
-        direction *= (speed * 100);
-
-        SFX();
-
-        // Force based movement
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * Time.deltaTime);
+        Vector2 scaledMoveDir = Vector2.Scale(moveDirection, movementScaling).normalized;
+        return scaledMoveDir;
     }
 
     private void UpdateDirectionIndicator() {
-        // If the indicator is available enable it's rendering
-        // some math magic to get the indicator to point at the direction where the player is moving 
-        if (this.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > indicatorThreshold) {
+        //If the indicator is available enable it's rendering
+        // some math magic to get the indicator to point at the direction where the player is moving
+        if (swipeInProgress) {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
-            float angle = Mathf.Atan2(this.gameObject.GetComponent<Rigidbody2D>().velocity.x, -this.gameObject.GetComponent<Rigidbody2D>().velocity.y) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(GetMoveDirection().x, -GetMoveDirection().y) * Mathf.Rad2Deg;
             directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
         }
         else {
@@ -125,5 +159,10 @@ public class SwipeToMove : MonoBehaviour {
         }
         else if (!isMoving)
             sfxReset = false;
+    }
+
+    public enum MovementType {
+        SwipeJoystick,
+        ToPoint
     }
 }

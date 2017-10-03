@@ -14,27 +14,40 @@ public class SFXControler : MonoBehaviour {
 
     public AudioSource thruster;
     public AudioSource enemyFound;
-
-	public void playSmallAsteroid()
+    
+	public void playAsteroidCollision(AsteroidSizes size)
     {
-        smallAsteroid.Play();
+		switch (size) {
+			case AsteroidSizes.Small:
+				smallAsteroid.Play ();
+				break;
+			case AsteroidSizes.Medium:
+				mediumAsteroid.Play ();
+				break;
+			case AsteroidSizes.Large:
+				largeAsteroid.Play ();
+				break;
+		}
     }
 
-    public void playMediumAsteroid()
-    {
-        mediumAsteroid.Play();
-    }
-
-    public void playLargeAsteroid()
-    {
-        largeAsteroid.Play();
-    }
 
     public void playDeathByWorm()
     {
         if (!deathByWorm.isPlaying)
             deathByWorm.Play();
     }
+
+	public void playDeath(Health.DamageType cause)
+	{
+		switch (cause) {
+			case Health.DamageType.Suffocation:
+				playDeathByOxygen ();
+				break;
+			case Health.DamageType.Worm:
+				playDeathByWorm ();
+				break;
+		}
+	}
 
     public void playDeathByOxygen()
     {

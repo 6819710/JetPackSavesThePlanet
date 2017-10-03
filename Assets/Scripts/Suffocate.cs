@@ -40,6 +40,6 @@ public class Suffocate : MonoBehaviour {
 	}
 
 	public void SuffocatePlayer(){
-		health.dealDamage (damage);
+		health.dealDamage (Health.DamageType.Suffocation, damage);
 	}
 }
