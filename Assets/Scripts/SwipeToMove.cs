@@ -20,6 +20,7 @@ public class SwipeToMove : MonoBehaviour {
     public float minSwipeDistance;
 
     private bool sfxReset = false; //holds state of sfx flag
+    private GameObject sfxController;
 
     public bool isMoving
 	{
@@ -31,7 +32,9 @@ public class SwipeToMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		originalScale = this.gameObject.transform.localScale;
-	}
+        sfxController = GameObject.Find("SFX");
+
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -117,7 +120,7 @@ public class SwipeToMove : MonoBehaviour {
     {
         if (!sfxReset)
         {
-            GameObject.Find("SFX").SendMessage("playJetpack");
+            sfxController.SendMessage("playJetpack");
             sfxReset = true; // Set flag once sfx triggered
         }
         else if (!isMoving)
