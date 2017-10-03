@@ -60,7 +60,7 @@ public class Asteroid : DestructableEntity {
     }
 
     protected void OnCollisionEnter2D(Collision2D collision) {
-        if (!IsSpawnProtected()) {
+		if ( true || !IsSpawnProtected()) {
             if (collision.gameObject.GetComponent<Asteroid>()) {
                 float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass/2;
                 TakeDamage(energy);
