@@ -56,15 +56,15 @@ public class WormHead : WormSegment {
         MoveWorm();
     }
 
-    private void MoveWormHead(Vector2 targetPos, float catchUpExponent = 0) {
-        Vector2 direction = targetPos - (Vector2)transform.position;
-        float catchUpFactor = Mathf.Max(1, Vector3.Distance(targetPos, transform.position) - minDistanceBeforeCatchUp);
-        var modifiedSpeed = Mathf.Min(minSpeed * Mathf.Max(1, Mathf.Pow(catchUpFactor, catchUpExponent)), maxSpeed);
-        direction = direction.normalized * modifiedSpeed;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
-        GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + (direction * Time.deltaTime));
-    }
+	private void MoveWormHead(Vector2 targetPos, float catchUpExponent = 0) {
+		Vector2 direction = targetPos - (Vector2)transform.position;
+		float catchUpFactor = Mathf.Max(1, Vector3.Distance(targetPos, transform.position) - minDistanceBeforeCatchUp);
+		var modifiedSpeed = Mathf.Min(minSpeed * Mathf.Max(1, Mathf.Pow(catchUpFactor, catchUpExponent)), maxSpeed);
+		direction = direction.normalized * modifiedSpeed;
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
+		GetComponent<Rigidbody2D>().MovePosition((Vector2)transform.position + (direction * Time.deltaTime));
+	}
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
