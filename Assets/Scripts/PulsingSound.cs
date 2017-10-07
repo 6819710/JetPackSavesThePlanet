@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CrateSoundController))]
 public class PulsingSound : MonoBehaviour {
 
-	private CrateSoundController sfx;
+	private PickupSFXController sfx;
 
 	// Use this for initialization
 	void Start () {
-		sfx = this.gameObject.GetComponent<CrateSoundController> ();
+        sfx = this.GetComponentInChildren<PickupSFXController>();
 	}
 
 	public void Ping ()
 	{
-		sfx.Play (CrateSoundController.SoundEffect.Ping);
+        sfx.PlayCratePing();
 	}
 
 }
