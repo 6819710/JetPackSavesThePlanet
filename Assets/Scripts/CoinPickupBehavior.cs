@@ -11,6 +11,6 @@ public class CoinPickupBehavior : PickupBehaviour {
 	{
 		GameManager.instance.GetComponent<ScoreManager> ().Score += pointsGranted;
 		GetComponent<Animator> ().SetTrigger ("Disappear");
-        this.gameObject.GetComponentInChildren<PickupSFXController>().PlayCoinPickup();
+		GetComponentInChildren<SoundEffectsController>().Play();
 	}
 }

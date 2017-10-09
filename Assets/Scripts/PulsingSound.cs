@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PulsingSound : MonoBehaviour {
 
-	private PickupSFXController sfx;
+	private CrateSoundController sfx;
 
 	// Use this for initialization
 	void Start () {
-        sfx = this.GetComponentInChildren<PickupSFXController>();
+		sfx = this.GetComponentInChildren<CrateSoundController>();
 	}
 
 	public void Ping ()
 	{
-        sfx.PlayCratePing();
+		sfx.Play(CrateSoundController.SoundEffect.Spawn);
 	}
 
 }

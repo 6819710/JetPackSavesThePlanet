@@ -5,21 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerSFXController : SoundEffectsController {
 
-	public List<AudioClip> oxygenSounds;
+	public List<AudioSource> oxygenSounds;
 
-	public List<AudioClip> hurtSounds;
-	public List<AudioClip> VocalSounds;
-	public List<AudioClip> DeadSounds;
+	public List<AudioSource> hurtSounds;
+	public List<AudioSource> VocalSounds;
+	public List<AudioSource> DeadSounds;
 
 	public bool randomPitched;
 
 	public void Play(SoundEffect toPlay){
-		AudioClip audio = null;
+		AudioSource audio = null;
 		switch(toPlay){
-			case SoundEffect.Oxygen:
-				audio = RandomFrom(oxygenSounds);
-				base.Play(audio);
-				break;
+		case SoundEffect.Oxygen:
+			audio = RandomFrom (oxygenSounds);
+			audio.PlayOneShot (audio.clip);
+			break;
 		}
 
 	}

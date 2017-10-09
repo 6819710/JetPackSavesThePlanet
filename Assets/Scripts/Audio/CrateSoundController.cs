@@ -5,26 +5,31 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CrateSoundController : SoundEffectsController {
 
-	public List<AudioClip> spawnSounds;
-	public List<AudioClip> collectSounds;
-	public List<AudioClip> pingSounds;
+	public List<AudioSource> spawnSounds;
+	public List<AudioSource> collectSounds;
+	public List<AudioSource> pingSounds;
 
 	public void Play(SoundEffect toPlay){
 		switch(toPlay){
 			case SoundEffect.Collect:
-				base.Play(RandomFrom(collectSounds));
-			break;
-			case SoundEffect.Ping:
-				base.Play(RandomFrom(pingSounds));
+				RandomFrom(collectSounds).Play();
 				break;
-			case SoundEffect.Spawn:
-				base.Play(RandomFrom(spawnSounds));
+			case SoundEffect.Ping:
+				RandomFrom(pingSounds).Play();
+				break;
+		case SoundEffect.Spawn:
+				RandomFrom (spawnSounds).Play ();
 				break;
 		}
 
 	}
 
+	public void Ping(){
+		Play (SoundEffect.Ping);
+	}
+
 	public enum SoundEffect { 
 		Collect, Ping, Spawn
 	}
+
 }
