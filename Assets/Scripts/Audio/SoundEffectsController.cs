@@ -5,37 +5,33 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SoundEffectsController : MonoBehaviour {
 
-	public List<AudioClip> defaultClips;
+	public List<AudioSource> defaultSources;
 
-	private AudioSource source;
-
-	public AudioSource Source {
+	public List<AudioSource> Sources {
 		get {
-			return source;
+			return defaultSources;
 		}
 		set {
-			source = value;
+			defaultSources = value;
 		}
 	}
 
 	void Start () {
-		source = GetComponent<AudioSource> ();
+		foreach(AudioSource au in GetComponents<AudioSource> ()){
+			defaultSources.Add (au);
+		}
 	}
 
 	public virtual void Play(){
-		Play (RandomFrom(defaultClips));
+		RandomFrom(defaultSources).Play();
 	}
 
-	public void Play(AudioClip toPlay){
-		Source.PlayOneShot (toPlay);
+	public virtual void PlayOnce(){
+		AudioSource audio = RandomFrom (defaultSources);
+		audio.PlayOneShot(audio.clip);
 	}
 
-	public void Play(AudioClip toPlay, float min, float max){
-		float randomVolume = Random.Range (min,max);
-		Source.PlayOneShot (toPlay,randomVolume);
-	}
-
-	public static AudioClip RandomFrom(List<AudioClip> toSelect){
+	public static AudioSource RandomFrom(List<AudioSource> toSelect){
 		return toSelect[Random.Range(0,toSelect.Count)];
 	}
 

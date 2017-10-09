@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,21 +6,20 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpawnableObject))]
 public class Asteroid : DestructableEntity {
 
-    public SpawnableObject objectToSplitInto;
-    public int minPiecesCount;
-    public int maxPiecesCount;
+    public List<SpawnableObject> objectToSplitInto;
+
     public float minExplosionForce;
     public float maxExplosionForce;
     public float splitDistance;
     public float maxSpawnAngleDeviationFactor;
 
-	public List<String> canBeDestroyedBy;
+	public List<string> canBeDestroyedBy;
 
     public int oxygenValue;
 
 	public UnityEvent onSplit;
 
-	public List<String> CanBeDestroyedBy {
+	public List<string> CanBeDestroyedBy {
 		get {
 			return canBeDestroyedBy;
 		}
@@ -43,24 +41,22 @@ public class Asteroid : DestructableEntity {
 
     public void Split(Vector2 normal) {
 		onSplit.Invoke ();
-        if (objectToSplitInto) SplitIntoObjects(normal, objectToSplitInto, minPiecesCount, maxPiecesCount);
+		if (objectToSplitInto.Count>0) SplitIntoObjects(normal, objectToSplitInto);
     }
 
-    protected void SplitIntoObjects(Vector2 normal, SpawnableObject obj, int minPiecesCount, int maxPiecesCount) {
-        var piecesCount = UnityEngine.Random.Range(minPiecesCount, maxPiecesCount+1);
-        var initialDirection = Quaternion.Euler(0, 0, 90) * normal;
-        for (int i=0; i < piecesCount; i++) {
-
+	protected void SplitIntoObjects(Vector2 normal, List<SpawnableObject> objectToSplitInto) {
+       var initialDirection = Quaternion.Euler(0, 0, 90) * normal;
+		foreach(SpawnableObject pieces in objectToSplitInto){
             var angleDeviation = UnityEngine.Random.Range(-1f, 1f)* maxSpawnAngleDeviationFactor;
-            var nextDirection = Quaternion.Euler(0, 0, (i+ angleDeviation) * 360/piecesCount) * initialDirection;
-            var spawnedObj = GetComponent<SpawnableObject>().GetSpawner().SpawnObject(obj, transform.position + nextDirection * splitDistance, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360)));
+			var nextDirection =  initialDirection + Random.insideUnitSphere;
+			var spawnedObj = GetComponent<SpawnableObject>().GetSpawner().SpawnObject(pieces, transform.position + nextDirection * splitDistance, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360)));
             var force = nextDirection * UnityEngine.Random.Range(minExplosionForce, maxExplosionForce) * spawnedObj.GetComponent<Rigidbody2D>().mass;
             spawnedObj.GetComponent<Rigidbody2D>().AddForce(force * Time.deltaTime);
         }
     }
 
     protected void OnCollisionEnter2D(Collision2D collision) {
-        if (!IsSpawnProtected()) {
+		if (!IsSpawnProtected()) {
             if (collision.gameObject.GetComponent<Asteroid>()) {
                 float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass/2;
                 TakeDamage(energy);

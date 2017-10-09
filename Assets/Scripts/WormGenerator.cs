@@ -35,7 +35,7 @@ public class WormGenerator : MonoBehaviour {
 
 	private void GenerateWorm(float distance){
 		GameObject spawned = Instantiate (Worm);
-		spawned.transform.position = targeting.transform.position - (Random.insideUnitSphere * distance);
+		spawned.transform.position = (targeting.transform.position) - ((Vector3)(Random.insideUnitCircle * distance));
 		spawned.GetComponentInChildren<WormHead> ().mainTarget = targeting.transform;
 		spawned.GetComponentInChildren<WormHead> ().isDebug = false;
 	}

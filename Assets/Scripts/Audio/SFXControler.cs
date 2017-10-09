@@ -19,25 +19,33 @@ public class SFXControler : MonoBehaviour {
     {
 		switch (size) {
 			case AsteroidSizes.Small:
-				smallAsteroid.Play ();
+                playSmallAsteroid();
 				break;
 			case AsteroidSizes.Medium:
-				mediumAsteroid.Play ();
+                playMediumAsteroid();
 				break;
 			case AsteroidSizes.Large:
-				largeAsteroid.Play ();
+                playLargeAsteroid();
 				break;
 		}
     }
 
-
-    public void playDeathByWorm()
+    public void playSmallAsteroid()
     {
-        if (!deathByWorm.isPlaying)
-            deathByWorm.Play();
+        smallAsteroid.Play();
     }
 
-	public void playDeath(Health.DamageType cause)
+    public void playMediumAsteroid()
+    {
+        mediumAsteroid.Play();
+    }
+
+    public void playLargeAsteroid()
+    {
+        largeAsteroid.Play();
+    }
+
+    public void playDeath(Health.DamageType cause)
 	{
 		switch (cause) {
 			case Health.DamageType.Suffocation:
@@ -48,6 +56,12 @@ public class SFXControler : MonoBehaviour {
 				break;
 		}
 	}
+
+    public void playDeathByWorm()
+    {
+        if (!deathByWorm.isPlaying)
+            deathByWorm.Play();
+    }
 
     public void playDeathByOxygen()
     {
