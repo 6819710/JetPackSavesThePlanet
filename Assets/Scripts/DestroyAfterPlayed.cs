@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DestroyAfterPlayed : MonoBehaviour {
 
-	private AudioSource mySource;
+	public AudioSource mySource = null;
 
-	void Start () {
-		mySource = gameObject.GetComponent<AudioSource> ();
+	void Start(){
+		mySource = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(!mySource.isPlaying){
+
+    // Update is called once per frame
+    void Update () {
+		if(mySource && !mySource.isPlaying){
 			Destroy (this.gameObject);
 		}
 	}

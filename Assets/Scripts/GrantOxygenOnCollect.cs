@@ -41,11 +41,8 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		//Trigger Soundeffects , If the reciever has an audio source
-		SoundEffectsController sfx = collision.gameObject.GetComponent<SoundEffectsController> ();
-		if (sfx != null && sfx is PlayerSFXController) { // if it's players
-			PlayerSFXController psfx = sfx as PlayerSFXController;
-			psfx.Play (PlayerSFXController.SoundEffect.Oxygen);
+		if(collision.gameObject.GetComponent<PlayerSFXController>()){
+			collision.gameObject.GetComponent<PlayerSFXController> ().Play (PlayerSFXController.SoundEffect.Oxygen);
 		}
-	}
+    }
 }

@@ -24,12 +24,11 @@ public class SwipeToMove : MonoBehaviour {
     protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
-
-
     private bool sfxReset = false; //holds state of sfx flag
+    private GameObject sfxController;
 
     public bool isMoving
-    {
+	{
         get
         {
             return !stopped;
@@ -37,9 +36,10 @@ public class SwipeToMove : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start() {
+	// Use this for initialization
+	void Start () {
         if (!rbToMove) rbToMove = GetComponent<Rigidbody2D>();
+        sfxController = GameObject.Find("SFX");
     }
 
     void FixedUpdate() {
@@ -63,8 +63,7 @@ public class SwipeToMove : MonoBehaviour {
             FinishSwipe();
         }
     }
-
-
+    
     protected void StartSwipe(Vector2 startInputScreenPos) {
         swipeInProgress = true;
         currentSwipeValid = false;
@@ -85,7 +84,6 @@ public class SwipeToMove : MonoBehaviour {
         ResetSwipeState();
     }
 
-
     protected void ResetSwipeState() {
         swipeInProgress = false;
         currentSwipeValid = false;
@@ -105,8 +103,9 @@ public class SwipeToMove : MonoBehaviour {
     protected void Move(Rigidbody2D rb, Vector2 dir, float forceStrength) {
         rb.AddForce(dir * forceStrength, ForceMode2D.Impulse);
         stopped = false;
+        SFX();
     }
-
+    
     public void StopMovement() {
         rbToMove.velocity = Vector2.zero;
         stopped = true;
@@ -146,9 +145,11 @@ public class SwipeToMove : MonoBehaviour {
         }
     }
 
-    private void SFX() {
-        if (!sfxReset) {
-            GameObject.Find("SFX").SendMessage("playJetpack");
+    private void SFX()
+    {
+        if (!sfxReset)
+        {
+            sfxController.SendMessage("playJetpack");
             sfxReset = true; // Set flag once sfx triggered
         }
         else if (!isMoving)
