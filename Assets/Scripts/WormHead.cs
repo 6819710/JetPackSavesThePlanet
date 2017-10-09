@@ -18,6 +18,8 @@ public class WormHead : WormSegment {
     private Vector2 retreatOffset;
     private Vector2 retreatTo;
 
+	public List<string> canBeStunnedByTagged;
+
 	private ParticleSystem ps;
 
     void Start() {
@@ -73,7 +75,7 @@ public class WormHead : WormSegment {
 				health.dealDamage(Health.DamageType.Worm,attackAmount);
             }
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Astroid")) { //TODO Isuru: remove hardcoded tag
+		if (canBeStunnedByTagged.Contains(collision.gameObject.tag) ) {
             //If wworm on screen then retreat when hittinng asteroids
             var screenCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.transform.position.z));
             var screenBottomCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.transform.position.z));

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-[CreateAssetMenu]
 public class LevelProfile: System.Object {
 
 	[Header("Level Details")]
