@@ -26,6 +26,11 @@ public class SoundEffectsController : MonoBehaviour {
 		RandomFrom(defaultSources).Play();
 	}
 
+	public virtual void PlayOnce(){
+		AudioSource audio = RandomFrom (defaultSources);
+		audio.PlayOneShot(audio.clip);
+	}
+
 	public static AudioSource RandomFrom(List<AudioSource> toSelect){
 		return toSelect[Random.Range(0,toSelect.Count)];
 	}
