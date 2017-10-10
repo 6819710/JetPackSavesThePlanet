@@ -19,7 +19,13 @@ public class POWUpgrade : ConsumableUpgrade {
 
 	public override void Effect ()
 	{
-		Debug.Log ("POW ACTIVATED!");
+		GameObject player = GameManager.instance.Player;
+		List<SpawnableObject> toDestroy = GameManager.instance.Director.GetComponent<AsteroidSpawner> ().InScreen;
+		foreach(SpawnableObject so in toDestroy){
+			Asteroid a = so.gameObject.GetComponent<Asteroid> ();
+			a.Split (a.gameObject.transform.position - player.transform.position);
+			a.Destruct ();
+		}
 		Restore ();
 	}
 }
