@@ -23,8 +23,10 @@ public class POWUpgrade : ConsumableUpgrade {
 		List<SpawnableObject> toDestroy = GameManager.instance.Director.GetComponent<AsteroidSpawner> ().InScreen;
 		foreach(SpawnableObject so in toDestroy){
 			Asteroid a = so.gameObject.GetComponent<Asteroid> ();
-			a.Split (a.gameObject.transform.position - player.transform.position);
-			a.Destruct ();
+			if (a != null) { // If the spawnable object is an asteroid 
+				a.Split (a.gameObject.transform.position - player.transform.position);
+				a.Destruct ();
+			}
 		}
 		Restore ();
 	}
