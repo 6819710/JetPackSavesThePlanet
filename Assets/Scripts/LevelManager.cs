@@ -72,6 +72,10 @@ public class LevelManager : MonoBehaviour {
 		StartLevel (++currentLevel);
 	}
 
+	public void RestartLevel(){
+		StartLevel (currentLevel);
+	}
+
 	public void BeginEvent(){
 		currentLP.onEnter.Invoke ();
 	}
