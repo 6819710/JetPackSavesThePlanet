@@ -30,11 +30,6 @@ public class SwipeToMove : MonoBehaviour {
 
 	private Vector3 initialIndicatorScale;
 
-	public Vector2 dif;
-
-	public float mag;
-
-
     public bool isMoving
 	{
         get
@@ -60,10 +55,21 @@ public class SwipeToMove : MonoBehaviour {
 			 * 
 			 * REMOVED: IsPointerOverGameObject && currentSelectedGameObject
 			 */
-           MouseMove();
+			if (moveType != MovementType.Analog)
+           		MouseMove();
+			if (moveType ==  MovementType.Analog)
+				AnalogMove ();
         }
         UpdateDirectionIndicator();
     }
+
+	private void AnalogMove(){
+		startSwipePoint =  Vector3.zero;
+		currentSwipePoint = new Vector3( Input.GetAxis ("Horizontal"),  Input.GetAxis ("Vertical"), 0);
+		swipeInProgress = (currentSwipePoint.magnitude > Vector3.zero.magnitude);
+		Move(rbToMove, GetMoveDirection(), forceStrength);
+		UpdateDirectionIndicator ();
+	}
 
     protected void MouseMove() {
         if (Input.GetMouseButtonDown(0)) {
@@ -137,6 +143,9 @@ public class SwipeToMove : MonoBehaviour {
             case MovementType.ToPoint:
                 moveDirection = (Camera.main.ScreenToWorldPoint(currentSwipePoint) - rbToMove.transform.position).normalized;
                 break;
+			case MovementType.Analog:
+				moveDirection = new Vector3( Input.GetAxis ("Horizontal"),  Input.GetAxis ("Vertical"), 0);
+				break;
             default: break;
         }
         Vector2 scaledMoveDir = Vector2.Scale(moveDirection, movementScaling).normalized;
@@ -150,9 +159,7 @@ public class SwipeToMove : MonoBehaviour {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
             float angle = Mathf.Atan2(GetMoveDirection().x, -GetMoveDirection().y) * Mathf.Rad2Deg;
             directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-			dif = (startSwipePoint-currentSwipePoint);
-			mag = dif.magnitude / (Screen.width/4);
-			float strech = (initialIndicatorScale.x) * mag ;
+			float strech = Mathf.Max ( (initialIndicatorScale.x) * (startSwipePoint-currentSwipePoint).magnitude / (Screen.width/3) ,  (initialIndicatorScale.x)) ;
 			directionalIndicator.transform.localScale =  new Vector3(strech, initialIndicatorScale.y,initialIndicatorScale.z );
         }
         else {
@@ -175,6 +182,7 @@ public class SwipeToMove : MonoBehaviour {
 
     public enum MovementType {
         SwipeJoystick,
-        ToPoint
+        ToPoint,
+		Analog
     }
 }
