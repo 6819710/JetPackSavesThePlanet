@@ -41,6 +41,9 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 		if (currentLP != null) {
 			time += Time.deltaTime;
+			if(currentLP.condition is ITimable){
+				(currentLP.condition as ITimable).Process (Time.deltaTime);
+			}
 			if (time > Random.value * randomTickSpeed) {
 				time = 0;
 				RandomEvent ();
@@ -58,12 +61,19 @@ public class LevelManager : MonoBehaviour {
 	void StartLevel(int level){
 		if(level < levels.Count){
 			currentLP = this [level];
+			if(currentLP.condition is ITimable){
+				(currentLP.condition as ITimable).Start ();
+			}
 			BeginEvent ();
 		}
 	}
 
 	public void NextLevel(){
 		StartLevel (++currentLevel);
+	}
+
+	public void RestartLevel(){
+		StartLevel (currentLevel);
 	}
 
 	public void BeginEvent(){

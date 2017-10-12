@@ -6,7 +6,7 @@ using UnityEngine;
 public class AsteroidSpawner : ObjectSpawner {
 
     public Transform generateAround;
-    public float maxObjectCount;
+    public float startingMaxObjectCount;
     public float spawnRange;
     public float despawnRange;
 
@@ -30,11 +30,15 @@ public class AsteroidSpawner : ObjectSpawner {
     // (Hardcoded) all objects spawned by this script are asteroids
     private void SpawnAsteroids(float minSpawnRange, float maxSpawnRange) {
         var asteroidCount = instantiatedObjects.Count;
-        for (var i = 0; asteroidCount < maxObjectCount && i < maxObjectCount; i++) {
+		for (var i = 0; asteroidCount < startingMaxObjectCount && i < startingMaxObjectCount; i++) {
             var pos = (Random.Range(0, minSpawnRange - maxSpawnRange) + maxSpawnRange) * (Vector3)Random.insideUnitCircle.normalized + generateAround.position;
             var rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
             SpawnRandomObject(pos, rot);
             asteroidCount++;
         }
     }
+
+	public void IncreaseSpawnage(float by){
+		startingMaxObjectCount += by;
+	}
 }

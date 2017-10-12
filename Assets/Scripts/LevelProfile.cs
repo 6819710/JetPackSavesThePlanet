@@ -19,7 +19,7 @@ public class LevelProfile: System.Object {
 
 
 	[Header("Level Termination")]
-	[SerializeField] public DistanceBasedTermination condition;
+	[SerializeField] public TimeBasedTermination condition;
 
 	public enum LevelDifficulty{
 		Easy, Medium, Hard
