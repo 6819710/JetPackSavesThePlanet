@@ -21,11 +21,19 @@ public class SwipeToMove : MonoBehaviour {
     protected bool stopped = true;
     protected Vector2 startSwipePoint;
     protected Vector2 currentSwipePoint;
+
     protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
     private bool sfxReset = false; //holds state of sfx flag
     private GameObject sfxController;
+
+	private Vector3 initialIndicatorScale;
+
+	public Vector2 dif;
+
+	public float mag;
+
 
     public bool isMoving
 	{
@@ -40,14 +48,19 @@ public class SwipeToMove : MonoBehaviour {
 	void Start () {
         if (!rbToMove) rbToMove = GetComponent<Rigidbody2D>();
         sfxController = GameObject.Find("SFX");
+		initialIndicatorScale = directionalIndicator.transform.localScale;
     }
 
     void FixedUpdate() {
+		//IsPointerOverGameObject = !EventSystem.current.IsPointerOverGameObject ();
+		//currentSelectedGameObject = (EventSystem.current.currentSelectedGameObject == null);
         if (isAllowedToMove) {
-            if (!EventSystem.current.IsPointerOverGameObject() &&
-                EventSystem.current.currentSelectedGameObject == null) {
-                MouseMove();
-            }
+			/* @Gavin: I removed the additional if statement here that caused miss register of the first input
+			 * Wasn't sure if they were required, but removal does seem to solve the issue
+			 * 
+			 * REMOVED: IsPointerOverGameObject && currentSelectedGameObject
+			 */
+           MouseMove();
         }
         UpdateDirectionIndicator();
     }
@@ -137,6 +150,10 @@ public class SwipeToMove : MonoBehaviour {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
             float angle = Mathf.Atan2(GetMoveDirection().x, -GetMoveDirection().y) * Mathf.Rad2Deg;
             directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+			dif = (startSwipePoint-currentSwipePoint);
+			mag = dif.magnitude / (Screen.width/4);
+			float strech = (initialIndicatorScale.x) * mag ;
+			directionalIndicator.transform.localScale =  new Vector3(strech, initialIndicatorScale.y,initialIndicatorScale.z );
         }
         else {
             // disable it's rendering
