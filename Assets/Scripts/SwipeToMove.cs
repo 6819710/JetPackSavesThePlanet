@@ -21,11 +21,14 @@ public class SwipeToMove : MonoBehaviour {
     protected bool stopped = true;
     protected Vector2 startSwipePoint;
     protected Vector2 currentSwipePoint;
+
     protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
     private bool sfxReset = false; //holds state of sfx flag
     private GameObject sfxController;
+
+	private Vector3 initialIndicatorScale;
 
     public bool isMoving
 	{
@@ -40,17 +43,33 @@ public class SwipeToMove : MonoBehaviour {
 	void Start () {
         if (!rbToMove) rbToMove = GetComponent<Rigidbody2D>();
         sfxController = GameObject.Find("SFX");
+		initialIndicatorScale = directionalIndicator.transform.localScale;
     }
 
     void FixedUpdate() {
+		//IsPointerOverGameObject = !EventSystem.current.IsPointerOverGameObject ();
+		//currentSelectedGameObject = (EventSystem.current.currentSelectedGameObject == null);
         if (isAllowedToMove) {
-            if (!EventSystem.current.IsPointerOverGameObject() &&
-                EventSystem.current.currentSelectedGameObject == null) {
-                MouseMove();
-            }
+			/* @Gavin: I removed the additional if statement here that caused miss register of the first input
+			 * Wasn't sure if they were required, but removal does seem to solve the issue
+			 * 
+			 * REMOVED: IsPointerOverGameObject && currentSelectedGameObject
+			 */
+			if (moveType != MovementType.Analog)
+           		MouseMove();
+			if (moveType ==  MovementType.Analog)
+				AnalogMove ();
         }
         UpdateDirectionIndicator();
     }
+
+	private void AnalogMove(){
+		startSwipePoint =  Vector3.zero;
+		currentSwipePoint = new Vector3( Input.GetAxis ("Horizontal"),  Input.GetAxis ("Vertical"), 0);
+		swipeInProgress = (currentSwipePoint.magnitude > Vector3.zero.magnitude);
+		Move(rbToMove, GetMoveDirection(), forceStrength);
+		UpdateDirectionIndicator ();
+	}
 
     protected void MouseMove() {
         if (Input.GetMouseButtonDown(0)) {
@@ -124,6 +143,9 @@ public class SwipeToMove : MonoBehaviour {
             case MovementType.ToPoint:
                 moveDirection = (Camera.main.ScreenToWorldPoint(currentSwipePoint) - rbToMove.transform.position).normalized;
                 break;
+			case MovementType.Analog:
+				moveDirection = new Vector3( Input.GetAxis ("Horizontal"),  Input.GetAxis ("Vertical"), 0);
+				break;
             default: break;
         }
         Vector2 scaledMoveDir = Vector2.Scale(moveDirection, movementScaling).normalized;
@@ -137,6 +159,8 @@ public class SwipeToMove : MonoBehaviour {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
             float angle = Mathf.Atan2(GetMoveDirection().x, -GetMoveDirection().y) * Mathf.Rad2Deg;
             directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+			float strech = Mathf.Max ( (initialIndicatorScale.x) * (startSwipePoint-currentSwipePoint).magnitude / (Screen.width/3) ,  (initialIndicatorScale.x)) ;
+			directionalIndicator.transform.localScale =  new Vector3(strech, initialIndicatorScale.y,initialIndicatorScale.z );
         }
         else {
             // disable it's rendering
@@ -158,6 +182,7 @@ public class SwipeToMove : MonoBehaviour {
 
     public enum MovementType {
         SwipeJoystick,
-        ToPoint
+        ToPoint,
+		Analog
     }
 }
