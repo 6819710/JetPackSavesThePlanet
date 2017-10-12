@@ -8,6 +8,19 @@ public abstract class ObjectSpawner : MonoBehaviour {
     public SpawnableObject[] spawnableObjects;
     public List<SpawnableObject> instantiatedObjects;
 
+	public List<SpawnableObject> InScreen{
+		get{
+			List<SpawnableObject> toReturn = new List<SpawnableObject> ();
+			foreach (SpawnableObject obj in instantiatedObjects) {
+				Vector3 screenPoint = Camera.main.WorldToViewportPoint(obj.gameObject.transform.position);
+				if (screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1) {
+					toReturn.Add (obj);
+				}
+			}
+			return toReturn;
+		}
+	}
+
     // TODO Gavin: Random table implementation (@xxfast do you have an implementation?)
     protected SpawnableObject GetRandomSpawnableObject() {
         return spawnableObjects[Mathf.RoundToInt(Random.Range(0, spawnableObjects.Length))];
