@@ -5,7 +5,7 @@ using UnityEngine;
 public class Thruster : MonoBehaviour {
     // Refence Variables
     private Oxygen oxygenSupply;
-	private SwipeToMove playerMovement;
+	private Movement playerMovement;
 
     // Settings
     public int depletionAmountPerSecond; // How much Oxygen gets consumed per second
@@ -17,7 +17,7 @@ public class Thruster : MonoBehaviour {
     void Start()
     {
         oxygenSupply = this.gameObject.GetComponent<Oxygen>();
-		playerMovement = this.gameObject.GetComponent<SwipeToMove>();
+		playerMovement = this.gameObject.GetComponent<Movement>();
 		jetpack = transform.Find ("jetpack");
     }
 
