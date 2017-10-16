@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour {
 
     public bool isAllowedToMove = true;
 
-    protected bool stopped = true;
+    protected bool stopped = false;
     protected Vector2 startSwipePoint;
     protected Vector2 currentSwipePoint;
 
@@ -35,8 +35,7 @@ public class Movement : MonoBehaviour {
 	{
         get
         {
-            return !stopped;
-            //return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > indicatorThreshold); 
+            return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > 0.05f); 
         }
     }
 

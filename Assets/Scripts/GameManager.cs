@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	private CameraManager cameraManager;
 	private LevelManager levelManager;
 
+	private GameState shown;
 
 	public StateManager StateManager {
 		get {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
 	void Start(){
 		Application.targetFrameRate = 60;
 		Initialise ();
+		shown = StateManager.CurrentState;
 	}
 
 	public void Initialise(){
@@ -63,6 +65,15 @@ public class GameManager : MonoBehaviour {
 		else if (instance != this)
 			Destroy(gameObject); 
 		//DontDestroyOnLoad(gameObject); singleton behavior result lost of references. 
+	}
+
+	void Update(){
+		if (shown == GameState.Menu) {
+			if (Player.GetComponent<Movement> ().isMoving) {
+				StateManager.Play ();
+			}
+			shown = StateManager.CurrentState;
+		}
 	}
 
 	public void Begin(){
