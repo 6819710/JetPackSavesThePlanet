@@ -13,4 +13,10 @@ public class IceAsteroid : Asteroid {
 	new void Update () {
         base.Update();
 	}
+
+	public override void Split (Vector2 normal)
+	{
+		base.Split (normal);
+		GameManager.instance.gameObject.GetComponent<ScoreManager> ().IceAsteroidsDestroyed++;
+	}
 }
