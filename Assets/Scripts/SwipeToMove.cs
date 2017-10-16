@@ -57,8 +57,8 @@ public class SwipeToMove : MonoBehaviour {
 			 */
 			if (moveType != MovementType.Analog)
            		MouseMove();
-			if (moveType ==  MovementType.Analog)
-				AnalogMove ();
+			else
+				AnalogMove();
         }
         UpdateDirectionIndicator();
     }
