@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour {
 	{
         get
         {
-            return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > 0.05f); 
+            return (this.gameObject.GetComponent<Rigidbody2D> ().velocity.magnitude > 0); 
         }
     }
 

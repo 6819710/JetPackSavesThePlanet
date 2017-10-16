@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
 	private GameState shown;
 
+	public Vector3 velocity;
+
 	public StateManager StateManager {
 		get {
 			return stateManager;
