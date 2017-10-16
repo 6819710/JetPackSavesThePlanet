@@ -39,7 +39,7 @@ public class Asteroid : DestructableEntity {
         base.Update();
     }
 
-    public void Split(Vector2 normal) {
+    public virtual void Split(Vector2 normal) {
 		onSplit.Invoke ();
 		if (objectToSplitInto.Count>0) SplitIntoObjects(normal, objectToSplitInto);
     }

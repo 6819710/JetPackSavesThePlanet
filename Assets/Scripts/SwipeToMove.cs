@@ -29,6 +29,7 @@ public class SwipeToMove : MonoBehaviour {
     private GameObject sfxController;
 
 	private Vector3 initialIndicatorScale;
+	public float maxIndicatorStretch = 1.5f;
 
     public bool isMoving
 	{
@@ -159,7 +160,7 @@ public class SwipeToMove : MonoBehaviour {
             directionalIndicator.GetComponent<SpriteRenderer>().enabled = true;
             float angle = Mathf.Atan2(GetMoveDirection().x, -GetMoveDirection().y) * Mathf.Rad2Deg;
             directionalIndicator.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-			float strech = Mathf.Max ( (initialIndicatorScale.x) * (startSwipePoint-currentSwipePoint).magnitude / (Screen.width/3) ,  (initialIndicatorScale.x)) ;
+			float strech = Mathf.Min( (initialIndicatorScale.x) * maxIndicatorStretch , Mathf.Max ( (initialIndicatorScale.x) * (startSwipePoint-currentSwipePoint).magnitude / (Screen.width/3) ,  (initialIndicatorScale.x))) ;
 			directionalIndicator.transform.localScale =  new Vector3(strech, initialIndicatorScale.y,initialIndicatorScale.z );
         }
         else {

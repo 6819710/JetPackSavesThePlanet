@@ -8,14 +8,14 @@ public class ScoreUpdater : MonoBehaviour {
 
 	public Text UIText;
 	private ScoreManager scoreManager;
-	// Use this for initialization
+
 	void Start () {
-		UIText = this.GetComponent<Text>();
+		if(!UIText) UIText = this.GetComponent<Text>();
 		scoreManager = GameManager.instance.GetComponent<ScoreManager> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		UIText.text = scoreManager.Score + " $";
+		UIText.text = scoreManager.TimeSpent;
 	}
 }
