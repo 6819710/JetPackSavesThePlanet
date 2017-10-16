@@ -31,6 +31,10 @@ public class WormHead : WormSegment {
 		ps = gameObject.GetComponent<ParticleSystem> ();
     }
 
+	public Transform Target {
+		get { return mainTarget; }
+	}
+
     // Update is called once per frame
     void Update() {
 
