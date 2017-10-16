@@ -13,6 +13,8 @@ public class OxygenLevel : MonoBehaviour {
     private float maxOxygen;
     private float currentOxygen;
 
+	public Animator animator;
+
 	// Use this for initialization
 	void Start () {
         if (theOxygen == null)
@@ -30,7 +32,14 @@ public class OxygenLevel : MonoBehaviour {
             currentOxygen = theOxygen.oxygen;
             fillAmount = 1.0f * ((float)currentOxygen / (float)maxOxygen);
             context.fillAmount = fillAmount;
-            context.color = new Color(1.0f - fillAmount, fillAmount, 0.0f);
+
+			if (theOxygen.isCritical) {
+				animator.SetTrigger ("Critical");
+			}else if (theOxygen.isLow) {
+				animator.SetTrigger ("Low");
+			} else { 
+				animator.SetTrigger ("Full");
+			}
         }
 	}
 }
