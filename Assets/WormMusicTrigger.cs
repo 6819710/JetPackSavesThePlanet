@@ -30,7 +30,6 @@ public class WormMusicTrigger : MonoBehaviour {
             oxygenTrigger.Add();
             musicController.SendMessage("toPanic");
             flag = true;
-            Debug.Log("Enemy Found");
         }
         else if (!renderer.isVisible && flag && !heath.isDead)
         {
