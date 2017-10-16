@@ -30,7 +30,7 @@ public class OxygenLevel : MonoBehaviour {
             currentOxygen = theOxygen.oxygen;
             fillAmount = 1.0f * ((float)currentOxygen / (float)maxOxygen);
             context.fillAmount = fillAmount;
-            context.color = new Color(1.0f - fillAmount, fillAmount, 0.0f);
+			//context.color = new Color(1.0f - fillAmount, 0.0f,  fillAmount);
         }
 	}
 }
