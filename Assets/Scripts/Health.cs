@@ -49,7 +49,7 @@ public class Health : MonoBehaviour {
 	[System.Serializable]
 	public class DeathEvent: UnityEvent<DamageType>{}
 
-	public enum DamageType: int { Worm=0, Suffocation=1 }
+	public enum DamageType: int { Worm=0, Suffocation=1, Explosion=2 }
 
 
 }

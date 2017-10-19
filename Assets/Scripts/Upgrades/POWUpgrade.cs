@@ -8,11 +8,6 @@ public class POWUpgrade : ConsumableUpgrade {
 
 	[SerializeField] private float radius = 5;
 
-	public override void Activate ()
-	{
-		base.Activate ();
-	}
-
 	public POWUpgrade (string name): base(name)
 	{
 	}
