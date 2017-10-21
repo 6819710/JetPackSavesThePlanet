@@ -19,10 +19,10 @@ public class Movement : MonoBehaviour {
     public bool isAllowedToMove = true;
 
     protected bool stopped = false;
-    protected Vector2 startSwipePoint;
+	protected Vector2 startSwipePoint;
     protected Vector2 currentSwipePoint;
 
-    protected bool swipeInProgress = false;
+	protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
     private bool sfxReset = false; //holds state of sfx flag
@@ -30,6 +30,14 @@ public class Movement : MonoBehaviour {
 
 	private Vector3 initialIndicatorScale;
 	public float maxIndicatorStretch = 3f;
+
+	public bool isBeingMoved
+	{
+		get
+		{
+			return swipeInProgress; 
+		}
+	}
 
     public bool isMoving
 	{
