@@ -7,6 +7,7 @@ public class WormMusicTrigger : MonoBehaviour {
     private OxygenTrigger oxygenTrigger;
     private Health heath;
     private GameObject musicController;
+    private GameObject sfxController;
 	private Transform player;
 
     private Renderer renderer;
@@ -23,7 +24,8 @@ public class WormMusicTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         musicController = GameObject.Find("Music");
-		player = gameObject.GetComponent<WormHead> ().Target;
+        sfxController = GameObject.Find("SFX");
+        player = gameObject.GetComponent<WormHead> ().Target;
         oxygenTrigger = player.GetComponent<OxygenTrigger>();
         heath = player.GetComponent<Health>();
         renderer = this.GetComponentInChildren<SpriteRenderer>();
@@ -35,6 +37,7 @@ public class WormMusicTrigger : MonoBehaviour {
         {
             oxygenTrigger.Add();
             musicController.SendMessage("toPanic");
+            sfxController.SendMessage("playEnemyFound");
             flag = true;
         }
         else if (!renderer.isVisible && flag && !heath.isDead)
