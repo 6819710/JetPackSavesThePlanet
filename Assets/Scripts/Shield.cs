@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour {
 
-	private SoundEffectsController sfx;
+	private ShieldSFXControler sfx;
 
 	void Start(){
-		sfx = gameObject.GetComponentInChildren<SoundEffectsController> ();
+		sfx = gameObject.GetComponentInChildren<ShieldSFXControler> ();
 	}
 
 	void OnCollisionEnter2D (Collision2D other) {
-		sfx.PlayOnce ();
+		sfx.playRandom ();
 	}
 
 	void DestroyShield () {

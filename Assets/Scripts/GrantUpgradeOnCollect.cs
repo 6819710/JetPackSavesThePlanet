@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class GrantUpgradeOnCollect : MonoBehaviour {
@@ -8,6 +9,8 @@ public class GrantUpgradeOnCollect : MonoBehaviour {
 	public List<Upgrade> upgradesToGrant; 
 
 	public List<string> canBeCollectedByEntitesTagged = new List<string> ();
+
+    public UnityEvent onCollect;
 
 	void Start(){
 		List<Upgrade> dupedList = new List<Upgrade>();
@@ -28,8 +31,9 @@ public class GrantUpgradeOnCollect : MonoBehaviour {
 				foreach(Upgrade u in upgradesToGrant)
 					upSys.Add(u);
 			}
-			//Destorys self once granted
-			SelfDestruct();
+            onCollect.Invoke();
+
+            SelfDestruct();
 		}
 	}
 
