@@ -14,6 +14,7 @@ public class SFXControler : MonoBehaviour {
 
     public AudioSource thruster;
     public AudioSource enemyFound;
+	public AudioSource pow;
     
 	public void playAsteroidCollision(AsteroidSizes size)
     {
@@ -80,4 +81,10 @@ public class SFXControler : MonoBehaviour {
         if(!enemyFound.isPlaying)
             enemyFound.Play();
     }
+
+	public void playPOW()
+	{
+		if(!pow.isPlaying)
+			pow.Play();
+	}
 }
