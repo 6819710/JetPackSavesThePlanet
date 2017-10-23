@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 		shown = StateManager.CurrentState;
 	}
 
+
 	public void Initialise(){
 		if(Player==null) Player = GameObject.Find ("Player");
 		if(Director==null) Director = GameObject.Find ("Director");
@@ -81,5 +82,21 @@ public class GameManager : MonoBehaviour {
 	public void Begin(){
 		stateManager.Play ();
 		levelManager.Begin();
+	}
+
+	void OnApplicationQuit()
+	{
+		Save();
+	}
+
+	public void Save(){
+		PlayerPrefs.SetInt ("completedTutorialState", (int)gameObject.GetComponent<TutorialManager>().State);
+		PlayerPrefs.SetInt ("hasCompletedTutorial", (gameObject.GetComponent<TutorialManager>().isDone)?1:0);
+		PlayerPrefs.Save ();
+	}
+
+	public void RestoreSaves(){
+		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.Save ();
 	}
 }

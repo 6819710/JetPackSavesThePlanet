@@ -18,5 +18,6 @@ public class IceAsteroid : Asteroid {
 	{
 		base.Split (normal);
 		GameManager.instance.gameObject.GetComponent<ScoreManager> ().IceAsteroidsDestroyed++;
+		GameManager.instance.gameObject.GetComponent<TutorialManager> ().SetTrigger(TutorialManager.TutorialTriggers.IceAstroidDestroyed);
 	}
 }

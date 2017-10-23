@@ -36,11 +36,13 @@ public class WormMusicTrigger : MonoBehaviour {
             oxygenTrigger.Add();
             musicController.SendMessage("toPanic");
             flag = true;
+			GameManager.instance.GetComponent<TutorialManager> ().SetTrigger (TutorialManager.TutorialTriggers.WormSpawned);
         }
         else if (!renderer.isVisible && flag && !heath.isDead)
         {
             oxygenTrigger.Remove();
-            flag = false;
+			flag = false;
+			GameManager.instance.GetComponent<TutorialManager> ().SetTrigger (TutorialManager.TutorialTriggers.WormDespawned);
         }
 		else if (renderer.isVisible && DistanceToPlayer < distance && !heath.isDead)
         {

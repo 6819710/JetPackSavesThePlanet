@@ -32,6 +32,7 @@ public class GrantUpgradeOnCollect : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (!collected) {
 			if (canBeCollectedByEntitesTagged.Contains (collision.gameObject.tag)) {
+				GameManager.instance.GetComponent<TutorialManager> ().SetTrigger (TutorialManager.TutorialTriggers.PickupCollected);
 				UpgradeSystem upSys = collision.gameObject.GetComponent<UpgradeSystem> ();
 				//Grant Upgrade , If the reciever has an UpgradeSystem
 				if (upSys != null) { // if it's players
