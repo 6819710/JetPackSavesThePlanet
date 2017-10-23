@@ -19,25 +19,15 @@ public class Movement : MonoBehaviour {
     public bool isAllowedToMove = true;
 
     protected bool stopped = false;
-	protected Vector2 startSwipePoint;
+    protected Vector2 startSwipePoint;
     protected Vector2 currentSwipePoint;
 
-	protected bool swipeInProgress = false;
+    protected bool swipeInProgress = false;
     protected bool currentSwipeValid = false;
 
     private bool sfxReset = false; //holds state of sfx flag
-    private GameObject sfxController;
-
 	private Vector3 initialIndicatorScale;
 	public float maxIndicatorStretch = 3f;
-
-	public bool isBeingMoved
-	{
-		get
-		{
-			return swipeInProgress; 
-		}
-	}
 
     public bool isMoving
 	{
@@ -50,7 +40,6 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if (!rbToMove) rbToMove = GetComponent<Rigidbody2D>();
-        sfxController = GameObject.Find("SFX");
 		initialIndicatorScale = directionalIndicator.transform.localScale;
     }
 
@@ -130,7 +119,6 @@ public class Movement : MonoBehaviour {
     protected void Move(Rigidbody2D rb, Vector2 dir, float forceStrength) {
         rb.AddForce(dir * forceStrength, ForceMode2D.Impulse);
         stopped = false;
-        SFX();
     }
     
     public void StopMovement() {
@@ -175,17 +163,6 @@ public class Movement : MonoBehaviour {
             if (directionalIndicator != null)
                 directionalIndicator.GetComponent<SpriteRenderer>().enabled = false;
         }
-    }
-
-    private void SFX()
-    {
-        if (!sfxReset)
-        {
-            sfxController.SendMessage("playJetpack");
-            sfxReset = true; // Set flag once sfx triggered
-        }
-        else if (!isMoving)
-            sfxReset = false;
     }
 
     public enum MovementType {
