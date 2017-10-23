@@ -85,16 +85,20 @@ public class WormHead : WormSegment {
 	            }
 	        }
 			if (canBeStunnedByTagged.Contains(collision.gameObject.tag) ) {
-	            //If wworm on screen then retreat when hittinng asteroids
-	            var screenCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.transform.position.z));
-	            var screenBottomCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.transform.position.z));
-	            if (Vector3.Distance(mainTarget.position, transform.position) < Vector3.Distance(screenCenterWorldCoordinates, screenBottomCenterWorldCoordinates)) {
-	                AIbsc.ChangeState(AIBehaviourState.retreating, retreatTime);
-	                var normal = collision.contacts[0].normal;
-	                var distance = collision.contacts[0].relativeVelocity.magnitude;
-	                retreatTo = distance * normal + collision.contacts[0].point;
-	            }
+				Stunt (collision);
 	        }
 		}
     }
+
+	public void Stunt(Collision2D collision){
+		//If wworm on screen then retreat when hittinng asteroids
+		var screenCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.transform.position.z));
+		var screenBottomCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.transform.position.z));
+		if (Vector3.Distance(mainTarget.position, transform.position) < Vector3.Distance(screenCenterWorldCoordinates, screenBottomCenterWorldCoordinates)) {
+			AIbsc.ChangeState(AIBehaviourState.retreating, retreatTime);
+			var normal = collision.contacts[0].normal;
+			var distance = collision.contacts[0].relativeVelocity.magnitude;
+			retreatTo = distance * normal + collision.contacts[0].point;
+		}
+	}
 }

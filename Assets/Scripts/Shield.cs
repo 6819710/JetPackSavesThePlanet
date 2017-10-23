@@ -35,6 +35,9 @@ public class Shield : MonoBehaviour {
 				other.gameObject.GetComponent<Asteroid> ().Destruct ();
 			}
 		}
+		if (other.gameObject.CompareTag("Worm")) {
+			other.gameObject.GetComponentInChildren<WormHead>().Stunt (other);
+		}
 	}
 
 	void DestroyShield () {
