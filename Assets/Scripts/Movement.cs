@@ -29,6 +29,9 @@ public class Movement : MonoBehaviour {
 	private Vector3 initialIndicatorScale;
 	public float maxIndicatorStretch = 3f;
 
+	public bool isBeingMoved{
+		get { return swipeInProgress; }
+	}
     public bool isMoving
 	{
         get
