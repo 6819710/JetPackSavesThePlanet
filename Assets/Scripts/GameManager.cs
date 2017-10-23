@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update(){
 		if (shown == GameState.Menu) {
-			if (Player.GetComponent<Movement> ().isMoving) {
+			if (Player.GetComponent<Movement> ().isBeingMoved) {
 				StateManager.Play ();
 			}
 			shown = StateManager.CurrentState;
