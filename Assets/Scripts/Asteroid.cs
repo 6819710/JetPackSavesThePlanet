@@ -56,9 +56,9 @@ public class Asteroid : DestructableEntity {
     }
 
     protected void OnCollisionEnter2D(Collision2D collision) {
-		if (!IsSpawnProtected()) {
+		if (!IsSpawnProtected() && gameObject.GetComponent<Renderer>().isVisible) {
             if (collision.gameObject.GetComponent<Asteroid>()) {
-                float energy = collision.relativeVelocity.sqrMagnitude * collision.otherRigidbody.mass/2;
+				float energy = collision.relativeVelocity.sqrMagnitude * (collision.otherRigidbody.mass/4 );
                 TakeDamage(energy);
 			} else if(canBeDestroyedBy.Contains(collision.gameObject.tag)) { // TODO Gavin: remove hardcoded tags; Isuru : Done
                 currentHealth = 0;

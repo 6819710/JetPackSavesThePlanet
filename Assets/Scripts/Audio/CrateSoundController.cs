@@ -23,6 +23,9 @@ public class CrateSoundController : SoundEffectsController {
 		}
 
 	}
+	public void Collect(){
+		Play (SoundEffect.Collect);
+	}
 
 	public void Ping(){
 		Play (SoundEffect.Ping);

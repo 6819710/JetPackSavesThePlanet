@@ -26,6 +26,12 @@ public class Health : MonoBehaviour {
 		get { return value <= 0; }
 	}
 
+	public DamageType KillingBlow {
+		get {
+			return killingBlow;
+		}
+	}
+
 	void Start () {
 		if (value > max)
 			value = max;
@@ -42,14 +48,14 @@ public class Health : MonoBehaviour {
     }
 
 	public void dealDamage(DamageType dm, float amount){
+		if(!isDead) killingBlow = dm;
 		value -= amount;
-		killingBlow = dm;
 	}
 
 	[System.Serializable]
 	public class DeathEvent: UnityEvent<DamageType>{}
 
-	public enum DamageType: int { Worm=0, Suffocation=1 }
+	public enum DamageType: int { Worm=0, Suffocation=1, Explosion=2 }
 
 
 }

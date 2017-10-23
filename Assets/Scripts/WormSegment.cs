@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -10,7 +11,15 @@ public class WormSegment : MonoBehaviour {
     private WormSegment segmentAhead;
     private WormSegment segmentBehind;
 
+	public UnityEvent onDeath;
+
 	public float wormSpread = 3f; // how far away each segment is
+
+	private float health = 10f; // each segment has its own health
+
+	public bool isAlive {
+		get { return health > 0; }
+	}
 
 	public WormSegment Ahead {
 		get { return segmentAhead; }
@@ -57,7 +66,7 @@ public class WormSegment : MonoBehaviour {
     }
 
     public void MoveWorm() {
-        if (segmentBehind) {  
+		if (segmentBehind && isAlive) {  
             segmentBehind.MoveWormSegment();
             segmentBehind.MoveWorm();
         }
@@ -66,4 +75,18 @@ public class WormSegment : MonoBehaviour {
     public void SetSegmentAhead(WormSegment segment) {
         segmentAhead = segment;
     }
+
+	public void dealDamage(float amount){
+		health -= amount;
+		if (health <= 0)
+			Die ();
+	}
+
+	public void Die(){
+		Behind = null;
+		onDeath.Invoke ();
+		Destroy (this.gameObject, 5f);
+	}
+
+
 }
