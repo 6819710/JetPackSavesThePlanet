@@ -26,6 +26,12 @@ public class Health : MonoBehaviour {
 		get { return value <= 0; }
 	}
 
+	public DamageType KillingBlow {
+		get {
+			return killingBlow;
+		}
+	}
+
 	void Start () {
 		if (value > max)
 			value = max;
@@ -42,8 +48,8 @@ public class Health : MonoBehaviour {
     }
 
 	public void dealDamage(DamageType dm, float amount){
+		if(!isDead) killingBlow = dm;
 		value -= amount;
-		killingBlow = dm;
 	}
 
 	[System.Serializable]
