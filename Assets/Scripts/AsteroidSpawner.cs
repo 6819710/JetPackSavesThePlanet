@@ -28,7 +28,7 @@ public class AsteroidSpawner : ObjectSpawner {
     }
 
     // (Hardcoded) all objects spawned by this script are asteroids
-    private void SpawnAsteroids(float minSpawnRange, float maxSpawnRange) {
+    public virtual void SpawnAsteroids(float minSpawnRange, float maxSpawnRange) {
         var asteroidCount = instantiatedObjects.Count;
 		for (var i = 0; asteroidCount < startingMaxObjectCount && i < startingMaxObjectCount; i++) {
             var pos = (Random.Range(0, minSpawnRange - maxSpawnRange) + maxSpawnRange) * (Vector3)Random.insideUnitCircle.normalized + generateAround.position;
