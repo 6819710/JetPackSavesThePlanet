@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void RestoreSaves(){
+		gameObject.GetComponent<TutorialManager> ().State = 0;
 		PlayerPrefs.DeleteAll ();
 		PlayerPrefs.Save ();
 	}

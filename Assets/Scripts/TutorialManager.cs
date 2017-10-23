@@ -15,6 +15,9 @@ public class TutorialManager : MonoBehaviour {
 		get {
 			return (int)state;
 		}
+		set{
+			state = (TutorialState)value;
+		}
 	}	
 
 	public bool isDone {
