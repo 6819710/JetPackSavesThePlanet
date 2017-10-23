@@ -18,4 +18,9 @@ public class CrateSoundController : SoundEffectsController {
 	public void Ping(){
         SFX.PlayCratePing();
 	}
+
+    public void Create()
+    {
+        SFX.PlayCrateSpawn();
+    }
 }
