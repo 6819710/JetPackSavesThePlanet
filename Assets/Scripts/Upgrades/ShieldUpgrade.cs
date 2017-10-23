@@ -55,6 +55,7 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 
 	public override void Effect ()
 	{
+		Owner.GetComponent<Health> ().Immune = true;
 		shield = Instantiate (shieldPrefab);
 		shield.GetComponent<Shield> ().Owner = this.Owner;
 	}
@@ -62,6 +63,7 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 	public override void Restore ()
 	{
 		base.Restore ();
+		Owner.GetComponent<Health> ().Immune = false;
 		shield.GetComponent<Animator> ().SetTrigger ("Low");
 	}
 

@@ -31,18 +31,19 @@ public class GrantUpgradeOnCollect : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (!collected) {
-			collected = true;
-			sound.Collect ();
 			if (canBeCollectedByEntitesTagged.Contains (collision.gameObject.tag)) {
-				body.bodyType = RigidbodyType2D.Kinematic;
-				//Grant Upgrade , If the reciever has an UpgradeSystem
 				UpgradeSystem upSys = collision.gameObject.GetComponent<UpgradeSystem> ();
+				//Grant Upgrade , If the reciever has an UpgradeSystem
 				if (upSys != null) { // if it's players
+					collected = true;
+					sound.Collect ();
+					body.bodyType = RigidbodyType2D.Kinematic;
 					if (!grantOneAtRandom) {
 						foreach (Upgrade u in upgradesToGrant)
 							upSys.Add (u);
 					} else {
-						upSys.Add (upgradesToGrant [Random.Range (0, upgradesToGrant.Count)]);
+						Upgrade toGrant = upgradesToGrant [Random.Range (0, upgradesToGrant.Count)];
+						upSys.Add (toGrant);
 					}
 				}
 				animator.SetTrigger ("Collected");

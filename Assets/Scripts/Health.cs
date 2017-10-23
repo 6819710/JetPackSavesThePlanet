@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
 
 	public float value = 1;
 	public float max = 1;
+	public bool immune = false;
 	
 	private DamageType killingBlow;
 	public DeathEvent onDeath;
@@ -22,6 +23,10 @@ public class Health : MonoBehaviour {
 		set { this.max = value; }
 	}
 
+	public bool isImmune{
+		get { return immune; }
+	}
+
 	public bool isDead{
 		get { return value <= 0; }
 	}
@@ -30,6 +35,11 @@ public class Health : MonoBehaviour {
 		get {
 			return killingBlow;
 		}
+	}
+
+	public bool Immune{
+		get { return immune; }
+		set { immune = value; }
 	}
 
 	void Start () {
@@ -48,8 +58,10 @@ public class Health : MonoBehaviour {
     }
 
 	public void dealDamage(DamageType dm, float amount){
-		if(!isDead) killingBlow = dm;
-		value -= amount;
+		if(!isImmune){
+			if(!isDead) killingBlow = dm;
+			value -= amount;
+		}
 	}
 
 	[System.Serializable]

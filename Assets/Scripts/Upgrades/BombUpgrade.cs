@@ -5,7 +5,7 @@ using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu]
-public class BombUpgrade : ConsumableUpgrade {
+public class BombUpgrade : ConsumableUpgrade , ICollectable{
 	
 	public GameObject bombPrefab;
 	public float damageRadius = 1;
