@@ -9,7 +9,7 @@ public class ExplodeOnDeath : MonoBehaviour {
 	public GameObject blood;
 
 	public void Explode(Health.DamageType damage){
-		if (damage == Health.DamageType.Worm) {
+		if (damage == Health.DamageType.Worm || damage == Health.DamageType.Explosion) {
 			RemoveJoints (this.transform);
 			if (blood != null) {
 				GameObject bp = Instantiate (blood);

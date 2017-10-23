@@ -23,6 +23,7 @@ public class PickupSFXController : MonoBehaviour {
 
     public void PlayCrateCollect()
     {
+        gameObject.GetComponent<DestroyAfterPlayed>().mySource = crateCollect;
         if (!crateCollect.isPlaying)
             crateCollect.Play();
     }
