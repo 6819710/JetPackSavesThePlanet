@@ -41,8 +41,7 @@ public class GrantOxygenOnCollect : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		if(collision.gameObject.GetComponent<PlayerSFXController>()){
-			collision.gameObject.GetComponent<PlayerSFXController> ().Play (PlayerSFXController.SoundEffect.Oxygen);
-		}
+        if (collision.gameObject.GetComponentInChildren<OxygenSFXControler>())
+            collision.gameObject.GetComponentInChildren<OxygenSFXControler>().playOxygenSlurp();
     }
 }
