@@ -32,10 +32,8 @@ public class IceAsteroidSFXControler : MonoBehaviour {
 
     public void playSource(int i)
     {
+        gameObject.GetComponent<DestroyAfterPlayed>().mySource = iceAsteroidSource[i];
         if (!iceAsteroidSource[i].isPlaying)
-        {
             iceAsteroidSource[i].Play();
-            gameObject.GetComponent<DestroyAfterPlayed>().mySource = iceAsteroidSource[i];
-        }
     }
 }

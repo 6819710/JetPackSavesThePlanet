@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour {
 
+	private ShieldSFXControler sfx;
 	public GameObject owner;
 	public List<string> canDestroy;
-
-	private SoundEffectsController sfx;
 
 	public GameObject Owner {
 		get {
@@ -17,7 +16,7 @@ public class Shield : MonoBehaviour {
 	}
 
 	void Start(){
-		sfx = gameObject.GetComponentInChildren<SoundEffectsController> ();
+		sfx = gameObject.GetComponentInChildren<ShieldSFXControler> ();
 	}
 
 	void Update(){
@@ -27,7 +26,8 @@ public class Shield : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D other) {
-		sfx.PlayOnce ();
+		sfx.playRandom ();
+
 		if(canDestroy.Contains(other.gameObject.tag)){
 			if(other.gameObject.GetComponent<Asteroid>()){
 				other.gameObject.GetComponent<Asteroid> ().Split (other.contacts[0].normal);
