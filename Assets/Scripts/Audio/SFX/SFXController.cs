@@ -32,7 +32,7 @@ public class SFXController : MonoBehaviour {
     /// Will run n attempts, where n is the number of SFX Sources avalible in _sfx.
     /// When attempts are not suscussfull will play first SFX that is not currently playing.
     /// </summary>
-    public void playRandom()
+    public void PlayRandom()
     {
         for (int i = 0; i < _sfx.Count; i++) // Run n attempts.
         {
@@ -69,7 +69,7 @@ public class SFXController : MonoBehaviour {
     /// Plays a given SFX
     /// </summary>
     /// <param name="i">Position of SFX in list.</param>
-    public void playSource(int i)
+    public void PlaySource(int i)
     {
         if (_destroyOnPlay)
         {
