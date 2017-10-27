@@ -21,7 +21,7 @@ public class Thruster : MonoBehaviour {
 		ownerBody = this.gameObject.GetComponent<Rigidbody2D>();
         oxygenSupply = this.gameObject.GetComponent<Oxygen>();
 		playerMovement = this.gameObject.GetComponent<Movement>();
-		jetpack = transform.Find ("jetpack");
+		jetpack = transform.Find ("SFXJetpack");
 		sounds = jetpack.GetComponent<AudioSource> ();
     }
 
