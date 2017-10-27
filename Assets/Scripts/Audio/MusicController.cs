@@ -39,7 +39,7 @@ public class MusicController : MonoBehaviour {
 	void Start ()
     {
         _quaterNote = 60.0f / _bpm;
-        _transition = 0.0f;
+        _transition = _quaterNote;
         toMenu();
 	}
 
