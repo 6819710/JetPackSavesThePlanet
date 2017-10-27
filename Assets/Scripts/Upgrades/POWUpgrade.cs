@@ -8,17 +8,15 @@ public class POWUpgrade : ConsumableUpgrade {
 
 	[SerializeField] private float radius = 5;
 
-	public override void Activate ()
-	{
-		base.Activate ();
-	}
-
 	public POWUpgrade (string name): base(name)
 	{
 	}
 
+
 	public override void Effect ()
 	{
+		Owner.transform.Find ("pow").GetComponent<Animator> ().SetTrigger ("Activate");
+		GameObject.Find ("SFX").GetComponent<SFXControler> ().playPOW();
 		GameObject player = GameManager.instance.Player;
 		List<SpawnableObject> toDestroy = GameManager.instance.Director.GetComponent<AsteroidSpawner> ().InScreen;
 		foreach(SpawnableObject so in toDestroy){
@@ -30,4 +28,5 @@ public class POWUpgrade : ConsumableUpgrade {
 		}
 		Restore ();
 	}
+
 }

@@ -77,11 +77,20 @@ public class SpeedUpgrade : RenewableUpgrade, ITimable, ISpammable, ICollectable
 	public override void Effect ()
 	{
 		Rigidbody2D rb = Owner.GetComponent<Rigidbody2D> ();
-		ParticleSystem ps = Owner.transform.Find("jetpack").GetComponent<ParticleSystem> (); // TODO : remove hardcoded value
-		rb.AddForce(rb.velocity * magnitude);
-		ParticleSystem.EmitParams ep = new ParticleSystem.EmitParams ();
-		ep.startColor = Color.red;
-		ps.Emit(ep,(int) Magnitude);
+		Owner.transform.Find ("rockets").GetComponent<ParticleSystem> ().Clear ();
+		Owner.transform.Find ("rockets").GetComponent<ParticleSystem> ().Play ();
+		Owner.GetComponent<Thruster> ().enabled = false;
+		Owner.GetComponent<Thruster> ().ParticlesEnabled(false);
+		Array.ForEach(Owner.transform.Find ("rockets").GetComponents<AudioSource>(), x => x.Play());
+		Owner.GetComponent<ClampSpeed> ().maxSpeed += magnitude;
+	}
+
+	public override void Restore(){
+		Owner.transform.Find("rockets").GetComponent<ParticleSystem> ().Stop();
+		Array.ForEach(Owner.transform.Find ("rockets").GetComponents<AudioSource>(), x => x.Stop());
+		Owner.GetComponent<Thruster> ().enabled = true;
+		Owner.GetComponent<ClampSpeed> ().maxSpeed -= magnitude;
+		base.Restore ();
 	}
 
 	public void onCollect(int amount){

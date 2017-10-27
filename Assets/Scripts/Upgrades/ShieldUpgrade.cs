@@ -55,14 +55,15 @@ public class ShieldUpgrade : ConsumableUpgrade, ITimable
 
 	public override void Effect ()
 	{
-		shield = Instantiate (shieldPrefab, this.Owner.transform);
-		shield.GetComponent<FixedJoint2D> ().connectedBody =  (Owner.GetComponent<Rigidbody2D>());
-		shield.transform.SetParent (this.Owner.transform);
+		Owner.GetComponent<Health> ().Immune = true;
+		shield = Instantiate (shieldPrefab);
+		shield.GetComponent<Shield> ().Owner = this.Owner;
 	}
 
 	public override void Restore ()
 	{
 		base.Restore ();
+		Owner.GetComponent<Health> ().Immune = false;
 		shield.GetComponent<Animator> ().SetTrigger ("Low");
 	}
 

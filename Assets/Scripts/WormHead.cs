@@ -22,6 +22,8 @@ public class WormHead : WormSegment {
 
 	private ParticleSystem ps;
 
+
+
     void Start() {
         if (!mainTarget) mainTarget = GameObject.FindGameObjectWithTag("Player").transform;
         AIbsc = gameObject.GetComponent<AIBehaviourStateController>();
@@ -41,25 +43,27 @@ public class WormHead : WormSegment {
     }
 
     void FixedUpdate() {
-        switch (AIbsc.GetCurrentState()){
-            case AIBehaviourState.debug: {
-                    MoveWormHead(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), catchUpExponent);
-                }
-                break;
-            case AIBehaviourState.idle: break;
-            case AIBehaviourState.following: {
-					ps.Stop ();
-                    MoveWormHead(mainTarget.position, catchUpExponent);
-                }
-                break;
-            case AIBehaviourState.retreating: {
-					ps.Play ();
-                    MoveWormHead(retreatTo);
-                }
-                break;
-            default: break;
-        }
-        MoveWorm();
+		if(isAlive){
+	        switch (AIbsc.GetCurrentState()){
+	            case AIBehaviourState.debug: {
+	                    MoveWormHead(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), catchUpExponent);
+	                }
+	                break;
+	            case AIBehaviourState.idle: break;
+	            case AIBehaviourState.following: {
+						ps.Stop (false);
+	                    MoveWormHead(mainTarget.position, catchUpExponent);
+	                }
+	                break;
+	            case AIBehaviourState.retreating: {
+						ps.Play (false);
+	                    MoveWormHead(retreatTo);
+	                }
+	                break;
+	            default: break;
+	        }
+			MoveWorm();
+		}
     }
 
 	private void MoveWormHead(Vector2 targetPos, float catchUpExponent = 0) {
@@ -73,22 +77,28 @@ public class WormHead : WormSegment {
 	}
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
-            Health health = collision.gameObject.GetComponent<Health>();
-            if (health != null) {
-				health.dealDamage(Health.DamageType.Worm,attackAmount);
-            }
-        }
-		if (canBeStunnedByTagged.Contains(collision.gameObject.tag) ) {
-            //If wworm on screen then retreat when hittinng asteroids
-            var screenCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.transform.position.z));
-            var screenBottomCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.transform.position.z));
-            if (Vector3.Distance(mainTarget.position, transform.position) < Vector3.Distance(screenCenterWorldCoordinates, screenBottomCenterWorldCoordinates)) {
-                AIbsc.ChangeState(AIBehaviourState.retreating, retreatTime);
-                var normal = collision.contacts[0].normal;
-                var distance = collision.contacts[0].relativeVelocity.magnitude;
-                retreatTo = distance * normal + collision.contacts[0].point;
-            }
-        }
+		if(isAlive){
+	        if (collision.gameObject.tag == "Player") { //TODO Gavin: remove hardcoded tag
+	            Health health = collision.gameObject.GetComponent<Health>();
+	            if (health != null) {
+					health.dealDamage(Health.DamageType.Worm,attackAmount);
+	            }
+	        }
+			if (canBeStunnedByTagged.Contains(collision.gameObject.tag) ) {
+				Stunt (collision);
+	        }
+		}
     }
+
+	public void Stunt(Collision2D collision){
+		//If wworm on screen then retreat when hittinng asteroids
+		var screenCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.transform.position.z));
+		var screenBottomCenterWorldCoordinates = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.transform.position.z));
+		if (Vector3.Distance(mainTarget.position, transform.position) < Vector3.Distance(screenCenterWorldCoordinates, screenBottomCenterWorldCoordinates)) {
+			AIbsc.ChangeState(AIBehaviourState.retreating, retreatTime);
+			var normal = collision.contacts[0].normal;
+			var distance = collision.contacts[0].relativeVelocity.magnitude;
+			retreatTo = distance * normal + collision.contacts[0].point;
+		}
+	}
 }

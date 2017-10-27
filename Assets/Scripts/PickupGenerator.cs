@@ -12,6 +12,7 @@ public class PickupGenerator : MonoBehaviour {
 	}
 
 	public void SpawnPickup(GameObject what, float distace){
+		GameManager.instance.GetComponent<TutorialManager> ().SetTrigger (TutorialManager.TutorialTriggers.PickupSpawned);
 		GameObject spawned = Instantiate (what);
 		spawned.transform.position = around.position - (Random.insideUnitSphere * distance);
 	}

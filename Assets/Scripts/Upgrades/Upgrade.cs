@@ -5,10 +5,9 @@ using UnityEngine;
 public abstract class Upgrade : ScriptableObject
 {
 	private GameObject _owner;
-	[SerializeField]
-	private String _name;
-	[SerializeField]
-	private Sprite _image;
+
+	[SerializeField] private String _name;
+	[SerializeField] private Sprite _image;
 
 	private bool active;
 

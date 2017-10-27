@@ -2,34 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class CrateSoundController : SoundEffectsController {
+public class CrateSoundController : MonoBehaviour
+{
+    PickupSFXController SFX;
 
-	public List<AudioSource> spawnSounds;
-	public List<AudioSource> collectSounds;
-	public List<AudioSource> pingSounds;
+    private void Start()
+    {
+        SFX = this.gameObject.GetComponentInChildren<PickupSFXController>();
+    }
 
-	public void Play(SoundEffect toPlay){
-		switch(toPlay){
-			case SoundEffect.Collect:
-				RandomFrom(collectSounds).Play();
-				break;
-			case SoundEffect.Ping:
-				RandomFrom(pingSounds).Play();
-				break;
-		case SoundEffect.Spawn:
-				RandomFrom (spawnSounds).Play ();
-				break;
-		}
-
+    public void Collect(){
+		SFX.PlayCrateCollect();
 	}
 
 	public void Ping(){
-		Play (SoundEffect.Ping);
+        SFX.PlayCratePing();
 	}
 
-	public enum SoundEffect { 
-		Collect, Ping, Spawn
-	}
-
+    public void Create()
+    {
+        SFX.PlayCrateSpawn();
+    }
 }
