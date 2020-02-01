@@ -1,28 +1,63 @@
 fileFormatVersion: 2
 guid: fbf719e9bf42d4534871aff563f56329
-timeCreated: 1507440047
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: asteroid_1_0
-    21300002: asteroid_1_1
-    21300004: asteroid_1_2
-    21300006: asteroid_1_3
-    21300008: asteroid_1_4
-    21300010: asteroid_1_5
-    21300012: asteroid_1_6
-    21300014: asteroid_1_7
-    21300016: asteroid_1_8
-    21300018: asteroid_1_9
-    21300020: asteroid_1_10
-    21300022: asteroid_1_11
-    21300024: asteroid_1_12
-    21300026: asteroid_1_13
-    21300028: asteroid_1_14
-    21300030: asteroid_1_15
-    21300032: asteroid_1_16
-    21300034: asteroid_1_17
-  serializedVersion: 4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: asteroid_1_0
+  - first:
+      213: 21300002
+    second: asteroid_1_1
+  - first:
+      213: 21300004
+    second: asteroid_1_2
+  - first:
+      213: 21300006
+    second: asteroid_1_3
+  - first:
+      213: 21300008
+    second: asteroid_1_4
+  - first:
+      213: 21300010
+    second: asteroid_1_5
+  - first:
+      213: 21300012
+    second: asteroid_1_6
+  - first:
+      213: 21300014
+    second: asteroid_1_7
+  - first:
+      213: 21300016
+    second: asteroid_1_8
+  - first:
+      213: 21300018
+    second: asteroid_1_9
+  - first:
+      213: 21300020
+    second: asteroid_1_10
+  - first:
+      213: 21300022
+    second: asteroid_1_11
+  - first:
+      213: 21300024
+    second: asteroid_1_12
+  - first:
+      213: 21300026
+    second: asteroid_1_13
+  - first:
+      213: 21300028
+    second: asteroid_1_14
+  - first:
+      213: 21300030
+    second: asteroid_1_15
+  - first:
+      213: 21300032
+    second: asteroid_1_16
+  - first:
+      213: 21300034
+    second: asteroid_1_17
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -40,6 +75,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -50,7 +87,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -62,57 +99,79 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: iPhone
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: WebGL
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -139,6 +198,13 @@ TextureImporter:
         - {x: 67.5, y: 79}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_1
       rect:
@@ -166,6 +232,13 @@ TextureImporter:
         - {x: 14.208229, y: 7.277649}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_2
       rect:
@@ -197,6 +270,13 @@ TextureImporter:
         - {x: 5.791977, y: 15.890144}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_3
       rect:
@@ -231,6 +311,13 @@ TextureImporter:
         - {x: 9.142441, y: 13.453217}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_4
       rect:
@@ -273,6 +360,13 @@ TextureImporter:
         - {x: 31.4766, y: -6.710533}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_5
       rect:
@@ -333,6 +427,13 @@ TextureImporter:
         - {x: 29.268585, y: 26.780273}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_6
       rect:
@@ -365,6 +466,13 @@ TextureImporter:
         - {x: 20.137848, y: 8.205513}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_7
       rect:
@@ -397,6 +505,13 @@ TextureImporter:
         - {x: 17.40802, y: 8.569893}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_8
       rect:
@@ -425,6 +540,13 @@ TextureImporter:
         - {x: 9.33876, y: 5.579365}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_9
       rect:
@@ -464,6 +586,13 @@ TextureImporter:
         - {x: 20.9402, y: 5.1805267}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_10
       rect:
@@ -497,6 +626,13 @@ TextureImporter:
         - {x: 19.031013, y: 7.587078}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_11
       rect:
@@ -545,6 +681,13 @@ TextureImporter:
         - {x: 24.56308, y: 36.86676}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_12
       rect:
@@ -580,6 +723,13 @@ TextureImporter:
         - {x: 7.1307373, y: 14.752289}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_13
       rect:
@@ -612,6 +762,13 @@ TextureImporter:
         - {x: 14.90184, y: 17.551376}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_14
       rect:
@@ -642,6 +799,13 @@ TextureImporter:
         - {x: 12.028, y: 18.425224}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_15
       rect:
@@ -674,6 +838,13 @@ TextureImporter:
         - {x: 13.390137, y: 14.280289}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_16
       rect:
@@ -698,6 +869,13 @@ TextureImporter:
         - {x: 9.925232, y: 14.5}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: asteroid_1_17
       rect:
@@ -723,6 +901,13 @@ TextureImporter:
         - {x: 10.763992, y: 10.350449}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline:
     - - {x: -65, y: 79}
       - {x: -86, y: 57}
@@ -733,7 +918,17 @@ TextureImporter:
       - {x: 71, y: 52}
       - {x: 51, y: 79}
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

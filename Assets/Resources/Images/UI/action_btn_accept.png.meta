@@ -1,153 +1,438 @@
 fileFormatVersion: 2
 guid: 92f962512d22e4e9b975388eaf47e68c
-timeCreated: 1503654644
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: action_btn_accept_0
-    21300002: action_btn_accept_1
-    21300004: action_btn_accept_2
-    21300006: action_btn_accept_3
-    21300008: action_btn_accept_4
-    21300010: action_btn_accept_5
-    21300012: action_btn_accept_6
-    21300014: action_btn_accept_7
-    21300016: action_btn_accept_8
-    21300018: action_btn_accept_9
-    21300020: action_btn_accept_10
-    21300022: action_btn_accept_11
-    21300024: action_btn_accept_12
-    21300026: action_btn_accept_13
-    21300028: action_btn_accept_14
-    21300030: action_btn_accept_15
-    21300032: action_btn_accept_16
-    21300034: action_btn_accept_17
-    21300036: action_btn_accept_18
-    21300038: action_btn_accept_19
-    21300040: action_btn_accept_20
-    21300042: action_btn_accept_21
-    21300044: action_btn_accept_22
-    21300046: action_btn_accept_23
-    21300048: action_btn_accept_24
-    21300050: action_btn_accept_25
-    21300052: action_btn_accept_26
-    21300054: action_btn_accept_27
-    21300056: action_btn_accept_28
-    21300058: action_btn_accept_29
-    21300060: action_btn_accept_30
-    21300062: action_btn_accept_31
-    21300064: action_btn_accept_32
-    21300066: action_btn_accept_33
-    21300068: action_btn_accept_34
-    21300070: action_btn_accept_35
-    21300072: action_btn_accept_36
-    21300074: action_btn_accept_37
-    21300076: action_btn_accept_38
-    21300078: action_btn_accept_39
-    21300080: action_btn_accept_40
-    21300082: action_btn_accept_41
-    21300084: action_btn_accept_42
-    21300086: action_btn_accept_43
-    21300088: action_btn_accept_44
-    21300090: action_btn_accept_45
-    21300092: action_btn_accept_46
-    21300094: action_btn_accept_47
-    21300096: action_btn_accept_48
-    21300098: action_btn_accept_49
-    21300100: action_btn_accept_50
-    21300102: action_btn_accept_51
-    21300104: action_btn_accept_52
-    21300106: action_btn_accept_53
-    21300108: action_btn_accept_54
-    21300110: action_btn_accept_55
-    21300112: action_btn_accept_56
-    21300114: action_btn_accept_57
-    21300116: action_btn_accept_58
-    21300118: action_btn_accept_59
-    21300120: action_btn_accept_60
-    21300122: action_btn_accept_61
-    21300124: action_btn_accept_62
-    21300126: action_btn_accept_63
-    21300128: action_btn_accept_64
-    21300130: action_btn_accept_65
-    21300132: action_btn_accept_66
-    21300134: action_btn_accept_67
-    21300136: action_btn_accept_68
-    21300138: action_btn_accept_69
-    21300140: action_btn_accept_70
-    21300142: action_btn_accept_71
-    21300144: action_btn_accept_72
-    21300146: action_btn_accept_73
-    21300148: action_btn_accept_74
-    21300150: action_btn_accept_75
-    21300152: action_btn_accept_76
-    21300154: action_btn_accept_77
-    21300156: action_btn_accept_78
-    21300158: action_btn_accept_79
-    21300160: action_btn_accept_80
-    21300162: action_btn_accept_81
-    21300164: action_btn_accept_82
-    21300166: action_btn_accept_83
-    21300168: action_btn_accept_84
-    21300170: action_btn_accept_85
-    21300172: action_btn_accept_86
-    21300174: action_btn_accept_87
-    21300176: action_btn_accept_88
-    21300178: action_btn_accept_89
-    21300180: action_btn_accept_90
-    21300182: action_btn_accept_91
-    21300184: action_btn_accept_92
-    21300186: action_btn_accept_93
-    21300188: action_btn_accept_94
-    21300190: action_btn_accept_95
-    21300192: action_btn_accept_96
-    21300194: action_btn_accept_97
-    21300196: action_btn_accept_98
-    21300198: action_btn_accept_99
-    21300200: action_btn_accept_100
-    21300202: action_btn_accept_101
-    21300204: action_btn_accept_102
-    21300206: action_btn_accept_103
-    21300208: action_btn_accept_104
-    21300210: action_btn_accept_105
-    21300212: action_btn_accept_106
-    21300214: action_btn_accept_107
-    21300216: action_btn_accept_108
-    21300218: action_btn_accept_109
-    21300220: action_btn_accept_110
-    21300222: action_btn_accept_111
-    21300224: action_btn_accept_112
-    21300226: action_btn_accept_113
-    21300228: action_btn_accept_114
-    21300230: action_btn_accept_115
-    21300232: action_btn_accept_116
-    21300234: action_btn_accept_117
-    21300236: action_btn_accept_118
-    21300238: action_btn_accept_119
-    21300240: action_btn_accept_120
-    21300242: action_btn_accept_121
-    21300244: action_btn_accept_122
-    21300246: action_btn_accept_123
-    21300248: action_btn_accept_124
-    21300250: action_btn_accept_125
-    21300252: action_btn_accept_126
-    21300254: action_btn_accept_127
-    21300256: action_btn_accept_128
-    21300258: action_btn_accept_129
-    21300260: action_btn_accept_130
-    21300262: action_btn_accept_131
-    21300264: action_btn_accept_132
-    21300266: action_btn_accept_133
-    21300268: action_btn_accept_134
-    21300270: action_btn_accept_135
-    21300272: action_btn_accept_136
-    21300274: action_btn_accept_137
-    21300276: action_btn_accept_138
-    21300278: action_btn_accept_139
-    21300280: action_btn_accept_140
-    21300282: action_btn_accept_141
-    21300284: action_btn_accept_142
-  serializedVersion: 4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: action_btn_accept_0
+  - first:
+      213: 21300002
+    second: action_btn_accept_1
+  - first:
+      213: 21300004
+    second: action_btn_accept_2
+  - first:
+      213: 21300006
+    second: action_btn_accept_3
+  - first:
+      213: 21300008
+    second: action_btn_accept_4
+  - first:
+      213: 21300010
+    second: action_btn_accept_5
+  - first:
+      213: 21300012
+    second: action_btn_accept_6
+  - first:
+      213: 21300014
+    second: action_btn_accept_7
+  - first:
+      213: 21300016
+    second: action_btn_accept_8
+  - first:
+      213: 21300018
+    second: action_btn_accept_9
+  - first:
+      213: 21300020
+    second: action_btn_accept_10
+  - first:
+      213: 21300022
+    second: action_btn_accept_11
+  - first:
+      213: 21300024
+    second: action_btn_accept_12
+  - first:
+      213: 21300026
+    second: action_btn_accept_13
+  - first:
+      213: 21300028
+    second: action_btn_accept_14
+  - first:
+      213: 21300030
+    second: action_btn_accept_15
+  - first:
+      213: 21300032
+    second: action_btn_accept_16
+  - first:
+      213: 21300034
+    second: action_btn_accept_17
+  - first:
+      213: 21300036
+    second: action_btn_accept_18
+  - first:
+      213: 21300038
+    second: action_btn_accept_19
+  - first:
+      213: 21300040
+    second: action_btn_accept_20
+  - first:
+      213: 21300042
+    second: action_btn_accept_21
+  - first:
+      213: 21300044
+    second: action_btn_accept_22
+  - first:
+      213: 21300046
+    second: action_btn_accept_23
+  - first:
+      213: 21300048
+    second: action_btn_accept_24
+  - first:
+      213: 21300050
+    second: action_btn_accept_25
+  - first:
+      213: 21300052
+    second: action_btn_accept_26
+  - first:
+      213: 21300054
+    second: action_btn_accept_27
+  - first:
+      213: 21300056
+    second: action_btn_accept_28
+  - first:
+      213: 21300058
+    second: action_btn_accept_29
+  - first:
+      213: 21300060
+    second: action_btn_accept_30
+  - first:
+      213: 21300062
+    second: action_btn_accept_31
+  - first:
+      213: 21300064
+    second: action_btn_accept_32
+  - first:
+      213: 21300066
+    second: action_btn_accept_33
+  - first:
+      213: 21300068
+    second: action_btn_accept_34
+  - first:
+      213: 21300070
+    second: action_btn_accept_35
+  - first:
+      213: 21300072
+    second: action_btn_accept_36
+  - first:
+      213: 21300074
+    second: action_btn_accept_37
+  - first:
+      213: 21300076
+    second: action_btn_accept_38
+  - first:
+      213: 21300078
+    second: action_btn_accept_39
+  - first:
+      213: 21300080
+    second: action_btn_accept_40
+  - first:
+      213: 21300082
+    second: action_btn_accept_41
+  - first:
+      213: 21300084
+    second: action_btn_accept_42
+  - first:
+      213: 21300086
+    second: action_btn_accept_43
+  - first:
+      213: 21300088
+    second: action_btn_accept_44
+  - first:
+      213: 21300090
+    second: action_btn_accept_45
+  - first:
+      213: 21300092
+    second: action_btn_accept_46
+  - first:
+      213: 21300094
+    second: action_btn_accept_47
+  - first:
+      213: 21300096
+    second: action_btn_accept_48
+  - first:
+      213: 21300098
+    second: action_btn_accept_49
+  - first:
+      213: 21300100
+    second: action_btn_accept_50
+  - first:
+      213: 21300102
+    second: action_btn_accept_51
+  - first:
+      213: 21300104
+    second: action_btn_accept_52
+  - first:
+      213: 21300106
+    second: action_btn_accept_53
+  - first:
+      213: 21300108
+    second: action_btn_accept_54
+  - first:
+      213: 21300110
+    second: action_btn_accept_55
+  - first:
+      213: 21300112
+    second: action_btn_accept_56
+  - first:
+      213: 21300114
+    second: action_btn_accept_57
+  - first:
+      213: 21300116
+    second: action_btn_accept_58
+  - first:
+      213: 21300118
+    second: action_btn_accept_59
+  - first:
+      213: 21300120
+    second: action_btn_accept_60
+  - first:
+      213: 21300122
+    second: action_btn_accept_61
+  - first:
+      213: 21300124
+    second: action_btn_accept_62
+  - first:
+      213: 21300126
+    second: action_btn_accept_63
+  - first:
+      213: 21300128
+    second: action_btn_accept_64
+  - first:
+      213: 21300130
+    second: action_btn_accept_65
+  - first:
+      213: 21300132
+    second: action_btn_accept_66
+  - first:
+      213: 21300134
+    second: action_btn_accept_67
+  - first:
+      213: 21300136
+    second: action_btn_accept_68
+  - first:
+      213: 21300138
+    second: action_btn_accept_69
+  - first:
+      213: 21300140
+    second: action_btn_accept_70
+  - first:
+      213: 21300142
+    second: action_btn_accept_71
+  - first:
+      213: 21300144
+    second: action_btn_accept_72
+  - first:
+      213: 21300146
+    second: action_btn_accept_73
+  - first:
+      213: 21300148
+    second: action_btn_accept_74
+  - first:
+      213: 21300150
+    second: action_btn_accept_75
+  - first:
+      213: 21300152
+    second: action_btn_accept_76
+  - first:
+      213: 21300154
+    second: action_btn_accept_77
+  - first:
+      213: 21300156
+    second: action_btn_accept_78
+  - first:
+      213: 21300158
+    second: action_btn_accept_79
+  - first:
+      213: 21300160
+    second: action_btn_accept_80
+  - first:
+      213: 21300162
+    second: action_btn_accept_81
+  - first:
+      213: 21300164
+    second: action_btn_accept_82
+  - first:
+      213: 21300166
+    second: action_btn_accept_83
+  - first:
+      213: 21300168
+    second: action_btn_accept_84
+  - first:
+      213: 21300170
+    second: action_btn_accept_85
+  - first:
+      213: 21300172
+    second: action_btn_accept_86
+  - first:
+      213: 21300174
+    second: action_btn_accept_87
+  - first:
+      213: 21300176
+    second: action_btn_accept_88
+  - first:
+      213: 21300178
+    second: action_btn_accept_89
+  - first:
+      213: 21300180
+    second: action_btn_accept_90
+  - first:
+      213: 21300182
+    second: action_btn_accept_91
+  - first:
+      213: 21300184
+    second: action_btn_accept_92
+  - first:
+      213: 21300186
+    second: action_btn_accept_93
+  - first:
+      213: 21300188
+    second: action_btn_accept_94
+  - first:
+      213: 21300190
+    second: action_btn_accept_95
+  - first:
+      213: 21300192
+    second: action_btn_accept_96
+  - first:
+      213: 21300194
+    second: action_btn_accept_97
+  - first:
+      213: 21300196
+    second: action_btn_accept_98
+  - first:
+      213: 21300198
+    second: action_btn_accept_99
+  - first:
+      213: 21300200
+    second: action_btn_accept_100
+  - first:
+      213: 21300202
+    second: action_btn_accept_101
+  - first:
+      213: 21300204
+    second: action_btn_accept_102
+  - first:
+      213: 21300206
+    second: action_btn_accept_103
+  - first:
+      213: 21300208
+    second: action_btn_accept_104
+  - first:
+      213: 21300210
+    second: action_btn_accept_105
+  - first:
+      213: 21300212
+    second: action_btn_accept_106
+  - first:
+      213: 21300214
+    second: action_btn_accept_107
+  - first:
+      213: 21300216
+    second: action_btn_accept_108
+  - first:
+      213: 21300218
+    second: action_btn_accept_109
+  - first:
+      213: 21300220
+    second: action_btn_accept_110
+  - first:
+      213: 21300222
+    second: action_btn_accept_111
+  - first:
+      213: 21300224
+    second: action_btn_accept_112
+  - first:
+      213: 21300226
+    second: action_btn_accept_113
+  - first:
+      213: 21300228
+    second: action_btn_accept_114
+  - first:
+      213: 21300230
+    second: action_btn_accept_115
+  - first:
+      213: 21300232
+    second: action_btn_accept_116
+  - first:
+      213: 21300234
+    second: action_btn_accept_117
+  - first:
+      213: 21300236
+    second: action_btn_accept_118
+  - first:
+      213: 21300238
+    second: action_btn_accept_119
+  - first:
+      213: 21300240
+    second: action_btn_accept_120
+  - first:
+      213: 21300242
+    second: action_btn_accept_121
+  - first:
+      213: 21300244
+    second: action_btn_accept_122
+  - first:
+      213: 21300246
+    second: action_btn_accept_123
+  - first:
+      213: 21300248
+    second: action_btn_accept_124
+  - first:
+      213: 21300250
+    second: action_btn_accept_125
+  - first:
+      213: 21300252
+    second: action_btn_accept_126
+  - first:
+      213: 21300254
+    second: action_btn_accept_127
+  - first:
+      213: 21300256
+    second: action_btn_accept_128
+  - first:
+      213: 21300258
+    second: action_btn_accept_129
+  - first:
+      213: 21300260
+    second: action_btn_accept_130
+  - first:
+      213: 21300262
+    second: action_btn_accept_131
+  - first:
+      213: 21300264
+    second: action_btn_accept_132
+  - first:
+      213: 21300266
+    second: action_btn_accept_133
+  - first:
+      213: 21300268
+    second: action_btn_accept_134
+  - first:
+      213: 21300270
+    second: action_btn_accept_135
+  - first:
+      213: 21300272
+    second: action_btn_accept_136
+  - first:
+      213: 21300274
+    second: action_btn_accept_137
+  - first:
+      213: 21300276
+    second: action_btn_accept_138
+  - first:
+      213: 21300278
+    second: action_btn_accept_139
+  - first:
+      213: 21300280
+    second: action_btn_accept_140
+  - first:
+      213: 21300282
+    second: action_btn_accept_141
+  - first:
+      213: 21300284
+    second: action_btn_accept_142
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -165,6 +450,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -175,7 +462,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: 1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -187,57 +474,79 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: iPhone
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: WebGL
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -255,6 +564,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: action_btn_accept_1
       rect:
@@ -269,6 +585,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: action_btn_accept_2
       rect:
@@ -283,9 +606,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
